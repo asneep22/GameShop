@@ -1,7 +1,7 @@
 @import 'bootstrap';
 
 .background {
-    background-color: rgb(223, 223, 213);
+    background-color: rgb(233, 233, 227);
 }
 
 /*#region registration*/
@@ -63,15 +63,15 @@
 
 @keyframes fade-out {
     0% {
-        transform: translate(-50%, -50%) scale(1,1)
+        transform: translate(-50%, -50%) scale(1, 1)
     }
 
     90% {
-        transform: translate(-50%, -50%) scale(1,1)
+        transform: translate(-50%, -50%) scale(1, 1)
     }
 
     95% {
-        transform: translate(-50%, -50%) scale(1.1,1.1)
+        transform: translate(-50%, -50%) scale(1.1, 1.1)
     }
 
     100% {
@@ -108,4 +108,31 @@
 
 .btn-green:hover {
     background-color: rgb(71, 136, 93);
+}
+
+
+
+.main_video {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+
+.game-card {
+    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
+    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
+    box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    min-width: 13rem;
+    min-height: 20rem;
+    max-width: 40rem;
+    max-height: 45rem;
+    margin: .25rem 0;
+}
+
+.img{
+  max-width: 30rem;
+  max-height: 45rem;
 }

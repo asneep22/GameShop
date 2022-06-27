@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\mainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/admin', 'index')->name('PageWelcome');
+    Route::get('/admin', 'index')->name('page_admin_welcome');
+});
+
+
+Route::controller(MainController::class)->group(function () {
+    Route::get('/', 'index')->name('page_welcome');
 });

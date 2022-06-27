@@ -1,6 +1,10 @@
 @extends('app')
+@section('page_title')
+    Администрирование
+@endsection
 
 @section('content')
+
     <div class="container m-auto">
         <form action="" method="POST" class="shadow mb-5 bg-white rounded m-auto d-flex reg-form flex-column reg-form"
             autocomplete="off">
