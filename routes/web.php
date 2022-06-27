@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/admin', 'index_admin')->name('page_admin_welcome');
-    Route::get('/auth', 'index_user')->name('page_user_welcome');
+    Route::get('/admin', 'index_admin')->name('page_admin_auth');
+    Route::get('/auth', 'index_user')->name('page_user_auth');
+    Route::post('/registration', 'register_user')->name('register_user');
+    Route::post('/login', 'login')->name('login');
+    
 });
 
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('page_welcome');
 });
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+   return redirect()->route('page_user_welcome');   
+})->middleware(['auth', 'signed'])->name('verification.verify');

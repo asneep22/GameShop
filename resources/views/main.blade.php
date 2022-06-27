@@ -154,7 +154,7 @@
                             <div class="big-card d-flex align-items-end ts">
                                 <img src="https://i.playground.ru/e/5qHoR1Vq5inGsFVE9_yCCg.jpeg" class="big-card-img"
                                     alt="">
-                                <div class="big-card-footer d-flex flex-column">
+                                <div class="big-card-footer rounded d-flex flex-column">
                                     <div class="descr">
                                         <h5 class="text-center mt-3">Dead Space</h5>
                                         <p class="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipisicing

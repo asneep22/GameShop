@@ -17,7 +17,7 @@
 
 <body class="min-vh-100 d-flex flex-column bg-body">
 
-    @if (!Route::is('page_admin_welcome') && !Route::is('page_user_welcome') )
+    @if (!Route::is('page_admin_welcome') && !Route::is('page_user_auth') )
     @include('header')
     @endif
     @yield('content')
