@@ -151,7 +151,7 @@
                     <div class="carousel-item active">
                         <div class="d-lg-flex justify-content-between">
                             <!-- Блок большой карточки -->
-                            <div class="big-card d-flex align-items-end">
+                            <div class="big-card d-flex align-items-end ts">
                                 <img src="https://i.playground.ru/e/5qHoR1Vq5inGsFVE9_yCCg.jpeg" class="big-card-img"
                                     alt="">
                                 <div class="big-card-footer d-flex flex-column">
@@ -199,7 +199,7 @@
                     <div class="carousel-item">
                         <div class="d-lg-flex justify-content-between">
                             <!-- Блок большой карточки -->
-                            <div class="big-card d-flex align-items-end">
+                            <div class="big-card d-flex align-items-end ts">
                                 <img src="https://i.playground.ru/e/5qHoR1Vq5inGsFVE9_yCCg.jpeg" class="big-card-img"
                                     alt="">
                                 <div class="big-card-footer d-flex flex-column">

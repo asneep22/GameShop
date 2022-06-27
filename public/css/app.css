@@ -11272,12 +11272,6 @@ textarea.form-control-lg {
 
 }
 
-.ts{
-
-    font-family: 'Russo One', sans-serif;
-
-}
-
 .divloga{
 
 min-height: 2.5rem;
@@ -11385,6 +11379,33 @@ max-height: 2.5rem;
         padding-right: 1.5rem !important;
 
     }
+}
+
+/* Footer */
+
+.fs{
+
+    font-size: small !important;
+
+}
+.line-t{
+
+    background-color: #6c757d  !important;
+    padding: 7rem 0.2rem 7rem 0.2rem;
+
+}
+.ttss{
+
+    color: #6c757d !important;
+
+}
+
+/* Text font */
+
+.ts{
+
+    font-family: 'Russo One', sans-serif;
+
 }
 .background {
     background-color: rgb(233, 233, 227);

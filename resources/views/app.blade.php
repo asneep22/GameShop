@@ -21,6 +21,7 @@
     @include('header')
     @endif
     @yield('content')
+    @include("footer")
 
     <script src="{{URL::asset('js/app.js')}}"></script>
 </body>
