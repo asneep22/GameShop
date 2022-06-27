@@ -113,9 +113,7 @@
 }
 
 
-.video-container{
-    min-height: 20rem;
-    min-width: 100vh;
+.video-container {
     position: relative;
 }
 
@@ -133,9 +131,37 @@
     overflow: hidden;
 }
 
-@media(min-width: 992px) and (max-width: 9999px) {
+.big-card {
+    position: relative;
+    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
+    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.21);
+
+}
+
+.big-card-img {
+    z-index: -1;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.big-card-footer {
+    color: #FFF;
+    height: 15rem;
+    background-color: rgba(0, 0, 0, 0.623);
+}
+
+@media(min-width: 1025px) and (max-width: 9999px) {
     .game-card {
-        max-width: 40rem;
+        max-width: 50rem;
+    }
+
+    .big-card {
+        max-width: 40.45rem;
+        min-width: 40.45rem;
     }
 }
 
@@ -144,6 +170,26 @@
         max-width: 25rem;
         padding-bottom: 1rem;
     }
+
+    .big-card {
+        min-height: 30rem;
+        max-width: 25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .big-card-footer{
+        width: 25rem;
+    }
+}
+
+@media(min-width: 993px) and (max-width: 1025px) {
+
+    .big-card {
+        min-height: 30rem;
+        min-width: 30rem;
+        max-width: 30rem;
+    }
+
 }
 
 
@@ -153,4 +199,11 @@
     min-width: 15rem;
     max-width: 25rem;
     max-height: 45rem;
+}
+
+.form-reg-auth {
+    min-height: 300px;
+    max-height: 800px;
+    min-width: 300px;
+    max-width: 450px;
 }

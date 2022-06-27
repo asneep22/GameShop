@@ -17,7 +17,9 @@
 
 <body class="min-vh-100 d-flex flex-column bg-body">
 
+    @if (!Route::is('page_admin_welcome') && !Route::is('page_user_welcome') )
     @include('header')
+    @endif
     @yield('content')
 
     <script src="{{URL::asset('js/app.js')}}"></script>
