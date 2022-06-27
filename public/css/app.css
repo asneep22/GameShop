@@ -11264,9 +11264,38 @@ textarea.form-control-lg {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
+/* Header */
+
+.ts{
+
+    font-family: 'Russo One', sans-serif;
+
+}
+
+.divloga{
+
+min-height: 2.5rem;
+max-height: 2.5rem;
+
+}
+
+.sb{
+
+    background: none;
+    border: none;
+
+}
+
+.fws{
+
+    max-width: 10.5rem; 
+    min-width: 10.5rem; 
+
+}
 .background {
     background-color: rgb(233, 233, 227);
 }
+
 
 /*#region registration*/
 

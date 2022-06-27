@@ -1,8 +1,10 @@
 @import 'bootstrap';
+@import './hf.css';
 
 .background {
     background-color: rgb(233, 233, 227);
 }
+
 
 /*#region registration*/
 
