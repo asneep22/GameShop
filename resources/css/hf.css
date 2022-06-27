@@ -1,5 +1,11 @@
 /* Header */
 
+.hbg{
+
+    background: rgb(255, 255, 255);
+
+}
+
 .ts{
 
     font-family: 'Russo One', sans-serif;
@@ -46,7 +52,19 @@ max-height: 2.5rem;
 
 }
 
+.dfh{
+
+    display: flex !important;
+    justify-content: center !important;
+
+}
+
 @media screen and (max-width:800px) {
+    .dfh{
+
+        display: block !important;
+    
+    }
     .sb {
         margin-left: 0rem !important;
     }

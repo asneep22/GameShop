@@ -1,6 +1,6 @@
-<header class=" container-fluid bg-light">
+<header class=" container-fluid hbg dfh">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light hbg">
         <div class="container-fluid">
             <div class="d-flex flex-column mb-2 cs">
                 <div class="divloga">
@@ -17,9 +17,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
 
-
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <div class="d-flex align-items-center mt-2 tf">
+                    <div class="d-flex align-items-center mt-1 tf">
                         <a href="#" class="text-decoration-none text-black m-0 ts fs-5 ps-4 gt">ГЛАВНАЯ</a>
                         <a href="#" class="text-decoration-none text-black m-0 ts fs-5 px-4 nt">НОВИНКИ</a>
                         <a href="#" class="text-decoration-none text-black m-0 ts fs-5 nt">СКИДКИ</a>
