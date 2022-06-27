@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-    <div class="container m-auto">
+
+<!-- Главное видео -->
+    <div class="container-fluid p-0 m-0 video-container">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
                 <div class="carousel-item active">
@@ -38,7 +40,8 @@
         </div>
     </div>
 
-    <div class="container-fluid shadow-lg p-3 pt-5 pb-5 bg-body rounded">
+<!-- Новинки/Популярное/Топ продаж -->
+    <div class="container-fluid rounded">
         <div class="container d-flex flex-column">
 
             <div class="mt-3 d-lg-flex justify-content-between">
@@ -55,7 +58,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="d-lg-flex">
-                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                            <div class="d-lg-flex col-lg mb-4 mx-lg-2 game-card rounded m-auto">
                                 <div class="img">
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
@@ -69,7 +72,7 @@
                                     <button type="submit" class="btn-green mt-2">В корзину</button>
                                 </div>
                             </div>
-                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                            <div class="d-lg-flex col-lg mb-4 mx-lg-2 game-card rounded m-auto">
                                 <div class="img">
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
@@ -87,7 +90,7 @@
 
                     <div class="carousel-item">
                         <div class="d-lg-flex">
-                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                            <div class="d-lg-flex col-lg mb-4 mx-lg-2 game-card rounded m-auto">
                                 <div class="img">
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
@@ -101,7 +104,7 @@
                                     <button type="submit" class="btn-green mt-2">В корзину</button>
                                 </div>
                             </div>
-                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                            <div class="d-lg-flex col-lg mb-4 mx-lg-2 game-card rounded m-auto">
                                 <div class="img">
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">

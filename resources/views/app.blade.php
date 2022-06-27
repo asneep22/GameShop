@@ -15,7 +15,7 @@
     <title>@yield('page_title')</title>
 </head>
 
-<body class="min-vh-100 d-flex flex-column background">
+<body class="min-vh-100 d-flex flex-column bg-body">
 
     @include('header')
     @yield('content')
