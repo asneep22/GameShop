@@ -11283,14 +11283,90 @@ max-height: 2.5rem;
 
     background: none;
     border: none;
+    margin-left: 3rem !important;
 
 }
 
 .fws{
 
-    max-width: 10.5rem; 
-    min-width: 10.5rem; 
+    max-width: 15.7rem; 
+    min-width: 15.7rem;
+    margin-left: 3rem !important; 
 
+}
+
+.np{
+
+    padding: 0 0 0 0.7rem !important;
+
+}
+.cs{
+
+    min-width: 17% !important;
+
+}
+
+.ddm{
+
+    padding-left: 5rem !important;
+
+}
+
+@media screen and (max-width:800px) {
+    .sb {
+        margin-left: 0rem !important;
+    }
+    .cst{
+        
+        display: flex !important;
+        flex-direction: column !important;
+        
+
+    }
+    .ht{
+
+        padding: 0 !important;
+
+    }
+    .tf{
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: start !important;
+
+    }
+    .fws{
+
+        max-width: 11.3rem; 
+        min-width: 11.3rem;
+        margin-left: 0 !important; 
+    
+    }
+    .gt{
+
+        padding: 0 0 1rem 0 !important;
+
+    }
+    .nt{
+
+        padding: 0 0 1rem 0 !important;
+
+    }
+    .ip{
+
+        padding: 1rem 0 2rem 0 !important
+
+    }
+    .ddm{
+
+        padding-left: 3.5rem !important;
+
+    }
+    .dm{
+
+        padding-right: 1.5rem !important;
+
+    }
 }
 .background {
     background-color: rgb(233, 233, 227);

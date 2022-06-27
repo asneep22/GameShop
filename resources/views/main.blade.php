@@ -46,9 +46,9 @@
             <div class="mt-3 d-lg-flex justify-content-between">
                 <h2 class="text-sm-center text-lg-start ">Стоит посмотреть</h2>
                 <div class="d-lg-flex text-center">
-                    <a class="text-decoration-none text-black">Новинки</a>
-                    <a class="px-4 text-decoration-none text-black">Популярное</a>
-                    <a class="text-decoration-none text-black">Часто покупаемые</a>
+                    <a href="#" class="text-decoration-none text-black">Новинки</a>
+                    <a href="#" class="px-4 text-decoration-none text-black">Популярное</a>
+                    <a href="#" class="text-decoration-none text-black">Часто покупаемые</a>
                 </div>
             </div>
             <hr class="">
