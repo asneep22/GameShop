@@ -50,24 +50,87 @@
                 </div>
             </div>
             <hr class="">
-            <div class="games d-flex justify-content-between  flex-wrap">
-                @for ($i = 0; $i < 4; $i++)
-                    <div class="d-lg-flex pb-3-sm game-card">
-                        <div class="img">
-                        <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
-                        class="w-100" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h4 class="">FAR CRY 4</h4>
-                            <p class="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit architecto iure
-                                magnam esse provident doloremque sint cum repellat similique vitae.</p>
-                            <button type="submit" class="btn-green mt-2">В корзину</button>
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-lg-flex">
+                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                                <div class="img">
+                                    <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
+                                        class="w-100" alt="">
+                                </div>
+                                <div class="ps-3">
+                                    <h4 class="mt-3">FAR CRY 4</h4>
+                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                        Reprehenderit
+                                        architecto iure
+                                        magnam esse provident doloremque sint cum repellat similique vitae.</p>
+                                    <button type="submit" class="btn-green mt-2">В корзину</button>
+                                </div>
+                            </div>
+                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                                <div class="img">
+                                    <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
+                                        class="w-100" alt="">
+                                </div>
+                                <div class="ps-3">
+                                    <h4 class="mt-3">FAR CRY 4</h4>
+                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                        Reprehenderit architecto iure
+                                        magnam esse provident doloremque sint cum repellat similique vitae.</p>
+                                    <button type="submit" class="btn-green mt-2">В корзину</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                @endfor
+
+                    <div class="carousel-item">
+                        <div class="d-lg-flex">
+                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                                <div class="img">
+                                    <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
+                                        class="w-100" alt="">
+                                </div>
+                                <div class="ps-3">
+                                    <h4 class="mt-3">FAR CRY 4</h4>
+                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                        Reprehenderit
+                                        architecto iure
+                                        magnam esse provident doloremque sint cum repellat similique vitae.</p>
+                                    <button type="submit" class="btn-green mt-2">В корзину</button>
+                                </div>
+                            </div>
+                            <div class="d-lg-flex col-lg pb-3 mb-4 mx-lg-2 game-card m-auto">
+                                <div class="img">
+                                    <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
+                                        class="w-100" alt="">
+                                </div>
+                                <div class="ps-3">
+                                    <h4 class="mt-3">FAR CRY 4</h4>
+                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                        Reprehenderit architecto iure
+                                        magnam esse provident doloremque sint cum repellat similique vitae.</p>
+                                    <button type="submit" class="btn-green mt-2">В корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
             </div>
             <button type="submit" class="btn-green mt-4 p-2 px-5 m-auto">Больше</button>
         </div>
-    </div>
     </div>
 @endsection
