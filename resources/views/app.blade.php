@@ -9,6 +9,7 @@
 </head>
 <body class="min-vh-100 d-flex flex-column background">
     
+    @include('header')
     @yield('content')
 
     <script src="{{URL::asset('js/app.js')}}"></script>
