@@ -46,9 +46,9 @@
             <div class="mt-3 d-lg-flex justify-content-between">
                 <h2 class="text-sm-center text-lg-start ">Стоит посмотреть</h2>
                 <div class="d-lg-flex text-center">
-                    <p class="">Новинки</p>
-                    <p class="px-4">Популярное</p>
-                    <p class="">Часто покупаемые</p>
+                    <a class="text-decoration-none text-black">Новинки</a>
+                    <a class="px-4 text-decoration-none text-black">Популярное</a>
+                    <a class="text-decoration-none text-black">Часто покупаемые</a>
                 </div>
             </div>
             <hr class="">
@@ -62,7 +62,7 @@
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
                                 </div>
-                                <div class="ps-3">
+                                <div class="px-3">
                                     <h4 class="mt-3">FAR CRY 4</h4>
                                     <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                         Reprehenderit
@@ -94,7 +94,7 @@
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
                                 </div>
-                                <div class="ps-3">
+                                <div class="px-3">
                                     <h4 class="mt-3">FAR CRY 4</h4>
                                     <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                         Reprehenderit
@@ -108,7 +108,7 @@
                                     <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                         class="w-100" alt="">
                                 </div>
-                                <div class="ps-3">
+                                <div class="px-3">
                                     <h4 class="mt-3">FAR CRY 4</h4>
                                     <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                         Reprehenderit architecto iure
@@ -170,7 +170,7 @@
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                             class="w-100" alt="">
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="px-3">
                                         <h4 class="mt-3">FAR CRY 4</h4>
                                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Reprehenderit
@@ -184,7 +184,7 @@
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                             class="w-100" alt="">
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="px-3">
                                         <h4 class="mt-3">FAR CRY 4</h4>
                                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Reprehenderit architecto iure
@@ -218,7 +218,7 @@
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
                                             class="w-100" alt="">
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="px-3">
                                         <h4 class="mt-3">FAR CRY 4</h4>
                                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Reprehenderit
@@ -275,7 +275,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit
@@ -289,7 +289,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit architecto iure
@@ -304,7 +304,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit
@@ -318,7 +318,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit architecto iure
@@ -333,7 +333,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit
@@ -347,7 +347,7 @@
                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100"
                             alt="">
                     </div>
-                    <div class="ps-3">
+                    <div class="px-3">
                         <h4 class="mt-3">FAR CRY 4</h4>
                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                             Reprehenderit architecto iure
