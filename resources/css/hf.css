@@ -40,12 +40,6 @@ max-height: 2.5rem;
 
 }
 
-.ddm{
-
-    padding-left: 5rem !important;
-
-}
-
 .dfh{
 
     display: flex !important;
@@ -105,7 +99,7 @@ max-height: 2.5rem;
     }
     .ddm{
 
-        padding-left: 3.5rem !important;
+        padding-left: 1.5rem !important;
 
     }
     .dm{

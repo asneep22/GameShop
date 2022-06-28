@@ -28,13 +28,13 @@
                     <div class="d-flex ip">
                         <!-- Выпадающие меню поиска -->
 
-                        <div class="dropdown position-absolute">
+                        <div class="dropdown">
                             <a class="sb text-decoration-none text-black dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                 </svg>
                             </a>
-                            <form action="search" class="dropdown-menu dropdown-menu-start p-0 mt-2 m-auto fws" aria-labelledby="dropdownMenuButton1">
+                            <form action="search" class="dropdown-menu dropdown-menu-start p-0 mt-2 m-auto fws position-absolute" aria-labelledby="dropdownMenuButton1">
                                 <input type="search" class="dropdown-item bg-secondary text-white" placeholder="Найти">
                             </form>
                         </div>
