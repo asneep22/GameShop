@@ -10,11 +10,12 @@ class AdminUsersController extends Controller
 {
     public function index(Request $req){
 
-        if($req->filled('search')){
+        if($req != null){
             $users = User::where('role_id','<>','1')
             ->Where('role_id','<>','2')
-            ->search($req->search)->paginate(50);
-        }else{
+            ->Where('email', 'LIKE', '%'.$req->email.'%')->paginate(50);
+        }
+        else{
             $users = User::where('role_id','<>','1')
             ->Where('role_id','<>','2')->paginate(50);
         }
