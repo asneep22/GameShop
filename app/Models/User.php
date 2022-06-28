@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'email',
-        'role',
+        'role_id',
+        'last_online_at',
         'password',
     ];
 
@@ -40,5 +43,20 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_online_at' => 'datetime'
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'email' => $this->email,
+            'last_online_at' => $this->email,
+        ];
+    }
+
+    public function Role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
 }

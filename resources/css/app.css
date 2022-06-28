@@ -1,5 +1,10 @@
 @import 'bootstrap';
 @import './hf.css';
+@import 'bootstrap-icons';
+
+/*#region bootstrap*/
+
+/*#endregion */
 
 .background {
     background-color: rgb(233, 233, 227);
@@ -140,6 +145,7 @@
 }
 
 .big-card-img {
+    
     z-index: -1;
     position: absolute;
     display: block;
@@ -191,7 +197,6 @@
     }
 
 }
-
 
 .img {
     margin: 0;

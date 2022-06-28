@@ -154,8 +154,8 @@
                             <div class="big-card d-flex align-items-end ts">
                                 <img src="https://i.playground.ru/e/5qHoR1Vq5inGsFVE9_yCCg.jpeg" class="big-card-img"
                                     alt="">
-                                <div class="big-card-footer rounded d-flex flex-column">
-                                    <div class="descr">
+                                <div class="big-card-footer d-flex flex-column">
+                                    <div class="descr m-auto">
                                         <h5 class="text-center mt-3">Dead Space</h5>
                                         <p class="text-center px-3">Lorem ipsum dolor sit amet, consectetur adipisicing
                                             elit. Aut fuga quas dolorum dolor odio quia vitae, dicta praesentium illum
@@ -165,6 +165,7 @@
                             </div>
                             <!-- Блок двух карточек -->
                             <div class="d-flex flex-column">
+                                <!-- Первая карточка -->
                                 <div class="d-lg-flex mb-4 mx-lg-2 game-card rounded">
                                     <div class="img">
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
@@ -179,6 +180,7 @@
                                         <button type="submit" class="btn-green mt-2">В корзину</button>
                                     </div>
                                 </div>
+                                <!-- Вторая карточка -->
                                 <div class="d-lg-flex mx-lg-2 game-card rounded m-auto">
                                     <div class="img">
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
@@ -213,6 +215,7 @@
                             </div>
                             <!-- Блок двух карточек -->
                             <div class="d-flex flex-column">
+                                <!-- Первая карточка-->
                                 <div class="d-lg-flex mb-4 mx-lg-2 game-card rounded">
                                     <div class="img">
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
@@ -227,6 +230,7 @@
                                         <button type="submit" class="btn-green mt-2">В корзину</button>
                                     </div>
                                 </div>
+                                <!-- Вторая карточка-->
                                 <div class="d-lg-flex mx-lg-2 game-card rounded m-auto">
                                     <div class="img">
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg"
@@ -242,21 +246,23 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#RedChoose"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#RedChoose"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#RedChoose" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#RedChoose" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-
+            <button type="submit" class="btn-green mt-1 p-2 px-5 m-auto">Больше</button>
         </div>
-        <button type="submit" class="btn-green mt-1 p-2 px-5 m-auto">Больше</button>
-    </div>
     </div>
 
     <div class="container-fluid p-0 rounded">

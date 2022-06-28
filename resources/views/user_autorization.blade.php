@@ -19,7 +19,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="auth" role="tabpanel" aria-labelledby="auth_tab">
-                    <form action="{{route('login')}}" method="POST" class="m-auto d-flex reg-form flex-column reg-form"
+                    <form action="{{route('login_user')}}" method="POST" class="m-auto d-flex reg-form flex-column reg-form"
                         autocomplete="off">
                         @csrf
                         <div class="mb-1">

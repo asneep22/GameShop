@@ -17,11 +17,23 @@
 
 <body class="min-vh-100 d-flex flex-column bg-body">
 
-    @if (!Route::is('page_admin_welcome') && !Route::is('page_user_auth') )
+    <!-- Хедер -->
+    @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
     @include('header')
     @endif
+
+    @if (Route::getCurrentRoute()->getPrefix() == '/admin')
+        @include('admin.admin_panel')
+     @endif
+    
+
+    <!-- Контент -->
     @yield('content')
+
+    <!-- Футер -->
+    @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
     @include("footer")
+    @endif
 
     <script src="{{URL::asset('js/app.js')}}"></script>
 </body>
