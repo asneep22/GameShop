@@ -2,13 +2,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-light hbg">
         <div class="container-fluid">
-            <div class="d-flex flex-column mb-2 cs">
+            <div class="d-flex flex-column mb-4 cs">
                 <div class="divloga">
                     <a href="#" class="fs-1 text-decoration-none text-black ts m-0">Гейм</a>
                     <a href="#" class="fs-1 text-decoration-none text-black ts m-0">Шоп</a>
-                </div>
-                <div class="d-flex align-items-start cst">
-                    <a href="#" class="fs-6 text-decoration-none text-black ts m-0 ht">Цифровой</a><a href="#" class="ts text-decoration-none text-black np ht">рай для вас</a>
                 </div>
             </div>
 
@@ -19,11 +16,10 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <div class="d-flex align-items-center mt-1 tf">
-                        <a href="#" class="text-decoration-none text-black m-0 ts fs-5 ps-4 gt">ГЛАВНАЯ</a>
-                        <a href="#" class="text-decoration-none text-black m-0 ts fs-5 px-4 nt">НОВИНКИ</a>
-                        <a href="#" class="text-decoration-none text-black m-0 ts fs-5 nt">СКИДКИ</a>
-                        <a href="#" class="text-decoration-none text-black m-0 ts fs-5 px-4 nt">ПОПУЛЯРНЫЕ</a>
-                        <a href="#" class="text-decoration-none text-black m-0 ts fs-5">ПРЕДЗАКАЗ</a>
+                        <a href="#" class="text-decoration-none text-black m-0 ts fsh-t ps-4 gt">ГЛАВНАЯ</a>
+                        <a href="#" class="text-decoration-none text-black m-0 ts fsh-t px-4 nt">НОВИНКИ</a>
+                        <a href="#" class="text-decoration-none text-black m-0 ts fsh-t nt">СКИДКИ</a>
+                        <a href="#" class="text-decoration-none text-black m-0 ts fsh-t px-4 nt">ПОПУЛЯРНЫЕ</a>
                     </div>
                     <div class="d-flex ip">
                         <!-- Выпадающие меню поиска -->
@@ -55,9 +51,23 @@
                         </a>
                         <!-- Корзина -->
 
+
                         <a href="#" class="ms-3 sb text-decoration-none text-black dm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                        </a>
+                        <!-- Тема сайта -->
+
+                        <a href="#" class="ms-3 sb text-decoration-none text-black dm">
+                            <!-- При светлой теме -->
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg> -->
+
+                            <!-- При темной теме -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+                                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
                             </svg>
                         </a>
                     </div>

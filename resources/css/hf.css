@@ -1,19 +1,25 @@
 /* Header */
 
-.hbg{
+.fsh-t {
+
+    font-size: 1.25rem;
+
+}
+
+.hbg {
 
     background: rgb(255, 255, 255);
 
 }
 
-.divloga{
+.divloga {
 
-min-height: 2.5rem;
-max-height: 2.5rem;
+    min-height: 2.5rem;
+    max-height: 2.5rem;
 
 }
 
-.sb{
+.sb {
 
     background: none;
     border: none;
@@ -21,26 +27,27 @@ max-height: 2.5rem;
 
 }
 
-.fws{
+.fws {
 
-    max-width: 15.7rem; 
+    max-width: 15.7rem;
     min-width: 15.7rem;
-    margin-left: 3rem !important; 
+    margin-left: 3rem !important;
 
 }
 
-.np{
+.np {
 
     padding: 0 0 0 0.7rem !important;
 
 }
-.cs{
+
+.cs {
 
     min-width: 17% !important;
 
 }
 
-.dfh{
+.dfh {
 
     display: flex !important;
     justify-content: center !important;
@@ -48,90 +55,259 @@ max-height: 2.5rem;
 }
 
 @media screen and (max-width:800px) {
-    .dfh{
+
+    .cs {
+
+        min-width: 17% !important;
+
+        padding-top: 1.5rem !important;
+
+    }
+
+    .dfh {
 
         display: block !important;
-    
+
     }
+
     .sb {
         margin-left: 0rem !important;
     }
-    .cst{
-        
+
+    .cst {
+
         display: flex !important;
         flex-direction: column !important;
-        
+
 
     }
-    .ht{
+
+    .ht {
 
         padding: 0 !important;
 
     }
-    .tf{
+
+    .tf {
 
         display: flex !important;
         flex-direction: column !important;
         align-items: start !important;
 
     }
-    .fws{
 
-        max-width: 11.3rem; 
+    .fws {
+
+        max-width: 11.3rem;
         min-width: 11.3rem;
-        margin-left: 0 !important; 
-    
+        margin-left: 0 !important;
+
     }
-    .gt{
+
+    .gt {
 
         padding: 0 0 1rem 0 !important;
 
     }
-    .nt{
+
+    .nt {
 
         padding: 0 0 1rem 0 !important;
 
     }
-    .ip{
+
+    .ip {
 
         padding: 1rem 0 2rem 0 !important
-
     }
-    .ddm{
+
+    .ddm {
 
         padding-left: 1.5rem !important;
 
     }
-    .dm{
+
+    .dm {
 
         padding-right: 1.5rem !important;
+
+    }
+
+    .fws-f {
+
+        max-width: 12rem;
+        min-width: 12rem;
+
 
     }
 }
 
 /* Footer */
 
-.fs{
+.ip-f {
 
-    font-size: small !important;
+    padding: 1rem 0 2rem 0 !important
+}
+
+.fws-f {
+
+    max-width: 12rem;
+    min-width: 12rem;
+
 
 }
-.line-t{
 
-    background-color: #6c757d  !important;
-    padding: 7rem 0.2rem 7rem 0.2rem;
+.fs {
+
+    font-size: 1.5vh !important;
 
 }
-.ttss{
+
+.cop {
+
+    font-size: 3vh !important;
+
+
+}
+
+.bloc-m {
+
+    padding-left: 1.5rem !important;
+
+}
+
+.allt{
+
+    margin-top: 3rem !important;
+
+}
+
+.mb-f{
+
+    font-size: 1.25rem !important;
+
+}
+
+.jcb{
+
+    display: flex;
+    flex-direction: row !important;
+
+}
+.ts-f{
+
+    font-size: 3rem !important;
+
+}
+
+@media screen and (max-width:800px) {
+    
+    .mb-f{
+
+        font-size: 0.7rem !important;
+        padding-right: 1rem !important;
+
+    }
+
+    .fs {
+
+        font-size: 0.7vh !important;
+
+    }
+
+    .ts-f {
+
+        font-size: 2vh !important;
+
+    }
+
+    .tf-f {
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: start !important;
+
+    }
+
+    .ft-f {
+
+        display: flex;
+        flex-direction: column !important;
+        margin: auto !important;
+
+    }
+
+    .bloc-m {
+
+        padding-left: 0 !important;
+
+    }
+
+    .colset {
+
+        flex: 0 0 auto;
+        width: 30% !important;
+
+    }
+
+    .ip-f {
+
+        padding: 0 !important
+    }
+
+    .allt{
+
+        margin-top: 0 !important;
+    
+    }
+
+}
+
+
+
+
+.ttss {
 
     color: #6c757d !important;
 
 }
 
+.tcf {
+
+    font-size: 1.5vh !important;
+
+}
+
 /* Text font */
 
-.ts{
+.ts {
 
     font-family: 'Russo One', sans-serif;
 
+}
+
+
+/* Main */
+
+
+.img-bg {
+
+    /* Black theme */
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/fon-site.jpg);
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top;
+
+    /* White theme */
+
+    /* background: linear-gradient(rgba(225, 225, 225, 0.94), rgba(225, 225, 225, 0.94)), url(/GameShop/resources/material/img/fon-site.jpg);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top; */
 }

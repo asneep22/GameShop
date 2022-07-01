@@ -146,7 +146,7 @@
 
 .big-card-img {
     
-    z-index: -1;
+    z-index: 2;
     position: absolute;
     display: block;
     width: 100%;
@@ -158,6 +158,7 @@
     color: #FFF;
     height: 15rem;
     background-color: rgba(0, 0, 0, 0.623);
+    z-index: 2;
 }
 
 @media(min-width: 1025px) and (max-width: 9999px) {
