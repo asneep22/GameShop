@@ -41,7 +41,7 @@
 
     <!-- Новинки/Популярное/Топ продаж -->
 
-    <div class="img-bg text-white">
+    <div class="text-black">
 
         <div class="container-fluid p-0 mb-3 rounded">
             <div class="container d-flex flex-column">
@@ -50,13 +50,13 @@
                     <h2 class="text-sm-center text-lg-start ">Стоит посмотреть</h2>
                     <div class="d-lg-flex text-center">
                         <!-- Light them -->
-                        <!-- <a href="#" class="text-decoration-none text-black">Новинки</a>
+                        <a href="#" class="text-decoration-none text-black">Новинки</a>
                         <a href="#" class="px-4 text-decoration-none text-black ">Популярное</a>
-                        <a href="#" class="text-decoration-none text-black">Часто покупаемые</a> -->
+                        <a href="#" class="text-decoration-none text-black">Часто покупаемые</a>
                         <!-- Dark Theme -->
-                        <a href="#" class="text-decoration-none text-white">Новинки</a>
+                        {{-- <a href="#" class="text-decoration-none text-white">Новинки</a>
                         <a href="#" class="px-4 text-decoration-none text-white ">Популярное</a>
-                        <a href="#" class="text-decoration-none text-white">Часто покупаемые</a>
+                        <a href="#" class="text-decoration-none text-white">Часто покупаемые</a> --}}
                     </div>
                 </div>
                 <hr class="">
@@ -113,12 +113,13 @@
                                     <div class="img">
                                         <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100" alt="">
                                     </div>
-                                    <div class="px-3">
+                                    <div class="ps-3">
                                         <h4 class="mt-3">FAR CRY 4</h4>
                                         <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Reprehenderit architecto iure
                                             magnam esse provident doloremque sint cum repellat similique vitae.</p>
-                                        <button type="submit" class="btn-green mt-2">В корзину</button>
+                                        <!-- <button type="submit" class="btn-green mt-2">В корзину</button> -->
+                                        <button type="submit" class="btn btn-success text-white">В корзину</button>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +151,7 @@
                 <hr class="">
 
                 <div id="RedChoose" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner pb-3">
                         <div class="carousel-item active">
                             <div class="d-lg-flex justify-content-between">
                                 <!-- Блок большой карточки -->
@@ -214,7 +215,7 @@
                                 </div>
                                 <!-- Блок двух карточек -->
                                 <div class="d-flex flex-column">
-                                    <!-- Первая карточка-->
+                                    <!-- Первая карточка -->
                                     <div class="d-lg-flex mb-4 mx-lg-2 game-card rounded">
                                         <div class="img">
                                             <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100" alt="">
@@ -228,12 +229,12 @@
                                             <button type="submit" class="btn-green mt-2">В корзину</button>
                                         </div>
                                     </div>
-                                    <!-- Вторая карточка-->
+                                    <!-- Вторая карточка -->
                                     <div class="d-lg-flex mx-lg-2 game-card rounded m-auto">
                                         <div class="img">
                                             <img src="https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg" class="w-100" alt="">
                                         </div>
-                                        <div class="ps-3">
+                                        <div class="px-3">
                                             <h4 class="mt-3">FAR CRY 4</h4>
                                             <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                                 Reprehenderit architecto iure
