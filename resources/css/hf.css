@@ -293,7 +293,7 @@
 .img-bg {
 
     /* Black theme */
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/fon-site.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../storage/Themes/dark-sont-site.jpg);
 
     background-size: cover;
 

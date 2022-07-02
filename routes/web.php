@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAdminsController;
 use App\Http\Controllers\AdminMainController;
+use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AuthController;
@@ -40,6 +41,16 @@ Route::middleware(['authAdmin'])->group(function () {
         Route::controller(AdminMainController::class)->group(function () {
             Route::get('/main', 'index')->name('page_admin_main');
         });
+
+        Route::controller(AdminProductsController::class)->group(function () {
+            Route::get('/products', 'index')->name('page_admin_products');
+            Route::post('/products/add', 'create')->name("create_product");
+            Route::post('/products/update/{id}', 'update')->name("update_product");
+            Route::delete('/products/delete/{id}', 'delete')->name("delete_product");
+            Route::post('/products/delete_many', 'delete_many')->name("delete_many_products");
+            
+        });
+        
 
         Route::controller(AdminUsersController::class)->group(function () {
             Route::get('/users', 'index')->name('page_admin_users');

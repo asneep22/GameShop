@@ -1,8 +1,70 @@
 @import 'bootstrap';
 @import './hf.css';
 @import 'bootstrap-icons';
+@import 'select2-bootstrap-5-theme';
+@import 'select2';
 
-/*#region bootstrap*/
+/*#region select2*/
+.select2-container {
+    width: 100%;
+    display: block !important;
+}
+
+
+.select2-container .select2-selection--multiple{
+    height: 32px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    border-radius: 0px !important;
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    -moz-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    font-weight: 400 !important;
+    background-color: #FFF !important;
+    font-size: 0.8rem !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border-radius: 0px !important;
+    border: 1px solid rgb(211, 211, 211) !important;
+    transition: .5s !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: 1.2px solid rgb(141, 141, 141) !important;
+    border-radius: 5px !important;
+}
+
+.select2-container .select2-selection--single{
+    height: 32px;
+}
+
+.select2-container--default .select2-selection--single{
+    border-radius: 0px !important;
+    border: 1px solid rgb(211, 211, 211) !important;
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    -moz-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    font-weight: 400 !important;
+    background-color: #FFF !important;
+    font-size: 0.8rem !important;
+    transition: .5s !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single{
+    border: 1.2px solid rgb(141, 141, 141) !important;
+    border-radius: 5px !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field{
+    font-size: 0.8rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 32px;
+}
+
 
 /*#endregion */
 
@@ -91,17 +153,18 @@
 
 .form-input {
     display: block;
-    height: 1.8rem;
     width: 100%;
     border: 1px solid rgb(211, 211, 211);
     outline: none;
     font-size: 0.8rem;
+    padding: .4rem .5rem !important;
     transition: .3s;
+
 }
 
 .form-input:focus {
     border-radius: 5px;
-    border: 1.2px solid rgb(141, 141, 141);
+    border: 1px solid rgb(141, 141, 141);
 }
 
 .btn-green {
@@ -184,7 +247,7 @@
         margin-bottom: 1.25rem;
     }
 
-    .big-card-footer{
+    .big-card-footer {
         width: 25rem;
     }
 }
@@ -212,4 +275,24 @@
     max-height: 800px;
     min-width: 300px;
     max-width: 450px;
+}
+
+.delete-product-button{
+    outline: none;
+    position: fixed;
+    z-index: 100;
+    padding: .5rem 2rem;
+    margin-right: 0;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background-color: rgb(228, 81, 81);
+    color: rgb(238, 236, 236);
+    font-size: 0.8rem;
+    transition: .2s;
+    display: none;
+}
+
+.delete-product-button:hover {
+    background-color: rgb(187, 75, 67);
 }
