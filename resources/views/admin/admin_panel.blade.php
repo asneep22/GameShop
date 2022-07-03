@@ -43,6 +43,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('page_admin_directories')}}" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16">
+                                <use xlink:href="#grid"></use>
+                            </svg>
+                            Справочники
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('page_admin_settings', Auth::id())}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"></use>
@@ -50,7 +58,6 @@
                             Настройки
                         </a>
                     </li>
-
                     <li>
                         <a href="{{route('logout')}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16">

@@ -14412,8 +14412,8 @@ select + .select2-container--bootstrap-5 {
 }
 
 
-.select2-container .select2-selection--multiple{
-    height: 32px;
+.select2-container .select2-selection--multiple {
+    min-height: 32px;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -14435,11 +14435,11 @@ select + .select2-container--bootstrap-5 {
     border-radius: 5px !important;
 }
 
-.select2-container .select2-selection--single{
+.select2-container .select2-selection--single {
     height: 32px;
 }
 
-.select2-container--default .select2-selection--single{
+.select2-container--default .select2-selection--single {
     border-radius: 0px !important;
     border: 1px solid rgb(211, 211, 211) !important;
     box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
@@ -14449,16 +14449,16 @@ select + .select2-container--bootstrap-5 {
     transition: .5s !important;
 }
 
-.select2-container--default.select2-container--focus .select2-selection--single{
+.select2-container--default.select2-container--focus .select2-selection--single {
     border: 1.2px solid rgb(141, 141, 141) !important;
     border-radius: 5px !important;
 }
 
-.select2-container .select2-search--inline .select2-search__field{
+.select2-container .select2-search--inline .select2-search__field {
     font-size: 0.8rem;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__rendered{
+.select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 32px;
 }
 
@@ -14608,28 +14608,21 @@ select + .select2-container--bootstrap-5 {
 
 
 .game-card {
+    max-width: 25rem;
     box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.21);
     font-size: 1rem;
     background-color: #FFF;
     position: relative;
     overflow: hidden;
+    padding-bottom: 1rem;
 }
 
 .big-card {
-    position: relative;
     background-color: #FFF;
     box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.21);
+    background-size: cover !important;
+    background-position: center !important;
 
-}
-
-.big-card-img {
-    
-    z-index: 2;
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
 }
 
 .big-card-footer {
@@ -14639,50 +14632,111 @@ select + .select2-container--bootstrap-5 {
     z-index: 2;
 }
 
-@media(min-width: 1025px) and (max-width: 9999px) {
-    .game-card {
-        max-width: 50rem;
-    }
+@media(min-width: 1281px) and (max-width: 9999px) {
 
     .big-card {
-        max-width: 40.45rem;
-        min-width: 40.45rem;
+        max-width: 53rem;
+        min-width: 53rem;
+        min-height: 31.5rem;
+        max-height: 31.5rem;
     }
 }
 
-@media(min-width: 0px) and (max-width: 992px) {
-    .game-card {
-        max-width: 25rem;
-        padding-bottom: 1rem;
+@media(min-width: 0px) and (max-width: 993px) {
+    .game-card{
+        min-width: 100%;
     }
-
+    
     .big-card {
         min-height: 30rem;
-        max-width: 25rem;
+        min-width: 100%;
         margin-bottom: 1.25rem;
     }
 
     .big-card-footer {
-        width: 25rem;
+        min-width: 100%;
     }
+
+    .our-pluses {
+        min-width: 100% !important;
+    }
+
+    .game-card-block{
+        min-width: 100% !important;
+    }
+
+    .img{
+        height: auto !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
+
 }
 
-@media(min-width: 993px) and (max-width: 1025px) {
+@media(min-width: 994px) and (max-width: 1023px) {
 
     .big-card {
         min-height: 30rem;
-        min-width: 30rem;
-        max-width: 30rem;
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+
+@media(min-width: 1024px) and (max-width: 1280px) {
+
+    .big-card {
+        min-height: 30rem;
+        min-width: 63%;
+        max-width: 63%;
     }
 
+}
+
+.our-pluses {
+    z-index: -2;
+    position: relative;
+    min-height: 15rem;
+    max-height: 15rem;
+    min-width: 30%;
+    max-width: 30%;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center !important;
+}
+
+.game-card-block {
+    z-index: -2;
+    position: relative;
+    min-width: 25.45rem;
+    max-width: 25.45rem;
+    min-height: 15rem;
+    max-height: 15rem;
+    background-size: 400px auto !important;
+    background-repeat: no-repeat;
+    background-position: center center !important;
+}
+
+.dark-up {
+    z-index: -1;
+    top: 0;
+    opacity: 0.2;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: black;
+    position: absolute;
 }
 
 .img {
     margin: 0;
     padding: 0;
-    min-width: 15rem;
-    max-width: 25rem;
-    max-height: 45rem;
+    min-height: 225px;
+    max-height: 250px;
+    min-width: 100%;
+    background-size: 100% auto !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+
 }
 
 .form-reg-auth {
@@ -14692,7 +14746,7 @@ select + .select2-container--bootstrap-5 {
     max-width: 450px;
 }
 
-.delete-product-button{
+.delete-product-button {
     outline: none;
     position: fixed;
     z-index: 100;
@@ -14710,4 +14764,22 @@ select + .select2-container--bootstrap-5 {
 
 .delete-product-button:hover {
     background-color: rgb(187, 75, 67);
+}
+
+.nav-selected li button {
+    border: 0;
+    outline: none;
+    color: #FFF;
+    background-color: rgb(79, 160, 99);
+}
+
+.nav-selected li button:hover {
+    border: 0;
+    outline: none;
+    color: #FFF;
+    background-color: rgb(68, 143, 87);
+}
+
+.z-index-5 {
+    z-index: 5 !important;
 }

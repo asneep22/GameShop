@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAdminsController;
+use App\Http\Controllers\AdminDirectoryController;
 use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminSettingController;
@@ -65,6 +66,22 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::get('/settings/{id}', 'index')->name('page_admin_settings')->middleware('checkId');
         });
 
+        Route::controller(AdminDirectoryController::class)->group(function () {
+            Route::get('/directories', 'index')->name('page_admin_directories');
+            Route::post('/directories/add_genres', 'addGenres')->name('addGenres');
+            Route::post('/directories/add_oses', 'addOses')->name('addOses');
+            Route::post('/directories/add_cpus', 'addCpus')->name('addCpus');
+            Route::post('/directories/add_videocards', 'addVideocards')->name('addVideocards');
+            Route::post('/directories/update_genre/{id}', 'updateGenre')->name('updateGenre');
+            Route::post('/directories/update_os/{id}', 'updateOs')->name('updateOs');
+            Route::post('/directories/update_cpu/{id}', 'updateCpu')->name('updateCpu');
+            Route::post('/directories/update_videocards/{id}', 'updateVideocard')->name('updateVideocard');
+            Route::get('/directories/delete_genre/{id}', 'deleteGenre')->name('deleteGenre');
+            Route::get('/directories/delete_os/{id}', 'deleteOs')->name('deleteOs');
+            Route::get('/directories/delete_cpu/{id}', 'deleteCpu')->name('deleteCpu');
+            Route::get('/directories/delete_videocards/{id}', 'deleteVideocard')->name('deleteVideocard');
+            Route::post('/directories/delete_irectories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
+        });
     });
 });
 
