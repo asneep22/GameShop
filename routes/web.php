@@ -29,7 +29,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login_user')->name('login_user');
     Route::post('/login_admin', 'login_admin')->name('login_admin');
     Route::get('/logout', 'logout')->name('logout');
-
 });
 
 //admin
@@ -49,9 +48,8 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::post('/products/update/{id}', 'update')->name("update_product");
             Route::delete('/products/delete/{id}', 'delete')->name("delete_product");
             Route::post('/products/delete_many', 'delete_many')->name("delete_many_products");
-            
         });
-        
+
 
         Route::controller(AdminUsersController::class)->group(function () {
             Route::get('/users', 'index')->name('page_admin_users');
@@ -62,8 +60,12 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::post('/admins/create', 'create_admin')->name('create_admin');
         });
 
-        Route::controller(AdminSettingController::class)->group(function () {
-            Route::get('/settings/{id}', 'index')->name('page_admin_settings')->middleware('checkId');
+        Route::middleware(['checkId'])->group(function () {
+
+            Route::controller(AdminSettingController::class)->group(function () {
+                Route::get('/settings/{id}', 'index')->name('page_admin_settings');
+                Route::post('/settings/{id}/update', 'update')->name('AdminSettingUpd');
+            });
         });
 
         Route::controller(AdminDirectoryController::class)->group(function () {

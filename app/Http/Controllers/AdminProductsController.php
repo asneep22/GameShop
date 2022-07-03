@@ -19,7 +19,11 @@ class AdminProductsController extends Controller
 {
     public function index(Request $req)
     {
-        $products = Product::paginate(20);
+        if ($req->search) {
+            $products = Product::where('title', 'LIKE', "%" . $req->search . "%")->paginate(20);
+        } else {
+            $products = Product::paginate(20);
+        }
         $genres = Genre::all();
         $oses = os::all();
         $cpus = cpu::all();

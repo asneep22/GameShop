@@ -16,15 +16,28 @@
     <div class="container mt-4">
         <div class="table-responisve">
             <table class="table">
-                <thead>
+                <thead class="align-middle">
                     <tr>
                         <th scope="col px-0">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target="#addProduct">
-                                +
-                            </button>
+                            <div class="btn-group">
+                                <!-- Добавить товар -->
+                                <button type="button" class="btn-green" data-bs-toggle="modal"
+                                    data-bs-target="#addProduct">
+                                    +
+                                </button>
 
-                            <!-- Modal -->
+                                <!-- Поиск по названию -->
+                                <button type="button" class="btn-green" data-bs-toggle="modal"
+                                    data-bs-target="#Search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                      </svg>
+                                </button>
+
+                                <a href="{{route('page_admin_products')}}" class="btn-green text-decoration-none text-light">X</a>
+                            </div>
+
+                            <!-- Модальное окно добавления товара -->
                             <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable">
@@ -86,26 +99,27 @@
 
                                                     @foreach ($oses as $os)
                                                         <option>
-                                                            {{$os->pname}}
+                                                            {{ $os->pname }}
                                                         </option>
                                                     @endforeach
                                                 </select>
 
 
                                                 <label for="cpu" class="mt-3">Процессор</label>
-                                                <select class="form-control js-select2 mb-3" required name="cpu" id="cpu"
-                                                    data-placeholder="Введите или выберите процессор"
+                                                <select class="form-control js-select2 mb-3" required name="cpu"
+                                                    id="cpu" data-placeholder="Введите или выберите процессор"
                                                     data-dropdown-parent="#addProduct">
 
                                                     @foreach ($cpus as $cpu)
                                                         <option>
-                                                            {{$cpu->pname}}
+                                                            {{ $cpu->pname }}
                                                         </option>
                                                     @endforeach
                                                 </select>
 
                                                 <label for="desc_ram" class="mt-3">Оперативная память</label>
-                                                <input type="number" class="form-input mb-3" required name="desc_ram" id="desc_ram"
+                                                <input type="number" class="form-input mb-3" required name="desc_ram"
+                                                    id="desc_ram"
                                                     placeholder="Введите количество требуемой оперативной памяти">
 
                                                 <label for="videocard">Видеокарта</label>
@@ -115,7 +129,7 @@
 
                                                     @foreach ($videocards as $videocard)
                                                         <option>
-                                                            {{$videocard->pname}}
+                                                            {{ $videocard->pname }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -131,7 +145,31 @@
                                         </div>
                                     </div>
                                 </div>
-                        </th>
+                            </div>
+
+                             <!-- Модальное окно поиска по названию -->
+                             <div class="modal fade" id="Search" tabindex="-1" aria-labelledby="SearchLabel"
+                             aria-hidden="true">
+                             <div class="modal-dialog">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="SearchLabel">Поиск по названию</h5>
+                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             aria-label="Close"></button>
+                                     </div>
+                                     <div class="modal-body">
+
+                                         <form action="" class="d-flex flex-column">
+                                            <input type="text" name="search" class="form-input">
+                                            <hr>
+                                                <button class="btn-green px-4 py-2 me-0 m-auto">Поиск</button>
+                                         </form>
+
+                                     </div>
+                                 </div>
+                             </div>
+   
+                            </th>
                         <th scope="col">Название</th>
                         <th scope="col">Описание</th>
                         <th scope="col">Жанр</th>
@@ -143,12 +181,12 @@
                     @foreach ($products as $key => $product)
                         <tr>
                             <!-- Порядковый номер -->
-                            <th scope="row">{{ $key + 1 }}</th>
+                            <th scope="row" class="">{{ $key + 1 }}</th>
                             <!-- Навзвание -->
                             <td>{{ $product->title }}</td>
                             <!-- Описание -->
                             <td>
-                                <p class="p-0 m-0">{{ $product->description }}</p>
+                                <p class="p-0 m-0">{{ Str::limit($product->description, 170, '...') }}</p>
                             </td>
                             <!-- Жанры -->
                             <td>
@@ -233,37 +271,43 @@
                                                         <h5 class="mb-4 text-center">Системные требования</h5>
                                                         <hr>
                                                         <!--Системные требования-->
-                                                        <label for="desc_os{{ $product->id }}">Операционная система</label>
+                                                        <label for="desc_os{{ $product->id }}">Операционная
+                                                            система</label>
                                                         <select class="form-control js-select2 mb-3" multiple="multiple"
                                                             name="desc_os[]" id="desc_os{{ $product->id }}"
                                                             data-placeholder="Введите или выберите систему"
                                                             data-dropdown-parent="#productEdit{{ $product->id }}">
 
                                                             @foreach ($oses as $os)
-                                                            <option {{ $product->oses->where('id', '=', $os->id)->first() ? 'selected' : '' }}>
-                                                                {{$os->pname}}
-                                                            </option>
-                                                        @endforeach
+                                                                <option
+                                                                    {{ $product->oses->where('id', '=', $os->id)->first() ? 'selected' : '' }}>
+                                                                    {{ $os->pname }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
 
 
-                                                        <label for="cpu{{ $product->id }}" class="mt-3">Процессор</label>
+                                                        <label for="cpu{{ $product->id }}"
+                                                            class="mt-3">Процессор</label>
                                                         <select class="form-control js-select2 mb-3" name="cpu"
                                                             id="cpu{{ $product->id }}"
                                                             data-placeholder="Введите или выберите процессор"
                                                             data-dropdown-parent="#productEdit{{ $product->id }}">
 
                                                             @foreach ($cpus as $cpu)
-                                                            <option {{$product->cpu->id == $cpu->id ? 'selected':'' }}>
-                                                                {{$cpu->pname}}
-                                                            </option>
+                                                                <option
+                                                                    {{ $product->cpu->id == $cpu->id ? 'selected' : '' }}>
+                                                                    {{ $cpu->pname }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
 
-                                                        <label for="desc_ram{{ $product->id }}" class="mt-3">Оперативная память</label>
+                                                        <label for="desc_ram{{ $product->id }}"
+                                                            class="mt-3">Оперативная память</label>
                                                         <input type="number" class="form-input mb-3" name="desc_ram"
                                                             id="desc_ram{{ $product->id }}"
-                                                            placeholder="Введите количество требуемой оперативной памяти" value="{{$product->desc_ram}}">
+                                                            placeholder="Введите количество требуемой оперативной памяти"
+                                                            value="{{ $product->desc_ram }}">
 
                                                         <label for="videocard{{ $product->id }}">Видеокарта</label>
                                                         <select class="form-control js-select2 mb-3" name="videocard"
@@ -271,16 +315,20 @@
                                                             data-placeholder="Введите или выберите видеокарту"
                                                             data-dropdown-parent="#productEdit{{ $product->id }}">
                                                             @foreach ($videocards as $videocard)
-                                                            <option {{$product->videocard->id == $videocard->id ? 'selected':'' }}>
-                                                                {{$videocard->pname}}
-                                                            </option>
+                                                                <option
+                                                                    {{ $product->videocard->id == $videocard->id ? 'selected' : '' }}>
+                                                                    {{ $videocard->pname }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
 
-                                                        <label for="desc_memory{{ $product->id }}" class="mt-3">Память</label>
+                                                        <label for="desc_memory{{ $product->id }}"
+                                                            class="mt-3">Память</label>
                                                         <input type="number"
                                                             placeholder="Введите количество требуемого места на жестком диске"
-                                                            class="form-input mb-3" name="desc_memory" id="desc_memory{{ $product->id }}" value="{{$product->desc_memory}}">
+                                                            class="form-input mb-3" name="desc_memory"
+                                                            id="desc_memory{{ $product->id }}"
+                                                            value="{{ $product->desc_memory }}">
 
                                                 </div>
                                                 <div class="modal-footer">
