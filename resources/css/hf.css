@@ -347,6 +347,7 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
 @media screen and (max-width:800px) {
 
+<<<<<<< Updated upstream
     .nm-f{
 
         margin-left: 0 !important;
@@ -354,6 +355,8 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
     
     }
     
+=======
+>>>>>>> Stashed changes
     .mb-f{
 
         font-size: 0.7rem !important;
@@ -410,7 +413,7 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
     .allt{
 
         margin-top: 0 !important;
-    
+
     }
 
 }
@@ -456,7 +459,7 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
     /* White theme */
 
-    background: linear-gradient(rgba(255, 255, 255, 0.904), rgb(225, 225, 225)), url(/GameShop/GameShop/resources/material/img/fon-site.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.932), rgb(225, 225, 225)), url(/GameShop/resources/material/img/fon-site.jpg);
 
     background-repeat: no-repeat;
     background-size: cover;

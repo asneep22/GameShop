@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminUsersController;
+use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use Illuminate\Support\Facades\Route;
@@ -87,6 +88,10 @@ Route::middleware(['authAdmin'])->group(function () {
     });
 });
 
+
+Route::controller(AllProductsController::class)->group(function () {
+    Route::get('/all_products', 'index')->name('page_all_products');
+});
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('page_welcome');
 });

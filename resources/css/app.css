@@ -6,6 +6,10 @@
 @import './animated-border.min.css';
 
 
+body {
+    overflow-x:hidden;
+  }
+
 /*#region select2*/
 .select2-container {
     width: 100%;
@@ -193,10 +197,10 @@
 
 
 .game-card {
-    max-width: 25rem;
-    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
-    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
-    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.21);
+    max-width: 31.8% !important;
+    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.068);
+    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.062);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.062);
     font-size: 1rem;
     background-color: #FFF;
     position: relative;
@@ -235,7 +239,7 @@
     .game-card{
         min-width: 100%;
     }
-    
+
     .big-card {
         min-height: 30rem;
         min-width: 100%;
@@ -280,6 +284,11 @@
         max-width: 63%;
     }
 
+    .all-page .game-card-block {
+        min-width: 30% !important;
+        max-width: 30% !important;
+    }
+
 }
 
 .our-pluses {
@@ -295,6 +304,7 @@
 }
 
 .game-card-block {
+    background-color: #FFF;
     z-index: -2;
     position: relative;
     min-width: 25.45rem;
@@ -371,4 +381,20 @@
 
 .z-index-5 {
     z-index: 5 !important;
+}
+
+.profitable-card{
+    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.082);
+    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.082);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.055);
+}
+
+.profitable-card-image{
+    position: relative;
+    min-width: 26.2rem !important;
+    max-width: 26.2em !important;
+    min-height: 15rem;
+    background-repeat: no-repeat;
+    background-size: 100% auto !important;
+    background-position: center !important;
 }
