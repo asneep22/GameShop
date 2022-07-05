@@ -197,6 +197,7 @@ body {
 
 
 .game-card {
+    min-width: 31.8% !important;
     max-width: 31.8% !important;
     -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.068);
     -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.062);
@@ -237,7 +238,7 @@ body {
 
 @media(min-width: 0px) and (max-width: 993px) {
     .game-card{
-        min-width: 100%;
+        min-width: 100% !important;
     }
 
     .big-card {

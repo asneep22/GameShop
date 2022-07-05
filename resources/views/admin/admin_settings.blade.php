@@ -11,9 +11,9 @@
             <hr>
         </div>
 
-            <form action="{{route('AdminSettingUpd', Auth::id())}}" class="w-50 m-auto" method="post">
-                @csrf
-                <div class="d-flex flex-column mx-sm-auto mx-xxl-0">
+        <form action="{{ route('AdminSettingUpd', Auth::id()) }}" class="w-50 m-auto" method="post">
+            @csrf
+            <div class="d-flex flex-column mx-sm-auto mx-xxl-0">
                 <h5 class="mb-3">Основные сведения</h5>
                 <label for="fio" class="mb-1">ФИО</label>
                 <input type="text" name="fio" id="fio" class="form-input mb-3" autocomplete="off"
@@ -37,22 +37,23 @@
                     placeholder="*******">
 
                 <label for="password_confirmation" class="mb-1">Подтверждение пароля</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-input mb-3" autocomplete="off"
-                    placeholder="*******">
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-input mb-3"
+                    autocomplete="off" placeholder="*******">
 
-            <h5 class="mb-3">Дополнительные сведения</h5>
-            <p>Роль: {{Auth::user()->role->role}}</p>
-            <p>Подтверждение почты: 
-                @if (!Auth::user()->email_verified_at == null)
-                    Да
-                @else 
-                    Нет
-                    <a href="" class="btn-green text-decoration-none text-light">Подтвердить</a>
-                @endif
-            </p><hr>
+                <h5 class="mb-3">Дополнительные сведения</h5>
+                <p>Роль: {{ Auth::user()->role->role }}</p>
+                <p>Подтверждение почты:
+                    @if (!Auth::user()->email_verified_at == null)
+                        Да
+                    @else
+                        Нет
+                        <a href="" class="btn-green text-decoration-none text-light">Подтвердить</a>
+                    @endif
+                </p>
+                <hr>
 
-            <button type="submit" class="btn-green m-auto px-5">Сохранить</button>
-        </div>
+                <button type="submit" class="btn-green m-auto px-5">Сохранить</button>
+            </div>
         </form>
 
     </div>
