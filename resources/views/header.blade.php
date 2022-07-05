@@ -1,15 +1,16 @@
 <!-- Светлая тема -->
 
+
 <script>
 /*
 <header class=" container-fluid hbg dfh">
 
-    <nav class="navbar navbar-expand-lg navbar-dark hbg">
+    <nav class="navbar navbar-expand-lg navbar-light hbg">
         <div class="container-fluid">
-            <div class="d-flex flex-column mb-4 cs">
+            <div class="d-flex flex-column flex-nowrap mb-4 cs">
                 <div class="divloga">
-                    <a href="#" class="fs-1 text-decoration-none text-black ts m-0">Гейм</a>
-                    <a href="#" class="fs-1 text-decoration-none text-black ts m-0">Шоп</a>
+                    <a href="{{route('page_welcome')}}" class="fs-1 text-decoration-none text-black ts m-0">Гейм</a>
+                    <a href="{{route('page_welcome')}}" class="fs-1 text-decoration-none text-black ts m-0">Шоп</a>
                 </div>
             </div>
 
@@ -21,9 +22,9 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <div class="d-flex align-items-center mt-1 tf">
                         <a href="#" class="text-decoration-none ui-box top-stay mdel-g"><span class="text-black m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
-                        <a href="#" class="text-decoration-none m-0 ui-box top-stay mdel-n"><span class="text-black m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay m-0"><span class="text-black m-0 ts fsh-t ui-border-element ">СКИДКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay m-0 mdel-p"><span class="text-black m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-n"><span class="text-black m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay"><span class="text-black m-0 ts fsh-t ui-border-element ">СКИДКИ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-p"><span class="text-black m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
                     </div>
                     <div class="d-flex ip pt-2">
                         <!-- Выпадающие меню поиска -->
@@ -87,7 +88,6 @@
 
 <!-- Темная тема -->
 
-
 <header class="container-fluid hbg-d dfh">
 
     <nav class="navbar navbar-expand-lg navbar-dark hbg-d">
@@ -104,12 +104,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
 
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-6">
                     <div class="d-flex align-items-center mt-1 tf">
                         <a href="#" class="text-decoration-none ui-box top-stay mdel-g"><span class="text-white m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
-                        <a href="#" class="text-decoration-none m-0 ui-box top-stay mdel-n"><span class="text-white m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay m-0"><span class="text-white m-0 ts fsh-t ui-border-element ">СКИДКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay m-0 mdel-p"><span class="text-white m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-n"><span class="text-white m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay"><span class="text-white m-0 ts fsh-t ui-border-element ">СКИДКИ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-p"><span class="text-white m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
                     </div>
                     <div class="d-flex ip pt-2">
                         <!-- Выпадающие меню поиска -->

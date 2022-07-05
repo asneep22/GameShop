@@ -11266,11 +11266,6 @@ textarea.form-control-lg {
 /*# sourceMappingURL=bootstrap.css.map */
 /* Header */
 
-.fsh-t {
-
-    font-size: 1.25rem;
-
-}
 
 .hbg {
 
@@ -11528,21 +11523,21 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
 .mdel-g{
 
-    margin-left: 1.5rem !important;
+    margin-left: 1.5rem;
 
 }
 
 .mdel-n{
 
-    margin-right: 1.5rem !important;
-    margin-left: 1.5rem !important;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
 
 }
 
 .mdel-p{
 
-    margin-right: 1.5rem !important;
-    margin-left: 1.5rem !important;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
 
 }
 
@@ -11613,7 +11608,6 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
 @media screen and (max-width:800px) {
 
-<<<<<<< Updated upstream
     .nm-f{
 
         margin-left: 0 !important;
@@ -11621,8 +11615,6 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
     
     }
     
-=======
->>>>>>> Stashed changes
     .mb-f{
 
         font-size: 0.7rem !important;
@@ -11683,9 +11675,6 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
     }
 
 }
-
-
-
 
 .ttss {
 
