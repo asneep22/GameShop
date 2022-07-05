@@ -3,6 +3,8 @@
 @import 'bootstrap-icons';
 @import 'select2-bootstrap-5-theme';
 @import 'select2';
+@import './animated-border.min.css';
+
 
 /*#region select2*/
 .select2-container {

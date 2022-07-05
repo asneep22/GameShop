@@ -12,6 +12,12 @@
 
 }
 
+.hbg-d {
+
+    background: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+
+}
+
 .divloga {
 
     min-height: 2.5rem;
@@ -23,15 +29,52 @@
 
     background: none;
     border: none;
-    margin-left: 3rem !important;
+    margin-left: 1rem !important;
+
+}
+
+.dropdown-item{
+    outline: none;
+    border-radius: 7px;
+    background: rgb(54, 57, 59);
+    border: 3px solid rgb(54, 57, 59);
+
+}
+
+.form-b{
+
+    outline: none;
+    border-radius: 7px;
+    background: rgb(54, 57, 59);
+    border: 0;
+
+}
+
+.inp-bg{
+
+    background:rgb(54, 57, 59);
+
+}
+
+.form-b:hover,.form-b:active,.form-b:focus{
+
+    border-radius: 7px;
+    border: 0;
+    background:rgb(54, 57, 59);
+}
+
+.dropdown-item:hover,.dropdown-item:active,.dropdown-item:focus{
+    background:rgb(54, 57, 59);
+    border-radius: 7px;
+    border: 3px solid rgb(109, 109, 109);
 
 }
 
 .fws {
 
-    max-width: 15.7rem;
-    min-width: 15.7rem;
-    margin-left: 3rem !important;
+    max-width: 13.5rem!important;
+    min-width: 13.5rem!important;
+    margin-left: 1rem !important;
 
 }
 
@@ -55,6 +98,29 @@
 }
 
 @media screen and (max-width:800px) {
+
+    .mdel-g{
+
+        margin-left: 0 !important;
+        margin-bottom: 1rem !important;
+
+    }
+
+    .mdel-n{
+
+        margin-right: 0!important;
+        margin-left: 0!important;
+        margin-bottom: 1rem !important;
+    
+    }
+
+    .mdel-p{
+
+        margin-right: 0!important;
+        margin-left: 0!important;
+        margin-top: 1rem !important;
+    
+    }
 
     .cs {
 
@@ -104,18 +170,6 @@
 
     }
 
-    .gt {
-
-        padding: 0 0 1rem 0 !important;
-
-    }
-
-    .nt {
-
-        padding: 0 0 1rem 0 !important;
-
-    }
-
     .ip {
 
         padding: 1rem 0 2rem 0 !important
@@ -135,11 +189,95 @@
 
     .fws-f {
 
-        max-width: 12rem;
-        min-width: 12rem;
+        max-width: 12rem !important;
+        min-width: 12rem !important;
 
 
     }
+}
+
+/* Button Animation Custom */
+
+.ui-box{
+
+    padding: 0 !important;
+
+}
+
+.top-stay{
+
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
+    
+    }
+
+.top-stay:hover,.top-stay:focus,.top-stay:active{
+
+padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
+
+}
+
+.top-stay::after {
+
+    transition-duration: 300ms !important;
+}
+
+.top-stay::before {
+
+    transition-duration: 300ms !important;
+}
+
+.top-stay .ui-border-element::after {
+
+    transition-duration: 300ms !important;
+}
+
+.top-stay .ui-border-element::before {
+
+    transition-duration: 300ms !important;
+}
+
+/* ↓ Темная тема бордеров кнопок ↓ */
+
+.top-stay::after {
+    border-bottom: 2px solid rgb(255, 255, 255) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay::before {
+    border-top: 2px solid rgb(255, 255, 255) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay .ui-border-element::after {
+    border-right: 2px solid rgb(255, 255, 255) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay .ui-border-element::before {
+    border-left: 2px solid rgb(255, 255, 255) !important;
+    transition-duration: 300ms !important;
+}
+
+/* ↑ Темная тема бордеров кнопок ↑ */
+
+.mdel-g{
+
+    margin-left: 1.5rem !important;
+
+}
+
+.mdel-n{
+
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+
+}
+
+.mdel-p{
+
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+
 }
 
 /* Footer */
@@ -151,8 +289,8 @@
 
 .fws-f {
 
-    max-width: 12rem;
-    min-width: 12rem;
+    max-width: 8rem !important;
+    min-width: 8rem !important;
 
 
 }
@@ -188,6 +326,13 @@
 
 }
 
+.nm-f{
+
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+
+}
+
 .jcb{
 
     display: flex;
@@ -201,6 +346,13 @@
 }
 
 @media screen and (max-width:800px) {
+
+    .nm-f{
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    
+    }
     
     .mb-f{
 

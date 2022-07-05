@@ -9,9 +9,9 @@
     <div class="container-fluid p-0 m-0 video-container min-vw-100">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
-                <div class="carousel-item active">
-                    <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
-                        <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
+                <div class="carousel-item active" >
+                    <video  preload="auto" class="mx-auto main_video" autoplay="autoplay" >
+                        <source  src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
                     </video>
                 </div>
                 <div class="carousel-item">
