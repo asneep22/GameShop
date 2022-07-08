@@ -18,6 +18,13 @@ class Product extends Model
         'cpu_id',
         'desc_ram',
         'desc_memory',
+        'discount',
+        'redChoose',
+        'publishing_date'
+    ];
+
+    protected $casts =[
+        'publishing_date' => 'datetime',
     ];
 
     public function genres(){
@@ -34,5 +41,13 @@ class Product extends Model
 
     public function videocard(){
         return $this->belongsTo(videocard::class);
+    }
+
+    public function materials(){
+        return $this->hasMany(product_material::class);
+    }
+
+    public function keys(){
+        return $this->hasMany(key::class);
     }
 }

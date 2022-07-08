@@ -7,12 +7,12 @@
 
 
 body {
-    overflow-x:hidden;
-  }
+    overflow-x: hidden;
+}
 
 /*#region select2*/
 .select2-container {
-    width: 100%;
+    width: 100% !important;
     display: block !important;
 }
 
@@ -31,6 +31,12 @@ body {
     font-size: 0.8rem !important;
 }
 
+.keys .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    min-width: 98% !important;
+    background-color: rgb(247, 247, 247) !important;
+    font-size: 0.8rem !important;
+}
+
 .select2-container--default .select2-selection--multiple {
     border-radius: 0px !important;
     border: 1px solid rgb(211, 211, 211) !important;
@@ -38,6 +44,7 @@ body {
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
+    margin: 0 !important;
     border: 1.2px solid rgb(141, 141, 141) !important;
     border-radius: 5px !important;
 }
@@ -197,8 +204,10 @@ body {
 
 
 .game-card {
-    min-width: 31.8% !important;
+    background-position: center !important;
+    min-width: 26rem;
     max-width: 31.8% !important;
+    min-height: 24rem;
     -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.068);
     -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.062);
     box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.062);
@@ -207,6 +216,27 @@ body {
     position: relative;
     overflow: hidden;
     padding-bottom: 1rem;
+    transition: .5s ease-in-out;
+}
+
+.img:hover {
+    background-size: auto 105% !important;
+    background-color: rgb(230, 230, 230);
+}
+
+.game-card-all-products {
+    -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.068);
+    -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.062);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.062);
+    min-width: 31.8%;
+    max-width: 31.8% !important;
+    min-height: 24rem;
+    background-color: #FFF;
+    transition: .5s;
+}
+
+.game-card-all-products:hover {
+    background-color: rgb(230, 230, 230);
 }
 
 .big-card {
@@ -214,8 +244,14 @@ body {
     -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
     -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.21);
     box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.21);
-    background-size: cover !important;
-    background-position: center !important;
+    background-size: auto 100% !important;
+    background-position: center center !important;
+    transition: 0.5s;
+
+}
+
+.big-card:hover {
+    background-size: auto 102% !important;
 
 }
 
@@ -235,11 +271,29 @@ body {
         min-height: 31.5rem;
         max-height: 31.5rem;
     }
+
+    .img-all-products {
+
+        background-position: center !important;
+        transition: .5s ease-in-out;
+    }
+
 }
 
 @media(min-width: 0px) and (max-width: 993px) {
-    .game-card{
+    .game-card {
         min-width: 100% !important;
+    }
+
+    .game-card-all-products {
+        min-width: 100% !important;
+        min-height: 20rem !important;
+    }
+
+    .img-all-products {
+        min-height: 12rem !important;
+        background-size: 100% auto !important;
+        background-position: center !important;
     }
 
     .big-card {
@@ -256,12 +310,11 @@ body {
         min-width: 100% !important;
     }
 
-    .game-card-block{
+    .game-card-block {
         min-width: 100% !important;
     }
 
-    .img{
-        height: auto !important;
+    .similar-game-card {
         min-width: 100% !important;
         max-width: 100% !important;
     }
@@ -275,6 +328,12 @@ body {
         min-height: 30rem;
         min-width: 60%;
         max-width: 60%;
+    }
+
+    .img-all-products {
+        min-height: 20rem !important;
+        background-size: 100% auto !important;
+        background-position: center !important;
     }
 }
 
@@ -290,6 +349,13 @@ body {
         min-width: 30% !important;
         max-width: 30% !important;
     }
+
+    .img-all-products {
+        min-height: 8rem !important;
+        background-size: 100% auto !important;
+        background-position: center !important;
+    }
+
 
 }
 
@@ -307,25 +373,28 @@ body {
 
 .game-card-block {
     background-color: #FFF;
-    z-index: -2;
     position: relative;
     min-width: 25.45rem;
     max-width: 25.45rem;
     min-height: 15rem;
     max-height: 15rem;
-    background-size: 400px auto !important;
-    background-repeat: no-repeat;
+    background-size: auto 100% !important;
     background-position: center center !important;
+    transition: .5s ease-in-out;
+}
+
+.game-card-block:hover{
+    background-size: auto 105% !important;
 }
 
 .dark-up {
     z-index: -1;
-    top: 0;
     opacity: 0.2;
     min-width: 100%;
     min-height: 100%;
     background-color: black;
     position: absolute;
+    bottom: 0 !important;
 }
 
 .img {
@@ -334,10 +403,16 @@ body {
     min-height: 225px;
     max-height: 250px;
     min-width: 100%;
-    background-size: 100% auto !important;
+    background-size: auto 100% !important;
     background-position: center !important;
-    background-repeat: no-repeat !important;
+    transition: background-size .5s ease-in-out;
 
+}
+
+.img-all-products {
+    min-height: 150px;
+    max-height: 150px;
+    min-width: 100%;
 }
 
 .form-reg-auth {
@@ -347,7 +422,10 @@ body {
     max-width: 450px;
 }
 
-.delete-product-button {
+.delete-product-button,
+.delete-keys-button {
+    min-width: 10rem;
+    max-width: 10rem;
     outline: none;
     position: fixed;
     z-index: 100;
@@ -361,6 +439,10 @@ body {
     font-size: 0.8rem;
     transition: .2s;
     display: none;
+}
+
+.delete-keys-button {
+    top: 60px;
 }
 
 .delete-product-button:hover {
@@ -385,18 +467,85 @@ body {
     z-index: 5 !important;
 }
 
-.profitable-card{
+.profitable-card {
     -webkit-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.082);
     -moz-box-shadow: 0px 0px 6px 3px rgba(34, 60, 80, 0.082);
     box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.055);
 }
 
-.profitable-card-image{
+.profitable-card-image {
     position: relative;
-    min-width: 26.2rem !important;
-    max-width: 26.2em !important;
+    min-width: 30% !important;
+    max-width: 30% !important;
     min-height: 15rem;
     background-repeat: no-repeat;
     background-size: 100% auto !important;
     background-position: center !important;
+}
+
+.product-img-btn {
+    border: 0;
+    max-width: 19% !important;
+    max-height: 5rem !important;
+    min-width: 19% !important;
+    min-height: 5rem !important;
+    outline: none;
+}
+
+hr.gradient {
+    border: none !important;
+    height: 1px !important;
+    background-image: linear-gradient(to right, #f0f0f0, #525252, #f0f0f0) !important;
+}
+
+hr.dotted {
+    margin: 20px 0;
+    padding: 0;
+    height: 0;
+    border: none;
+    border-top: 2px dotted #ddd;
+}
+
+.similar-game-card {
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    position: relative;
+    background-size: auto 100% !important;
+    background-position: center center !important;
+    min-width: 15rem;
+    max-width: 15rem;
+    min-height: 12rem;
+    max-height: 12rem;
+    transition:background-size .5s ease-in-out;
+}
+
+.similar-game-card:hover{
+    background-size: auto 105% !important;
+}
+
+.bg-light-block {
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    z-index: -100;
+    background-color: #FFF;
+    min-width: 1000vw;
+    min-height: 100%;
+    left: -500vw;
+    top: 0;
+}
+
+.all-products-bg {
+    background-color: #FFF;
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164);
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index: -100;
+    right: 0;
+    top: 0;
 }

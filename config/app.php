@@ -185,7 +185,9 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Scout\ScoutServiceProvider::class,
+        
+        \SocialiteProviders\Manager\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -209,7 +211,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
 ];

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -46,9 +47,13 @@ Route::middleware(['authAdmin'])->group(function () {
         Route::controller(AdminProductsController::class)->group(function () {
             Route::get('/products', 'index')->name('page_admin_products');
             Route::post('/products/add', 'create')->name("create_product");
+            Route::post('/products/add_keys/{id}', 'add_keys')->name("add_keys");
             Route::post('/products/update/{id}', 'update')->name("update_product");
             Route::delete('/products/delete/{id}', 'delete')->name("delete_product");
+            Route::get('/products/delete_material/{id}', 'delete_material')->name("delete_material");
             Route::post('/products/delete_many', 'delete_many')->name("delete_many_products");
+            Route::post('/products/delete_many_keys', 'delete_many_keys')->name("delete_many_keys");
+
         });
 
 
@@ -92,6 +97,12 @@ Route::middleware(['authAdmin'])->group(function () {
 Route::controller(AllProductsController::class)->group(function () {
     Route::get('/all_products', 'index')->name('page_all_products');
 });
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product/{id}', 'index')->name('page_product');
+});
+
+
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('page_welcome');
 });

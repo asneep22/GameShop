@@ -18,11 +18,14 @@ return new class extends Migration
             $table->string('title');
             $table->string('file_path');
             $table->text('description');
+            $table->date('publishing_date');
             $table->foreignId('videocard_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('cpu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('desc_ram');
             $table->string('desc_memory');
             $table->double('price');
+            $table->integer('discount');
+            $table->boolean('redChoose');
             $table->timestamps();
         });
     }

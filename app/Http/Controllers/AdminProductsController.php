@@ -6,9 +6,11 @@ use App\Models\cpu;
 use App\Models\cpu_product;
 use App\Models\Genre;
 use App\Models\genre_product;
+use App\Models\key as key_db;
 use App\Models\os;
 use App\Models\os_product;
 use App\Models\Product;
+use App\Models\product_material;
 use App\Models\videocard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -20,9 +22,9 @@ class AdminProductsController extends Controller
     public function index(Request $req)
     {
         if ($req->search) {
-            $products = Product::where('title', 'LIKE', "%" . $req->search . "%")->paginate(20);
+            $products = Product::with(['videocard', 'cpu', 'oses', 'genres', 'keys'])->where('title', 'LIKE', "%" . $req->search . "%")->paginate(20);
         } else {
-            $products = Product::paginate(20);
+            $products = Product::with(['videocard', 'cpu', 'oses', 'genres', 'keys'])->paginate(20);
         }
         $genres = Genre::all();
         $oses = os::all();
@@ -33,6 +35,15 @@ class AdminProductsController extends Controller
 
     public function create(Request $req)
     {
+        //Если скидка не установлена, значит равно 0
+        if (!$req->discount) {
+            $req['discount'] = 0;
+        }
+
+        if (!$req->redChoose) {
+            $req['redChoose'] = false;
+        }
+
         //Добавление процессора и видеокарты в справочник если их нет
         $cpu = cpu::firstOrCreate(['pname' => $req->cpu]);
         $videocard = videocard::firstOrCreate(['pname' => $req->videocard]);
@@ -46,8 +57,15 @@ class AdminProductsController extends Controller
         $product = Product::create($req->all());
         $req['product_id'] = $product->id;
 
-        //Перебор введенных тегов
+        //Добавление материалов к игре
+        if ($req->materials) {
+            foreach ($req->materials as $material) {
+                $req['file_path'] = Storage::disk('public')->put('materials', $material);
+                product_material::create($req->all());
+            }
+        }
 
+        //Перебор введенных тегов
         foreach ($req->genre as $key => $genre) {
             //Создание записи названия жанра в таблице genres, если она остутствует
             $genre = Genre::firstOrCreate(['pname' => $genre]);
@@ -67,6 +85,17 @@ class AdminProductsController extends Controller
         return back();
     }
 
+    public function add_keys(Request $req, $id)
+    {
+        $req['product_id'] = $id;
+        foreach ($req->keys as $value) {
+            $req['key'] = $value;
+            key_db::create($req->all());
+        }
+
+        return back();
+    }
+
     public function update(Request $req, $id)
     {
         //Добавление процессора и видеокарты в справочник если их нет
@@ -81,9 +110,20 @@ class AdminProductsController extends Controller
             $path = Storage::disk('public')->put('GamesImages', $req->file);
             $req['file_path'] = $path;
         }
+        if (!$req->redChoose) {
+            $req['redChoose'] = 0;
+        }
 
         //Обновление игры
         $product = Product::find($id)->update($req->all());
+        $req['product_id'] = $id;
+        //Добавление материалов к игре
+        if ($req->materials) {
+            foreach ($req->materials as $material) {
+                $req['file_path'] = Storage::disk('public')->put('materials', $material);
+                product_material::create($req->all());
+            }
+        }
 
         //Обновление тегов у игры
         genre_product::where('product_id', '=', $id)->delete();
@@ -107,6 +147,16 @@ class AdminProductsController extends Controller
         return back();
     }
 
+    public function delete_material($id)
+    {
+        if (product_material::find($id)) {
+            $material = product_material::find($id);
+            Storage::disk('public')->delete($material->file_path);
+            $material->delete();
+        }
+        return back();
+    }
+
     public function delete($id)
     {
         if (Product::find($id)) {
@@ -120,6 +170,16 @@ class AdminProductsController extends Controller
         if ($req->delete_products_id) {
             foreach ($req->delete_products_id as $product) {
                 Product::where("id", '=', $product)->delete();
+            }
+        }
+        return response('ok', 200);
+    }
+
+    public function delete_many_keys(Request $req)
+    {
+        if ($req->delete_keys_id) {
+            foreach ($req->delete_keys_id as $id) {
+                key_db::where("id", '=', $id)->delete();
             }
         }
         return response('ok', 200);

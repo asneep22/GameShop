@@ -10,6 +10,10 @@ window.$ = require('jquery');
 
 $(function () {
 
+    $("#iframe").contents().find("#yourDiv").remove();
+    $('.delete-keys-button').fadeOut()
+
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -21,6 +25,7 @@ $(function () {
     var $delete_oses_id = [];
     var $delete_cpus_id = [];
     var $delete_videocards_id = [];
+    var $delete_keys_id = [];
 
     $('.js-select2').select2({
         tags: true,
@@ -53,7 +58,6 @@ $(function () {
 
                 },
                 success: function (data) {
-                    alert($delete_products_id);
                     console.log('ok');
                 }
             }).then((result) => {
@@ -103,12 +107,24 @@ $(function () {
     //Добавление выбранных видеокард для удаления
     $('.checkbox_videocard_select').click(function (e) {
         this.checked ? $delete_videocards_id.push($(this).attr('data-product-id')) :
-        $delete_videocards_id.splice($delete_videocards_id.indexOf($(this).attr('data-product-id'), 1));
+            $delete_videocards_id.splice($delete_videocards_id.indexOf($(this).attr('data-product-id'), 1));
 
         if ($delete_genres_id.length < 1 && $delete_oses_id.length < 1 && $delete_cpus_id < 1 && $delete_videocards_id < 1) {
             $('.delete-product-button').fadeOut()
         } else if ($delete_genres_id.length >= 1 || $delete_oses_id.length >= 1 || $delete_cpus_id >= 1 || $delete_videocards_id >= 1) {
             $('.delete-product-button').fadeIn()
+        }
+    });
+
+
+    //Добавление выбранных ключей для удаления
+    $('.checkbox_keys_select').click(function (e) {
+        this.checked ? $delete_keys_id.push($(this).attr('data-product-id')) :
+            $delete_keys_id.splice($delete_keys_id.indexOf($(this).attr('data-product-id'), 1));
+        if ($delete_keys_id.length < 1) {
+            $('.delete-keys-button').fadeOut()
+        } else if ($delete_keys_id.length >= 1) {
+            $('.delete-keys-button').fadeIn()
         }
     });
 
@@ -135,4 +151,25 @@ $(function () {
 
         }
     });
+
+    $('.delete-keys-form').on('submit', function (e) {
+        if (confirm('Подтвердите удаление')) {
+            e.preventDefault();
+            var url = $(this).attr('data-action');
+
+            $.ajax({
+                url: url,
+                type: "post",
+                data: {
+                    delete_keys_id: $delete_keys_id,
+                },
+                success: function (data) {
+                    console.log('ok');
+                }
+            }).then((result => {
+                location.reload();
+            }));
+        }
+    });
+
 });

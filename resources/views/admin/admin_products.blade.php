@@ -9,12 +9,19 @@
         @csrf
         <input type="hidden" name="delete_products_id[]">
         <button class="delete-product-button" name="" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
-            Удалить
+            Удалить товары
         </button>
+
+    </form>
+
+    <form data-action="{{ route('delete_many_keys') }}" class="delete-keys-form">
+        <input type="hidden" name="delete_keys_id[]">
+        <button class="delete-keys-button" data-spy="affix" data-offset-top="80" data-offset-bottom="200">Удалить
+            ключи</button>
     </form>
 
     <div class="container mt-4">
-        <div class="table-responisve">
+        <div class="table-responsive">
             <table class="table">
                 <thead class="align-middle">
                     <tr>
@@ -27,14 +34,16 @@
                                 </button>
 
                                 <!-- Поиск по названию -->
-                                <button type="button" class="btn-green" data-bs-toggle="modal"
-                                    data-bs-target="#Search">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                      </svg>
+                                <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target="#Search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
                                 </button>
 
-                                <a href="{{route('page_admin_products')}}" class="btn-green text-decoration-none text-light">X</a>
+                                <a href="{{ route('page_admin_products') }}"
+                                    class="btn-green text-decoration-none text-light">X</a>
                             </div>
 
                             <!-- Модальное окно добавления товара -->
@@ -61,10 +70,13 @@
                                                     id="title" placeholder="Введите название тут">
 
 
-                                                <label for="description">Изображнние</label>
+                                                <label for="description">Основное изображение</label>
                                                 <input type="file" required class="form-control mb-3" name="file"
                                                     id="file">
 
+                                                <label for="materials">Материалы</label>
+                                                <input multiple='m' type="file" required class="form-control mb-3"
+                                                    name="materials[]" id="materials">
 
                                                 <label for="description">Описание</label>
                                                 <textarea name="description" placeholder="Введите описание тут" required class="form-input pb-5 mb-3 py-1"
@@ -80,12 +92,26 @@
                                                     @endforeach
                                                 </select>
 
-                                                <label for="price" class="mt-3">Цена</label>
+                                                <label for="publishing_date" class="mt-3">Дата выхода</label>
+                                                <input type="date" required class="form-input mb-3 py-3"
+                                                    name="publishing_date" id="publishing_date"
+                                                    placeholder="Выберите или введите дату выхода игры">
+
+                                                <label for="price" class="">Цена</label>
                                                 <input type="number" required step="0.01" class="form-input mb-3 py-3"
                                                     name="price" id="price" placeholder="1000">
 
+                                                <label for="discount" class="">Скидка, %</label>
+                                                <input type="number" step="1" class="form-input mb-3 py-3"
+                                                    name="discount" id="discount" placeholder="Например: 50">
 
-
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="redChoose" name="redChoose">
+                                                    <label class="form-check-label" for="redChoose">
+                                                        Выбор редакции
+                                                    </label>
+                                                </div>
                                                 <hr>
                                                 <h5 class="my-4 text-center">Системные требования</h5>
                                                 <hr>
@@ -147,29 +173,29 @@
                                 </div>
                             </div>
 
-                             <!-- Модальное окно поиска по названию -->
-                             <div class="modal fade" id="Search" tabindex="-1" aria-labelledby="SearchLabel"
-                             aria-hidden="true">
-                             <div class="modal-dialog">
-                                 <div class="modal-content">
-                                     <div class="modal-header">
-                                         <h5 class="modal-title" id="SearchLabel">Поиск по названию</h5>
-                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                             aria-label="Close"></button>
-                                     </div>
-                                     <div class="modal-body">
+                            <!-- Модальное окно поиска по названию -->
+                            <div class="modal fade" id="Search" tabindex="-1" aria-labelledby="SearchLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="SearchLabel">Поиск по названию</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
 
-                                         <form action="" class="d-flex flex-column">
-                                            <input type="text" name="search" class="form-input">
-                                            <hr>
+                                            <form action="" class="d-flex flex-column">
+                                                <input type="text" name="search" class="form-input">
+                                                <hr>
                                                 <button class="btn-green px-4 py-2 me-0 m-auto">Поиск</button>
-                                         </form>
+                                            </form>
 
-                                     </div>
-                                 </div>
-                             </div>
-   
-                            </th>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </th>
                         <th scope="col">Название</th>
                         <th scope="col">Описание</th>
                         <th scope="col">Жанр</th>
@@ -236,13 +262,57 @@
                                                             value="{{ $product->title }}">
 
 
-                                                        <label for="description{{ $product->id }}">Изображение</label>
+                                                        <label for="description{{ $product->id }}">Основное
+                                                            изображение</label>
                                                         <input type="file" class="form-control" name="file"
                                                             id="file{{ $product->id }}">
-                                                        <div class="w-100 mt-3 mb-3 d-flex" style="max-height: 20rem">
+                                                        <div class="w-100 mt-3 d-flex" style="max-height: 20rem">
                                                             <img src="{{ URL::asset('/storage/' . $product->file_path) }}"
                                                                 class="img-fluid m-auto" alt="">
                                                         </div>
+
+                                                        <label for="materials">Материалы</label>
+                                                        <input multiple='m' type="file" class="form-control"
+                                                            name="materials[]" id="materials">
+
+                                                        {{-- Видео в начало --}}
+
+                                                        <div class="w-100 m-auto mt-3 d-flex flex-column" style="">
+                                                            @foreach ($product->materials as $key => $material)
+                                                                @if (pathinfo($material->file_path, PATHINFO_EXTENSION) != 'jpg')
+                                                                    <div class="position-relative">
+                                                                        <video preload="auto" class="mx-auto main_video"
+                                                                            autoplay="autoplay" muted='m'>
+                                                                            <source
+                                                                                src={{ URL::asset('/storage/' . $material->file_path) }}
+                                                                                type=video/mp4>
+                                                                        </video>
+                                                                        <a href="{{ route('delete_material', $material->id) }}"
+                                                                            class="btn-green position-absolute end-0 text-decoration-none text-light">Х</a>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+
+
+
+                                                        {{-- Изображения в конец --}}
+
+                                                        <div class="w-100 m-auto mt-3 d-flex flex-column" style="">
+                                                            @foreach ($product->materials as $key => $material)
+                                                                @if (pathinfo($material->file_path, PATHINFO_EXTENSION) == 'jpg')
+                                                                    <div class="position-relative">
+                                                                        <img src="{{ URL::asset('/storage/' . $material->file_path) }}"
+                                                                            class="img-fluid me-0 m-auto mb-3"
+                                                                            alt="">
+
+                                                                        <a href="{{ route('delete_material', $material->id) }}"
+                                                                            class="btn-green position-absolute end-0 text-decoration-none text-light">Х</a>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+
 
                                                         <label for="description{{ $product->id }}">Описание</label>
                                                         <textarea name="description" required class="form-input pb-5 mb-3 py-1" id="description{{ $product->id }}"
@@ -262,9 +332,43 @@
                                                             @foreach ($genres as $genre)
                                                                 <option
                                                                     {{ $product->genres->where('id', '=', $genre->id)->first() ? 'selected' : '' }}>
-                                                                    {{ $genre->pname }}</option>
+                                                                    {{ $genre->pname }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
+
+                                                        <label for="publiching_date{{ $product->id }}"
+                                                            class="mt-3">Дата выхода</label>
+                                                        <input type="datetime" required class="form-input mb-3 py-3"
+                                                            name="publishing_date"
+                                                            id="publishing_date{{ $product->id }}"
+                                                            placeholder="Выберите или введите дату выхода игры"
+                                                            value="{{ $product->publishing_date->format('d.m.Y') }}">
+
+                                                        <label for="price{{ $product->id }}"
+                                                            class="mt-3">Цена</label>
+                                                        <input type="number" required step="0.01"
+                                                            class="form-input mb-3 py-3" name="price"
+                                                            id="price{{ $product->id }}" placeholder="1000"
+                                                            value="{{ $product->price }}">
+
+                                                        <label for="discount{{ $product->id }}" class="">Скидка,
+                                                            %</label>
+                                                        <input type="number" step="1" class="form-input mb-3 py-3"
+                                                            name="discount" id="discount{{ $product->id }}"
+                                                            placeholder="Например: 50"
+                                                            value="{{ $product->discount }}">
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="1" id="redChoose{{ $product->id }}"
+                                                                name="redChoose"
+                                                                {{ $product->redChoose != 0 ? 'checked' : '' }}>
+                                                            <label class="form-check-label"
+                                                                for="redChoose{{ $product->id }}">
+                                                                Выбор редакции
+                                                            </label>
+                                                        </div>
 
                                                         <!--Системные требования-->
                                                         <hr>
@@ -342,13 +446,99 @@
                                     </div>
 
                                     <!-- Переход на страницу в магазине -->
-                                    <a href="" class="btn-green p-2 text-decoration-none text-light">
+                                    <a href="{{ route('page_product', $product->id) }}"
+                                        class="btn-green p-2 text-decoration-none text-light">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                                         </svg>
                                     </a>
+
+                                    <!-- Ключи -->
+                                    <button type="button" class="btn-green p-2" data-bs-toggle="modal"
+                                        data-bs-target="#productKeys{{ $product->id }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                        </svg>
+                                    </button>
+
+                                    <div class="modal  fade" id="productKeys{{ $product->id }}" tabindex="-1"
+                                        aria-labelledby="productKeys{{ $product->id }}Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                            <div class="modal-content ">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="productKeys{{ $product->id }}Label">
+                                                        Ключи «{{ $product->title }}»</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body keys">
+                                                    <form action="{{ route('add_keys', $product->id) }}" method="post"
+                                                        class="d-flex flex-column">
+                                                        @csrf
+                                                        <label for="keys{{ $product->id }}">Добавить ключи</label>
+                                                        <select required class="form-control js-select2 w-100"
+                                                            multiple='m' name="keys[]" id="keys{{ $product->id }}"
+                                                            data-placeholder="Введите ключи"
+                                                            data-dropdown-parent="#productKeys{{ $product->id }}">
+
+                                                        </select>
+
+                                                        <label for="key_price{{ $product->id }}" class="mt-3">Цена
+                                                            закупа за шт, руб</label>
+                                                        <input type="numeric" class="form-input" step=".01"
+                                                            name="key_price" id="key_price{{ $product->id }}"
+                                                            placeholder="Введите цену закупки ключей за штуку">
+
+                                                        <hr>
+                                                        <button type="submit"
+                                                            class="btn-green me-0 m-auto">Сохранить</button>
+                                                    </form>
+                                                    <div class="table-responsive">
+                                                        <hr>
+                                                        <table class="table table-sm">
+                                                            <thead class="align-middle">
+                                                                <tr>
+                                                                    <th scope="col">№</th>
+                                                                    <form action="">
+                                                                        <th scope="col" class="d-flex">
+                                                                        </th>
+                                                                    </form>
+                                                                    <th scope="col">Цена, руб</th>
+                                                                    <th scope="col" class="d-flex flex-column">
+                                                                        Действия
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($product->keys as $key => $item)
+                                                                    <tr>
+                                                                        <th scope="row">{{ $key + 1 }}
+                                                                        </th>
+                                                                        <td>{{ $item->key }}</td>
+                                                                        <td>{{ $item->key_price }}</td>
+                                                                        <td class="d-flex">
+                                                                            <button class="btn-green">
+                                                                                X
+                                                                            </button>
+
+                                                                            <input type="checkbox"
+                                                                                class="form-check-input m-auto checkbox_keys_select"
+                                                                                data-product-id="{{ $item->id }}">
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <!-- Удаление -->
                                     <form action="{{ Route('delete_product', $product->id) }}"
