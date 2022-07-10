@@ -71,10 +71,15 @@
                 <div class="mb-0 my-auto">
                     <hr class="dotted">
                     <div class="d-flex">
-                        <p class="fs-4 mt-3">Цена: {{ $product->price }}р</p>
-                        <div class="btn-group mt-3 me-0 m-auto">
-                            <button class="btn-green">В корзину</button>
-                            <button class="btn-green">Купить</button>
+                        <p class="fs-4 my-auto">Цена: {{ $product->price }}р</p>
+                        <div class="btn-group me-0 m-auto">
+                            @if (!$product_is_on_shopping_cart)
+                                <a href="{{ route('add_product_to_cart', $product->id) }}"
+                                    class="btn-green-buy text-decoration-none text-light">Купить</a>
+                            @else
+                                <a href="{{ route('page_shopping_cart') }}"
+                                    class="btn-green-buy text-decoration-none text-light">Игра уже в корзине</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -140,16 +145,17 @@
         {{-- Похожие товары --}}
         <div class="d-flex flex-column">
             <h5>Похожие игры</h5>
-            <div class="d-flex justify-content-between flex-wrap">
+            <div class="d-lg-flex justify-content-between flex-wrap">
                 @foreach ($similar_games as $game)
-                <a href="{{route('page_product', $game->id)}}">
-                    <div class="mb-4 similar-game-card d-flex rounded"
-                        style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
-                        <h4 style="z-index: 2" class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
-                            {{ $game->title }}</h4>
-                        <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
-                    </div>
-                </a>
+                    <a href="{{ route('page_product', $game->id) }}">
+                        <div class="mb-4 similar-game-card d-flex rounded"
+                            style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
+                            <h4 style="z-index: 2"
+                                class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
+                                {{ $game->title }}</h4>
+                            <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
+                        </div>
+                    </a>
                 @endforeach
             </div>
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,14 @@ Route::controller(AllProductsController::class)->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{id}', 'index')->name('page_product');
+});
+
+Route::controller(ShoppingCartController::class)->group(function () {
+    Route::get('/shopping_cart', 'index')->name('page_shopping_cart');
+    Route::get('/add_product_to_cart/{id}', 'add_product_to_cart')->name('add_product_to_cart');
+    Route::post('/buy', 'buy')->name('buy');
+
+
 });
 
 

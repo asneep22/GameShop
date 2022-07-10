@@ -108,12 +108,8 @@
                     <div class="d-flex align-items-center mt-1 tf">
                         <a href="{{route('page_welcome')}}" class="text-decoration-none ui-box top-stay mdel-g"><span
                                 class="text-white m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay mdel-n"><span
-                                class="text-white m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay"><span
-                                class="text-white m-0 ts fsh-t ui-border-element ">СКИДКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay mdel-p"><span
-                                class="text-white m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
+                        <a href="{{route('page_all_products')}}" class="text-decoration-none ui-box top-stay mdel-n"><span
+                                class="text-white m-0 ts fsh-t ui-border-element">ВСЕ ИГРЫ</span></a>
                     </div>
                     <div class="d-flex ip pt-2">
                         <!-- Выпадающие меню поиска -->
@@ -156,7 +152,7 @@
                         <!-- Корзина -->
 
 
-                        <a href="#" class="ms-3 sb text-decoration-none text-white dm">
+                        <a href="{{route('page_shopping_cart')}}" class="ms-3 sb text-decoration-none text-white dm">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-cart-fill" viewBox="0 0 16 16">
                                 <path

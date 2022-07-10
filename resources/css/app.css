@@ -189,6 +189,19 @@ body {
     transition: .2s;
 }
 
+.btn-green-buy {
+    border: none;
+    background-color: rgb(79, 160, 99);
+    color: rgb(238, 236, 236);
+    font-size: 1rem;
+    padding: 0.7rem 3rem;
+    transition: .2s;
+}
+
+.btn-green-buy:hover {
+    background-color: rgb(71, 136, 93);
+}
+
 .btn-green:hover {
     background-color: rgb(71, 136, 93);
 }
@@ -377,10 +390,15 @@ body {
     min-width: 25.45rem;
     max-width: 25.45rem;
     min-height: 15rem;
-    max-height: 15rem;
     background-size: auto 100% !important;
     background-position: center center !important;
     transition: .5s ease-in-out;
+}
+
+.shop_carts .game-card-block{
+    min-width: 100% !important;
+    max-height: 7rem !important;
+    min-height: 7rem !important;
 }
 
 .game-card-block:hover{
