@@ -21527,6 +21527,12 @@ textarea.form-control-lg {
 
 }
 
+.hbg-js {
+
+    background: rgb(0, 255, 98);
+
+}
+
 .hbg-d {
 
     background: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
