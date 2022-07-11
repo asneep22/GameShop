@@ -6,29 +6,34 @@
 
 @section('content')
     <!-- Главное видео -->
-    <div class="container py-0 m-0 mt-5 video-container w-100 m-auto">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner text-center">
-                <div class="carousel-item active">
-                    <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
-                        <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
-                    </video>
-                </div>
-                <div class="carousel-item">
-                    <video preload="auto" class="mx-auto main_video" loop="l" autoplay="autoplay">
-                        <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm>
-                        <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg>
-                        <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
-                        <source src=http://techslides.com/demos/sample-videos/small.3gp type=video/3gp>
-                    </video>
-                </div>
-                <div class="carousel-item">
-                    <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
-                        <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
-                    </video>
+    <div class="container-fluid">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade mx-auto" style="min-width: 15rem; max-width: 80rem;" data-bs-ride="carousel">
+                <div class="carousel-inner text-center mt-3">
+                    <div class="carousel-item active">
+                        <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
+                            <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-item">
+                        <video preload="auto" class="mx-auto main_video" loop="l" autoplay="autoplay">
+                            <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm>
+                            <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg>
+                            <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
+                            <source src=http://techslides.com/demos/sample-videos/small.3gp type=video/3gp>
+                        </video>
+                    </div>
+                    <div class="carousel-item">
+                        <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
+                            <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
-        </div>
+    </div>
+
+
+    <div class="container py-0 m-0 video-container w-100 mx-auto" style="">
+
 
         <!-- Почему мы -->
 
@@ -84,7 +89,7 @@
                     </div>
                 </div>
                 <hr class="gradient">
-                @if ($products_red->first())
+                @if ($products_red->count() > 5)
                     <div id="RedChoose" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner pb-3">
                             <div class="carousel-item active">
@@ -198,9 +203,12 @@
                     <h2 class="text-sm-center text-lg-start">Все предложения</h2>
                     <div class="d-lg-flex text-center my-auto me-0 mx-auto">
                         <!-- Light them -->
-                        <a href="#" class="text-decoration-none text-black">Новинки</a>
-                        <a href="#" class="px-4 text-decoration-none text-black ">Популярное</a>
-                        <a href="#" class="text-decoration-none text-black">Часто покупаемые</a>
+                        <a href="{{ route('page_all_products') . '?new=on' }}"
+                            class="text-decoration-none text-black">Новинки</a>
+                        <a href="{{ route('page_all_products') . '?popular=on' }}"
+                            class="px-4 text-decoration-none text-black ">Популярное</a>
+                        <a href="{{ route('page_all_products') . '?discount=on' }}"
+                            class="text-decoration-none text-black">Скидки</a>
                         <!-- Dark Theme -->
                         {{-- <a href="#" class="text-decoration-none text-white">Новинки</a>
                     <a href="#" class="px-4 text-decoration-none text-white ">Популярное</a>
@@ -218,17 +226,26 @@
                                 <div class="img"
                                     style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
                                 </div>
-                                <div class="px-3 text-break d-flex flex-column">
-                                    <h4 class="" style="min-height: 3rem">{{ $item->title }}</h4>
-                                    <p class="text-justify">{{ Str::limit($item->description, 200, '...') }}</p>
+                                <div class="text-break d-flex flex-column">
+                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">
+                                        {{ $item->title }}
+                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                            <span class="m-auto">
+                                                -{{ $item->discount }}%
+                                            </span>
+                                        </span>
+                                    </h4>
+                                    <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
+
                             </a>
                             <div class=" mb-0 my-auto p-0">
                                 <hr class="dotted mb-0">
                                 <div class="btn-group mb-0 d-flex">
-                                    <a href="{{route('add_product_to_cart', $item->id)}}" class="btn-green text-decoration-none btn-light"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="currentColor" class="bi bi-cart4"
-                                            viewBox="0 0 16 16">
+                                    <a href="{{ route('add_product_to_cart', $item->id) }}"
+                                        class="btn-green text-decoration-none btn-light"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
                                                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                                         </svg></a>
@@ -241,7 +258,11 @@
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price }}р</h5>
+                                    {{-- Если есть скидка, показываем сколько в процентах она составляет --}}
+                                    <h5 class="me-0 m-auto">
+                                        {{ $item->price - ($item->price / 100) * $item->discount }}р
+                                    </h5>
+
                                 </div>
                             </div>
                         </div>

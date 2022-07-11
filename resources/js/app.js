@@ -37,7 +37,7 @@ $(function () {
         this.value == 1 ? $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title')) : $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title') + ' X' + this.value)
         var shop_cart_inputs = $('.shop_cart_input');
         for (let index = 0; index < shop_cart_inputs.length; index++) {
-            total_price += shop_cart_inputs[index].getAttribute('data-price') * shop_cart_inputs[index].value;
+            total_price += (shop_cart_inputs[index].getAttribute('data-price') - (shop_cart_inputs[index].getAttribute('data-price') / 100 * shop_cart_inputs[index].getAttribute('data-discount'))) * shop_cart_inputs[index].value;
         }
         $('.finish_price').html("Итоговая цена: " + total_price + "р");
     });

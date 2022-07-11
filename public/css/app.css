@@ -25369,3 +25369,24 @@ hr.dotted {
     right: 0;
     top: 0;
 }
+
+.discount-small{
+    background-color: rgb(243, 67, 67);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164) !important;
+    padding: .2rem .1rem;
+    color: #FFF;
+}
+
+.discount-medium{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1rem;
+    width: 15%;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(243, 67, 67);
+    box-shadow: 0px 0px 10px 3px rgba(34, 60, 80, 0.164) !important;
+    padding: .2rem .1rem;
+    color: #FFF;
+}

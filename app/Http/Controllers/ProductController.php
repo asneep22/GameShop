@@ -36,7 +36,6 @@ class ProductController extends Controller
         } else {
             if (session('shopping_cart_products')) {
                 foreach (session('shopping_cart_products') as $shopping_cart_product_id) {
-                    dump($shopping_cart_product_id.' '.$product->id);
                     if ($shopping_cart_product_id == $product->id) {
                         $product_is_on_shopping_cart = true;
                     }

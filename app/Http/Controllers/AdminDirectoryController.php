@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Models\genre_product;
 use App\Models\os;
 use App\Models\os_product;
+use App\Models\personal_discount;
 use App\Models\Product;
 use App\Models\videocard;
 use Illuminate\Contracts\Session\Session;
@@ -17,17 +18,19 @@ class AdminDirectoryController extends Controller
     public function index(Request $req)
     {
         if ($req->search != null) {
+            $disounts = personal_discount::where('sum_buy', '=', $req->search)->orWhere('disocunt_procent', '=', $req->search)->get();
             $genres = Genre::where('pname', '=', $req->search)->get();
             $videocards = videocard::where('pname', '=', $req->search)->get();
             $oses = os::where('pname', '=', $req->search)->get();
             $cpus = cpu::where('pname', '=', $req->search)->get();
         } else {
+            $discounts = personal_discount::all();
             $genres = Genre::all();
             $videocards = videocard::all();
             $oses = os::all();
             $cpus = cpu::all();
         }
-        return view('admin.admin_direcories', compact('genres', 'videocards', 'oses', 'cpus'));
+        return view('admin.admin_direcories', compact('genres', 'videocards', 'oses', 'cpus', 'discounts'));
     }
 
     //Добавление
@@ -68,6 +71,12 @@ class AdminDirectoryController extends Controller
         return back();
     }
 
+    public function addDiscount(Request $req)
+    {
+        personal_discount::firstOrcreate($req->except('_token'));
+        return back();
+    }
+
     //Обновление
     public function updateGenre(Request $req, $id)
     {
@@ -92,6 +101,13 @@ class AdminDirectoryController extends Controller
         videocard::find($id)->update($req->all());
         return back();
     }
+
+    public function updateDiscount(Request $req, $id)
+    {
+        personal_discount::find($id)->update($req->all());
+        return back();
+    }
+
 
     //Удаление
     public function deleteGenre($id)
@@ -143,6 +159,15 @@ class AdminDirectoryController extends Controller
             } else {
                 //Вывод сообщения, что запись используется у товара
             }
+        }
+        return back();
+    }
+
+    public function deleteDiscount($id)
+    {
+        $discount = personal_discount::find($id);
+        if ($discount) {
+            $discount->delete();
         }
         return back();
     }
