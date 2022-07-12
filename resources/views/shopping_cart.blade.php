@@ -17,17 +17,38 @@
                             <table class="table">
                                 <tbody>
                                     @foreach ($products as $product)
-                                        <tr>
-                                            <th scope="row" class="w-50">
+                                        <tr class="align-middle">
+                                            <th scope="row" class="w-25">
                                                 <p class="shop_cart_title{{ $product->id }}">{{ $product->title }}</p>
                                             </th>
-                                            <td class="w-25">
-                                                <p>{{ $product->price }}р
+                                            <td class="w-25 text-center p-0">
+
+                                                <div class="d-flex flex-column">
+                                                    @if ($product->discount != 0)
+                                                        <small style="font-size: 0.75rem"
+                                                            class="m-0 p-0 text-center text-secondary text-nowrap"
+                                                            style=""><s>{{ $product->price }}</s>
+                                                            <span class="discount-small ">
+                                                                -{{ $product->discount }}%</span>
+                                                        </small>
+                                                    @endif
+                                                    <span
+                                                        class="m-auto text-center">{{ $product->price - ($product->price / 100) * $product->discount }}р</span>
+                                                </div>
                                             </td>
-                                            <td><input type="number" name="count{{ $product->id }}" value="1"
-                                                    min="1" class="shop_cart_input form-input"
-                                                    data-id="{{ $product->id }}" data-game-title="{{ $product->title }}"
-                                                    data-price="{{ $product->price }}"></td>
+                                            <td class="p-0">
+                                                <div class="d-flex justify-content-end"><input type="number"
+                                                        name="count{{ $product->id }}" value="1" min="1"
+                                                        class="shop_cart_input form-input w-50"
+                                                        data-id="{{ $product->id }}"
+                                                        data-discount="{{ $product->discount }}"
+                                                        data-game-title="{{ $product->title }}"
+                                                        data-price="{{ $product->price }}">
+                                                    <a href="{{ route('delete_product_from_card', $product->id) }}"
+                                                        class="btn-green text-decoration-none text-light m-0 text-center p-0 w-25">X</a>
+                                                </div>
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -37,8 +58,15 @@
                     </div>
 
                     <div class="d-flex flex-column">
-                        <hr class="gradient">
-                        <h5 class="m-0">Ваша персональная скидка: {{ count($products) }} %</h5>
+                        <hr class="dotted">
+                        <h5 class="m-0">Ваша персональная скидка:
+                            @if (Auth::check() && Auth::user()->Discount)
+                                {{ Auth::user()->Discount->disocunt_procent }}
+                            @else
+                                0
+                            @endif
+                            %
+                        </h5>
                         <hr class="dotted">
                         <div class="overflow-y-auto">
                             <table class="table">
@@ -47,38 +75,18 @@
                                         <th scope="col">Сумма покупок, руб</th>
                                         <th scope="col">Скидка, %</th>
                                     </tr>
-                                    <tr>
-                                        <td scope="row">1000</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">5000</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">10000</td>
-                                        <td>3</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">15000</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">20000</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">25000</td>
-                                        <td>6</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">30000</td>
-                                        <td>7</td>
-                                    </tr>
+                                    @foreach ($personal_disounts as $personal_disount)
+                                        <tr>
+                                            <td scope="row">{{ $personal_disount->sum_buy }}</td>
+                                            <td>{{ $personal_disount->disocunt_procent }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                        </div><hr class="dotted">
-                        <h4 class="finish_price mt-2">Итоговая цена: {{ $price }}р</h4>
+                        </div>
+                        <hr class="dotted">
+                        <h4 class="finish_price mt-2">Итоговая цена:
+                            {{ $product->price - ($product->price / 100) * $product->discount }}р</h4>
                         <button type="submit" class="btn-green ms-0 m-auto my-3">Оплатить</button>
                     </div>
                 </div>
@@ -105,6 +113,6 @@
 
             </div>
         </form>
-        {{$products->withQueryString()->links()}}
+        {{ $products->withQueryString()->links() }}
     </div>
 @endsection

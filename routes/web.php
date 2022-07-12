@@ -54,9 +54,7 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::get('/products/delete_material/{id}', 'delete_material')->name("delete_material");
             Route::post('/products/delete_many', 'delete_many')->name("delete_many_products");
             Route::post('/products/delete_many_keys', 'delete_many_keys')->name("delete_many_keys");
-
         });
-
 
         Route::controller(AdminUsersController::class)->group(function () {
             Route::get('/users', 'index')->name('page_admin_users');
@@ -81,22 +79,24 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::post('/directories/add_oses', 'addOses')->name('addOses');
             Route::post('/directories/add_cpus', 'addCpus')->name('addCpus');
             Route::post('/directories/add_videocards', 'addVideocards')->name('addVideocards');
+            Route::post('/directories/add_disount', 'addDiscount')->name('addDiscount');
             Route::post('/directories/update_genre/{id}', 'updateGenre')->name('updateGenre');
             Route::post('/directories/update_os/{id}', 'updateOs')->name('updateOs');
             Route::post('/directories/update_cpu/{id}', 'updateCpu')->name('updateCpu');
             Route::post('/directories/update_videocards/{id}', 'updateVideocard')->name('updateVideocard');
+            Route::post('/directories/update_discount/{id}', 'updateDiscount')->name('updateDiscount');
             Route::get('/directories/delete_genre/{id}', 'deleteGenre')->name('deleteGenre');
             Route::get('/directories/delete_os/{id}', 'deleteOs')->name('deleteOs');
             Route::get('/directories/delete_cpu/{id}', 'deleteCpu')->name('deleteCpu');
             Route::get('/directories/delete_videocards/{id}', 'deleteVideocard')->name('deleteVideocard');
+            Route::get('/directories/delete_discount/{id}', 'deleteDiscount')->name('deleteDiscount');
             Route::post('/directories/delete_irectories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
         });
     });
 });
 
-
 Route::controller(AllProductsController::class)->group(function () {
-    Route::get('/all_products', 'index')->name('page_all_products');
+    Route::get('/all_products/{tag?}', 'index')->name('page_all_products');
 });
 
 Route::controller(ProductController::class)->group(function () {
@@ -107,15 +107,12 @@ Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/shopping_cart', 'index')->name('page_shopping_cart');
     Route::get('/add_product_to_cart/{id}', 'add_product_to_cart')->name('add_product_to_cart');
     Route::post('/buy', 'buy')->name('buy');
-
-
+    Route::get('/delete_product_from_card/{id}', 'delete_product_from_card')->name('delete_product_from_card');
 });
-
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('page_welcome');
 });
-
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();

@@ -41,6 +41,13 @@
                         data-bs-target="#pills-videocards" type="button" role="tab" aria-controls="pills-videocards"
                         aria-selected="false">Видеокарты</button>
                 </li>
+                @if (Auth::id() == 1)
+                    <li class="nav-item me-0 m-0" role="presentation">
+                        <button class="py-2 px-3" id="pills-discounts-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-discounts" type="button" role="tab" aria-controls="pills-discounts"
+                            aria-selected="false">Накопительные скидки</button>
+                    </li>
+                @endif
                 <button type="button" class="btn-green" data-bs-toggle="modal" data-bs-target="#search">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
@@ -124,65 +131,64 @@
                             <tbody>
                                 @foreach ($genres as $key => $genre)
                                     <tr>
-                                            <th scope="row">{{ $key + 1 }}</th>
-                                            <td>{{ $genre->pname }}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <!--Редактировать название жанра-->
-                                                    <button type="button" class="btn-green" data-bs-toggle="modal"
-                                                        data-bs-target="#editGenre{{ $genre->id }}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                            height="16" fill="currentColor"
-                                                            class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                            <path fill-rule="evenodd"
-                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                        </svg>
-                                                    </button>
+                                        <th scope="row">{{ $key + 1 }}</th>
+                                        <td>{{ $genre->pname }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <!--Редактировать название жанра-->
+                                                <button type="button" class="btn-green" data-bs-toggle="modal"
+                                                    data-bs-target="#editGenre{{ $genre->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-pencil-square"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                    </svg>
+                                                </button>
 
-                                                    <div class="modal fade" id="editGenre{{ $genre->id }}"
-                                                        tabindex="-1" aria-labelledby="editGenre{{ $genre->id }}Label"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <!--Форма обновления-->
-                                                                <form action="{{ route('updateGenre', $genre->id) }}">
-                                                                    @csrf
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title"
-                                                                            id="editGenre{{ $genre->id }}Label">
-                                                                            Редактировать "{{ $genre->pname }}"</h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <label
-                                                                            for="pnameGenre{{ $genre->id }}">Название
-                                                                            жанра</label>
-                                                                        <input type="text"
-                                                                            placeholder="Введите название жанра тут"
-                                                                            required class="form-input" name="pname"
-                                                                            id="pnameGenre{{ $genre->id }}"
-                                                                            value="{{ $genre->pname }}">
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit"
-                                                                            class="btn-green">Сохранить</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
+                                                <div class="modal fade" id="editGenre{{ $genre->id }}" tabindex="-1"
+                                                    aria-labelledby="editGenre{{ $genre->id }}Label"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <!--Форма обновления-->
+                                                            <form action="{{ route('updateGenre', $genre->id) }}">
+                                                                @csrf
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="editGenre{{ $genre->id }}Label">
+                                                                        Редактировать "{{ $genre->pname }}"</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <label for="pnameGenre{{ $genre->id }}">Название
+                                                                        жанра</label>
+                                                                    <input type="text"
+                                                                        placeholder="Введите название жанра тут" required
+                                                                        class="form-input" name="pname"
+                                                                        id="pnameGenre{{ $genre->id }}"
+                                                                        value="{{ $genre->pname }}">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit"
+                                                                        class="btn-green">Сохранить</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                    <a href="{{ route('deleteGenre', $genre->id) }}"
-                                                        class="btn-green text-decoration-none text-light"
-                                                        onclick="return confirm('Подтвердите удаление')">X</a>
-                                                    <input type="checkbox" id="checkbox_genre{{ $genre->id }}"
-                                                        class="form-check-input ms-2 my-auto checkbox_genre_select"
-                                                        data-product-id={{ $genre->id }}>
                                                 </div>
-                                            </td>
+                                                <a href="{{ route('deleteGenre', $genre->id) }}"
+                                                    class="btn-green text-decoration-none text-light"
+                                                    onclick="return confirm('Подтвердите удаление')">X</a>
+                                                <input type="checkbox" id="checkbox_genre{{ $genre->id }}"
+                                                    class="form-check-input ms-2 my-auto checkbox_genre_select"
+                                                    data-product-id={{ $genre->id }}>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -504,6 +510,123 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="pills-discounts" role="tabpanel" aria-labelledby="pills-discounts-tab">
+                    <!--Операционные системы-->
+                    <table class="table">
+                        <thead class="align-middle">
+                            <tr>
+                                <!--Добавить накопительную систему-->
+                                <th scope="col" class="px-0">
+                                    <button type="button" class="btn-green" data-bs-toggle="modal"
+                                        data-bs-target="#addDiscount">
+                                        +
+                                    </button>
+
+                                    <div class="modal fade" id="addDiscount" tabindex="-1"
+                                        aria-labelledby="addDiscountLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <!--Форма добавления-->
+                                            <form action="{{ route('addDiscount') }}" method="post">
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="addDiscountLabel">Добавить
+                                                            накопительную
+                                                            скидку</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label for="sum_buy">Общая сумма покупок</label>
+                                                        <input type="integer" placeholder="1000" step="1"
+                                                            class="form-input" name="sum_buy" id="sum_buy">
+                                                        <label for="disocunt_procent" class="mt-3">Скидка, %</label>
+                                                        <input type="integer" placeholder="1" step="1"
+                                                            max="100" class="form-input" name="disocunt_procent"
+                                                            id="disocunt_procent">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn-green">Добавить</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th scope="col" class="w-75">Общая сумма покупок</th>
+                                <th scope="col" class="w-75">Скидка, %</th>
+                                <th scope="col">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($discounts as $key => $discount)
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td>{{ $discount->sum_buy }}</td>
+                                    <td>{{ $discount->disocunt_procent }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <!--Редактировать накопительную скидку-->
+                                            <button type="button" class="btn-green" data-bs-toggle="modal"
+                                                data-bs-target="#editDiscount{{ $discount->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg>
+                                            </button>
+
+                                            <div class="modal fade" id="editDiscount{{ $discount->id }}" tabindex="-1"
+                                                aria-labelledby="editDiscount{{ $discount->id }}Label" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <!--Форма обновления-->
+                                                        <form action="{{ route('updateDiscount', $discount->id) }}" method="POST">
+                                                            @csrf
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="editOs{{ $discount->id }}Label">
+                                                                    Редактировать</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <label for="sumBuyDiscount{{ $discount->id }}">Общая сумма покупок, руб</label>
+                                                                <input type="text"
+                                                                    placeholder="1000" required
+                                                                    class="form-input" name="sum_buy"
+                                                                    id="sumBuyDiscount{{ $discount->id }}"
+                                                                    value="{{ $discount->sum_buy }}">
+
+                                                            <label for="discountPorcentDiscount{{ $discount->id }}" class="mt-3">Скидка, %</label>
+                                                                <input type="text"
+                                                                    placeholder="1000" required
+                                                                    class="form-input" name="disocunt_procent"
+                                                                    id="discountPorcentDiscount{{ $discount->id }}"
+                                                                    value="{{ $discount->disocunt_procent }}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit"
+                                                                    class="btn-green">Сохранить</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="{{ route('deleteDiscount', $discount->id) }}"
+                                                class="btn-green text-decoration-none text-light"
+                                                onclick="return confirm('Подтвердите удаление')">X</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+
                     </table>
                 </div>
             </div>

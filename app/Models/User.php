@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'email',
         'role_id',
+        'personal_discount',
         'last_online_at',
         'password',
         'fio',
@@ -59,5 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function Discount()
+    {
+        return $this->belongsTo(personal_discount::class, 'id');
+    }
+    
 
 }

@@ -151,9 +151,15 @@
                                 <div class="img-all-products"
                                     style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
                                 </div>
-                                <div class="px-3 text-break d-flex flex-column">
-                                    <h4 class="" style="min-height: 3rem">{{ $item->title }}</h4>
-                                    <p class="text-justify">{{ Str::limit($item->description, 200, '...') }}</p>
+                                <div class="text-break d-flex flex-column">
+                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">{{ $item->title }}
+                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                            <span class="m-auto">
+                                                -{{ $item->discount }}%
+                                            </span>
+                                        </span>
+                                    </h4>
+                                    <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
                             </a>
                             <div class="mb-0 my-auto p-0">
@@ -161,22 +167,23 @@
                                 <div class="btn-group mb-0 d-flex">
 
                                     {{-- В корзину --}}
-                                    <button type="submit" class="btn-green"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="currentColor" class="bi bi-cart4"
-                                            viewBox="0 0 16 16">
+                                    <a href="{{ route('add_product_to_cart', $item->id) }}" class="btn-green"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
                                                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                        </svg></button>
+                                        </svg></a>
                                     {{-- На страницу товара --}}
-                                    <a href="{{ route('page_product', $item->id) }}" class="btn-green text-decoration-none text-light"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                            height="16" fill="currentColor" class="bi bi-box-arrow-up-right"
-                                            viewBox="0 0 16 16">
+                                    <a href="{{ route('page_product', $item->id) }}"
+                                        class="btn-green text-decoration-none text-light"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"
                                                 d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price }}р</h5>
+                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) * $item->discount }}р</h5>
                                 </div>
                             </div>
                         </div>
