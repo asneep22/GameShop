@@ -192,7 +192,6 @@ $(function () {
         theme.removeClass('navbar-light').toggleClass('navbar-dark');
         tcs.removeClass('text-black').toggleClass('text-white');
         svgs.removeClass('text-black').toggleClass('text-white');
-        
     })
 
 });

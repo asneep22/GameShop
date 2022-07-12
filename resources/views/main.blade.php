@@ -228,9 +228,15 @@
                                 <div class="img"
                                     style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
                                 </div>
-                                <div class="px-3 text-break d-flex flex-column">
-                                    <h4 class="" style="min-height: 3rem">{{ $item->title }}</h4>
-                                    <p class="text-justify">{{ Str::limit($item->description, 200, '...') }}</p>
+                                <div class=" text-break d-flex flex-column">
+                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">{{ $item->title }}
+                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                            <span class="m-auto">
+                                                -{{ $item->discount }}%
+                                            </span>
+                                        </span>
+                                    </h4>
+                                    <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
                             </a>
                             <div class=" mb-0 my-auto p-0">

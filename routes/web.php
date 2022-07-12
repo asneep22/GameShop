@@ -11,6 +11,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\UserController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +34,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login_user')->name('login_user');
     Route::post('/login_admin', 'login_admin')->name('login_admin');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/verify_email/{id}', 'verify_email')->name('verification.send')->middleware(['checkId', 'auth', 'throttle:6,1']);
 });
 
 //admin
@@ -68,8 +71,8 @@ Route::middleware(['authAdmin'])->group(function () {
         Route::middleware(['checkId'])->group(function () {
 
             Route::controller(AdminSettingController::class)->group(function () {
-                Route::get('/settings/{id}', 'index')->name('page_admin_settings');
-                Route::post('/settings/{id}/update', 'update')->name('AdminSettingUpd');
+                Route::get('/settings_admin/{id}', 'index')->name('page_admin_settings');
+                Route::post('/settings_admin/{id}/update', 'update')->name('AdminSettingUpd');
             });
         });
 
@@ -95,6 +98,13 @@ Route::middleware(['authAdmin'])->group(function () {
     });
 });
 
+Route::middleware(['checkId'])->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/settings_user/{id}', 'index')->name('page_user_settings');
+        Route::post('/settings_user/{id}/update', 'update')->name('UserSettingUpd');
+    });
+});
+
 Route::controller(AllProductsController::class)->group(function () {
     Route::get('/all_products/{tag?}', 'index')->name('page_all_products');
 });
@@ -116,5 +126,5 @@ Route::controller(MainController::class)->group(function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect()->route('page_user_welcome');
+    return redirect()->route('page_welcome');
 })->middleware(['auth', 'signed'])->name('verification.verify');
