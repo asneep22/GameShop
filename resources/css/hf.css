@@ -14,11 +14,7 @@ a{
 
 }
 
-a:hover{
 
-    color: black !important;
-
-}
 
 .hbg {
 
@@ -78,11 +74,43 @@ a:hover{
 
 }
 
+.fws[placeholder], [placeholder], *[placeholder] {
+    color: rgb(0, 0, 0) !important;
+}
+
+.formin{
+
+    position: absolute !important;
+    z-index: -2 !important;
+    opacity: 0;
+    transition: opacity 0.5s !important;
+
+}
+
+.formin-h{
+
+    position: absolute !important;
+    z-index: -2 !important;
+    opacity: 1;
+    transition: opacity 0.5s !important;
+
+}
+
 .fws {
 
-    max-width: 13.5rem!important;
-    min-width: 13.5rem!important;
+    max-width: 13rem!important;
+    min-width: 13rem!important;
+
+   
     margin-left: 1rem !important;
+
+    outline: none !important;
+    box-shadow: none !important;
+
+    border-radius: 10px;
+    border: solid black 2px !important;
+
+    z-index: 10 !important;
 
 }
 
@@ -166,32 +194,32 @@ a:hover{
 
         display: flex !important;
         flex-direction: column !important;
-        align-items: start !important;
+        align-items: center !important;
 
     }
 
     .fws {
 
-        max-width: 11.3rem;
-        min-width: 11.3rem;
+        max-width: 15rem !important;
+        min-width: 15rem !important;
         margin-left: 0 !important;
 
     }
 
     .ip {
 
-        padding: 1rem 0 2rem 0 !important
+        margin: 1rem 0 2rem 0 !important
     }
 
     .ddm {
 
-        padding-left: 1.5rem !important;
+        margin-left: 1.5rem !important;
 
     }
 
     .dm {
 
-        padding-right: 1.5rem !important;
+        margin-right: 1.5rem !important;
 
     }
 
@@ -210,38 +238,6 @@ a:hover{
 
     padding: 0 !important;
 
-}
-
-.top-stay{
-
-    padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
-    
-    }
-
-.top-stay:hover,.top-stay:focus,.top-stay:active{
-
-padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
-
-}
-
-.top-stay::after {
-
-    transition-duration: 300ms !important;
-}
-
-.top-stay::before {
-
-    transition-duration: 300ms !important;
-}
-
-.top-stay .ui-border-element::after {
-
-    transition-duration: 300ms !important;
-}
-
-.top-stay .ui-border-element::before {
-
-    transition-duration: 300ms !important;
 }
 
 .mdel-g{
@@ -264,16 +260,48 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
 }
 
+.top-stay{
+
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
+    
+}
+
+.top-stay:hover,.top-stay:focus,.top-stay:active{
+
+    padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
+
+}
+
+.top-stay-light::after {
+    border-bottom: 2px solid rgb(0, 0, 0) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay-light::before {
+    border-top: 2px solid rgb(0, 0, 0) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay-light .ui-border-element::after {
+    border-right: 2px solid rgb(0, 0, 0) !important;
+    transition-duration: 300ms !important;
+}
+
+.top-stay-light .ui-border-element::before {
+    border-left: 2px solid rgb(0, 0, 0) !important;
+    transition-duration: 300ms !important;
+}
+
 /* #region FOOTER */
 /* Footer */
 
 .ip-f {
-
     padding: 1rem 0 2rem 0 !important
 }
 
 .fws-f {
 
+    background: rgb(54, 57, 59) !important;
     max-width: 8rem !important;
     min-width: 8rem !important;
 
@@ -426,19 +454,21 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 /* Main */
 
 
-.img-bgl {
+/* .img-bgl {
 
-    background: linear-gradient(rgba(255, 255, 255, 0.952), rgb(233, 233, 233)), url(/GameShop/GameShop/resources/material/img/fon-site.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.952), rgb(233, 233, 233)), url(/GameShop/resources/material/img/fon-site.jpg);
 
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top;
-}
+} */
 
 /* #endregion */
 
 /* #endregion */
+
+
 /* #region DARK */
 /* DARK */
 
@@ -459,25 +489,27 @@ padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
 
 /* Header Button */
 
-/* .top-stay::after {
+.top-stay-dark::after {
     border-bottom: 2px solid rgb(255, 255, 255) !important;
     transition-duration: 300ms !important;
 }
 
-.top-stay::before {
+.top-stay-dark::before {
     border-top: 2px solid rgb(255, 255, 255) !important;
     transition-duration: 300ms !important;
 }
 
-.top-stay .ui-border-element::after {
+.top-stay-dark .ui-border-element::after {
     border-right: 2px solid rgb(255, 255, 255) !important;
     transition-duration: 300ms !important;
 }
 
-.top-stay .ui-border-element::before {
+.top-stay-dark .ui-border-element::before {
     border-left: 2px solid rgb(255, 255, 255) !important;
     transition-duration: 300ms !important;
-} */
+}
+
+/* Main */
 
 /* .img-bgd{
 
