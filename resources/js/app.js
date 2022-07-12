@@ -186,11 +186,11 @@ $(function () {
     // Бек хедера и футора
     $('.btnt').click(function(){
         var theme = $('.theme');
-        var tcs = $('.tcs');
-        var svgs = $('.svgs');
         theme.removeClass('hbg').toggleClass('hbg-d');
         theme.removeClass('navbar-light').toggleClass('navbar-dark');
+        var tcs = $('.tcs');
         tcs.removeClass('text-black').toggleClass('text-white');
+        var svgs = $('.svgs');
         svgs.removeClass('text-black').toggleClass('text-white');
     })
 
