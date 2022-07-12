@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="min-vh-100 d-flex flex-column bg-body {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bg' : '' }}" >
+<body class="min-vh-100 d-flex flex-column bg-body {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
 
 
     <!-- Хедер -->

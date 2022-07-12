@@ -85,6 +85,9 @@ a{
     opacity: 0;
     transition: opacity 0.5s !important;
 
+
+    
+
 }
 
 .formin-h{
@@ -454,15 +457,15 @@ a{
 /* Main */
 
 
-/* .img-bgl {
+.img-bgl {
 
-    background: linear-gradient(rgba(255, 255, 255, 0.952), rgb(233, 233, 233)), url(/GameShop/resources/material/img/fon-site.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.2), rgb(233, 233, 233 0)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
 
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top;
-} */
+}
 
 /* #endregion */
 

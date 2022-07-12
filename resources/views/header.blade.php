@@ -24,9 +24,9 @@
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <div class="d-flex align-items-center mt-1 tf">
                         <a href="#" class="text-decoration-none ui-box top-stay mdel-g borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay mdel-n borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">НОВИНКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">СКИДКИ</span></a>
-                        <a href="#" class="text-decoration-none ui-box top-stay mdel-p borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ПОПУЛЯРНЫЕ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-n borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">КЛЮЧИ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ГИФТЫ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-p borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">АККАУНТЫ</span></a>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center ip">

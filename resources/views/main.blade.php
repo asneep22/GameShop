@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Главное видео -->
-    <div class="container py-0 m-0 mt-5 video-container w-100 m-auto">
+    <div class="container py-0 m-0 mt-5 video-container w-100 m-auto img-bgl">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
                 <div class="carousel-item active">
