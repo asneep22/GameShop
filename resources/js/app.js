@@ -186,12 +186,22 @@ $(function () {
     // Бек хедера и футора
     $('.btnt').click(function(){
         var theme = $('.theme');
-        theme.removeClass('hbg').toggleClass('hbg-d');
-        theme.removeClass('navbar-light').toggleClass('navbar-dark');
+        theme.toggleClass('hbg').toggleClass('hbg-d');
+        theme.toggleClass('navbar-light').toggleClass('navbar-dark');
         var tcs = $('.tcs');
-        tcs.removeClass('text-black').toggleClass('text-white');
+        tcs.toggleClass('text-black').toggleClass('text-white');
         var svgs = $('.svgs');
-        svgs.removeClass('text-black').toggleClass('text-white');
+        svgs.toggleClass('text-black').toggleClass('text-white');
+        var borh = $('.borh');
+        borh.toggleClass('top-stay-light').toggleClass('top-stay-dark');
+        
+    })
+
+    $('.btnsrc').click(function () {
+
+        var src = $('.src');
+        src.toggleClass('formin').toggleClass('formin-h');
+
     })
 
 });
