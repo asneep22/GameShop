@@ -47,7 +47,7 @@
                         Да
                     @else
                         Нет
-                        <a href="" class="btn-green text-decoration-none text-light">Подтвердить</a>
+                        <a href="{{route('verification.send', Auth::user())}}" class="btn-green text-decoration-none text-light">Подтвердить</a>
                     @endif
                 </p>
                 <hr>

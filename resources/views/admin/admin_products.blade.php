@@ -217,9 +217,13 @@
                             <!-- Жанры -->
                             <td>
                                 <div class="d-flex flex-wrap">
-                                    @foreach ($product->genres as $genre)
-                                        <p class="p-0 m-0 pe-1">{{ $genre->pname . ', ' }}</p>
-                                    @endforeach
+                                    <div class="d-none">
+                                        {{ $all_genres = '' }}
+                                        @foreach ($product->genres as $genre)
+                                            <p class="p-0 m-0 pe-1">{{ $all_genres .= $genre->pname . ($loop->last ? '. ':', ')  }}</p>
+                                        @endforeach
+                                    </div>
+                                    <p class="p-0 m-0 pe-1">{{Str::limit($all_genres, 170, '...')  }}</p>
                                 </div>
                             </td>
                             <!-- Цена -->

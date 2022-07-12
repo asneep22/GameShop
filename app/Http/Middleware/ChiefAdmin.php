@@ -17,7 +17,7 @@ class ChiefAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role->id != 1 || $request->id == 1 ||  $request->id == Auth::id()){
+        if (Auth::user()->role_id == 1){
             return back();
         }
 

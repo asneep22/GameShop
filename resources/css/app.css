@@ -294,6 +294,13 @@ body {
 }
 
 @media(min-width: 0px) and (max-width: 993px) {
+    .profitable-card-image{
+        min-height: 9.37rem !important;
+        max-height: 9.37rem !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
+
     .game-card {
         min-width: 100% !important;
     }
@@ -336,6 +343,12 @@ body {
 }
 
 @media(min-width: 994px) and (max-width: 1023px) {
+    .profitable-card-image{
+        min-height: 9.37rem !important;
+        max-height: 9.37rem !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
 
     .big-card {
         min-height: 30rem;
@@ -351,6 +364,12 @@ body {
 }
 
 @media(min-width: 1024px) and (max-width: 1280px) {
+    .profitable-card-image{
+        min-height: 9.37rem !important;
+        max-height: 9.37rem !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
 
     .big-card {
         min-height: 30rem;
@@ -493,11 +512,12 @@ body {
 
 .profitable-card-image {
     position: relative;
-    min-width: 30% !important;
-    max-width: 30% !important;
+    min-width: 32% ;
+    max-width: 32%;
     min-height: 15rem;
+    max-height: 15rem;
     background-repeat: no-repeat;
-    background-size: 100% auto !important;
+    background-size: auto 100% !important;
     background-position: center !important;
 }
 

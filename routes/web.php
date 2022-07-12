@@ -11,6 +11,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\UserController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +34,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login_user')->name('login_user');
     Route::post('/login_admin', 'login_admin')->name('login_admin');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/verify_email/{id}', 'verify_email')->name('verification.send')->middleware(['checkId', 'auth', 'throttle:6,1']);
 });
 
 //admin
@@ -68,8 +71,8 @@ Route::middleware(['authAdmin'])->group(function () {
         Route::middleware(['checkId'])->group(function () {
 
             Route::controller(AdminSettingController::class)->group(function () {
-                Route::get('/settings/{id}', 'index')->name('page_admin_settings');
-                Route::post('/settings/{id}/update', 'update')->name('AdminSettingUpd');
+                Route::get('/settings_admin/{id}', 'index')->name('page_admin_settings');
+                Route::post('/settings_admin/{id}/update', 'update')->name('AdminSettingUpd');
             });
         });
 
@@ -79,19 +82,26 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::post('/directories/add_oses', 'addOses')->name('addOses');
             Route::post('/directories/add_cpus', 'addCpus')->name('addCpus');
             Route::post('/directories/add_videocards', 'addVideocards')->name('addVideocards');
-            Route::post('/directories/add_disount', 'addDiscount')->name('addDiscount');
+            Route::post('/directories/add_disount', 'addDiscount')->name('addDiscount')->middleware('chiefAdmin');;
             Route::post('/directories/update_genre/{id}', 'updateGenre')->name('updateGenre');
             Route::post('/directories/update_os/{id}', 'updateOs')->name('updateOs');
             Route::post('/directories/update_cpu/{id}', 'updateCpu')->name('updateCpu');
             Route::post('/directories/update_videocards/{id}', 'updateVideocard')->name('updateVideocard');
-            Route::post('/directories/update_discount/{id}', 'updateDiscount')->name('updateDiscount');
+            Route::post('/directories/update_discount/{id}', 'updateDiscount')->name('updateDiscount')->middleware('chiefAdmin');;
             Route::get('/directories/delete_genre/{id}', 'deleteGenre')->name('deleteGenre');
             Route::get('/directories/delete_os/{id}', 'deleteOs')->name('deleteOs');
             Route::get('/directories/delete_cpu/{id}', 'deleteCpu')->name('deleteCpu');
             Route::get('/directories/delete_videocards/{id}', 'deleteVideocard')->name('deleteVideocard');
-            Route::get('/directories/delete_discount/{id}', 'deleteDiscount')->name('deleteDiscount');
+            Route::get('/directories/delete_discount/{id}', 'deleteDiscount')->name('deleteDiscount')->middleware('chiefAdmin');;
             Route::post('/directories/delete_irectories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
         });
+    });
+});
+
+Route::middleware(['checkId'])->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/settings_user/{id}', 'index')->name('page_user_settings');
+        Route::post('/settings_user/{id}/update', 'update')->name('UserSettingUpd');
     });
 });
 
@@ -116,5 +126,5 @@ Route::controller(MainController::class)->group(function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect()->route('page_user_welcome');
+    return redirect()->route('page_welcome');
 })->middleware(['auth', 'signed'])->name('verification.verify');

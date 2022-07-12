@@ -13,12 +13,12 @@ class AuthController extends Controller
     {
         if (!Auth::check()) {
             return view('user_autorization');
-        }
-
-        if (Auth::user()->role->id > 2) {
-            return redirect()->route('page_welcome');
         } else {
-            return redirect()->route('page_admin_main');
+            if (Auth::user()->role_id == 3) {
+                return redirect()->route('page_user_settings', Auth::id());
+            } else if (Auth::user()->role->id < 3) {
+                return redirect()->route('page_admin_main');
+            }
         }
     }
 
@@ -58,6 +58,13 @@ class AuthController extends Controller
             //Возвращение на предыдущю страницу
             return back();
         }
+    }
+
+    //Подтверждение почты
+    public function verify_email(Request $req){
+        $req->user()->sendEmailVerificationNotification();
+        //Добавить сообщение, что письмо выслано
+        return back();
     }
 
     public function delete($id)
