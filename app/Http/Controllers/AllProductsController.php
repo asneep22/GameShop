@@ -62,7 +62,9 @@ class AllProductsController extends Controller
             });
         }
 
+        $discount_products = Product::where('discount', '!=', 0)->limit(3)->get();
+
         $products = $products->distinct()->paginate(15, ['product.*']);
-        return view('all_products', compact('genres', 'products', 'oses'));
+        return view('all_products', compact('genres', 'products', 'oses', 'discount_products'));
     }
 }

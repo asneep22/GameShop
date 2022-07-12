@@ -90,55 +90,81 @@
                     </div>
                 </form>
             </div>
+
             <div class="d-flex flex-column">
                 {{-- Выгодное предложение --}}
-                <div id="RedChoose" class="carousel slide mb-2 mt-3" data-bs-ride="carousel">
-                    <div class="carousel-inner pb-3">
-                        <div class="carousel-item active">
-                            <div class="d-flex rounded mt-3 profitable-card" style="background-color: #FFF">
-                                <div class="profitable-card-image rounded"
-                                    style="background: url('https://static.gabestore.ru/product/TeaM7FK817IbcavOJFy85AxG1Kxa9aom.jpg')">
-                                </div>
-                                <div class="px-3 text-dark d-flex flex-column">
-                                    <h4 class="mt-3">FAR CRY 4</h4>
-                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Reprehenderit
-                                        architecto iure
-                                        magnam esse provident doloremque sint cum repellat similique vitae.</p>
-                                    <h3 class="mt-4">499р</h3>
-                                    <div class="btn-group mb-3 my-auto">
-                                        <button type="submit" class="btn-green"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="16" height="16" fill="currentColor" class="bi bi-cart4"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                            </svg></button>
-                                        <button type="submit" class="btn-green"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="16" height="16" fill="currentColor"
-                                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd"
-                                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
-                                            </svg></button>
+                @if ($discount_products->count() > 0)
+                    <div id="RedChoose" class="carousel slide mt-3" data-bs-ride="carousel">
+                        <div class="carousel-inner pb-3">
+                            <div class="carousel-item active">
+                                <a href="{{ route('page_product', $discount_products->first()->id) }}"
+                                    class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
+                                    style="background-color: #FFF">
+                                    <div class="profitable-card-image rounded"
+                                        style="background: url({{ URL::asset('/storage/' . $discount_products->first()->file_path) }})">
                                     </div>
-                                </div>
+                                    <div class=" text-dark ps-3 d-flex flex-column">
+                                        <h4 class="mt-3 pe-3">{{ $discount_products->first()->title }}</h4>
+                                        <p class="m-0">
+                                            {{ Str::limit($discount_products->first()->description, 200, '...') }}</p>
+                                        <div class="d-flex flex-column mb-0 my-auto">
+                                            <hr class="dotted m-0 p-0">
+                                            <div class="d-flex flex-column flex-nowrap text-center position-relative">
+                                                <small><s>{{ $discount_products->first()->price }}р</s></small>
+                                                <h3 class=" ">
+                                                    {{ $discount_products->first()->price - ($discount_products->first()->price / 100) * $discount_products->first()->discount }}р
+                                                </h3>
+                                                <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                                    <span class="m-auto">
+                                                        -{{ $discount_products->first()->discount }}%
+                                                    </span>
+                                                </span>
+                                                <hr class="dotted m-0 p-0">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
                             </div>
+
+                            @foreach ($discount_products as $product)
+                                @if (!$loop->first)
+                                    <div class="carousel-item">
+                                        <a href="{{ route('page_product', $discount_products->first()->id) }}"
+                                            class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
+                                            style="background-color: #FFF">
+                                            <div class="profitable-card-image rounded"
+                                                style="background: url({{ URL::asset('/storage/' . $product->file_path) }})">
+                                            </div>
+                                            <div class=" text-dark ps-3 d-flex flex-column">
+                                                <h4 class="mt-3 pe-3">{{ $product->title }}</h4>
+                                                <p class="m-0">
+                                                    {{ Str::limit($product->description, 200, '...') }}
+                                                </p>
+                                                <div class="d-flex flex-column mb-0 my-auto">
+                                                    <hr class="dotted m-0 p-0">
+                                                    <div
+                                                        class="d-flex flex-column mb-0 my-auto flex-nowrap text-center position-relative">
+                                                        <small><s>{{ $product->price }}р</s></small>
+                                                        <h3 class=" ">
+                                                            {{ $product->price - ($product->price / 100) * $product->discount }}р
+                                                        </h3>
+                                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                                            <span class="m-auto">
+                                                                -{{ $product->discount }}%
+                                                            </span>
+                                                        </span>
+                                                        <hr class="dotted m-0 p-0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#RedChoose"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#RedChoose"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
-
-                </div>
+                @endif
 
                 <hr class="gradient">
                 {{-- Все продукты --}}
@@ -152,12 +178,15 @@
                                     style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
                                 </div>
                                 <div class="text-break d-flex flex-column">
-                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">{{ $item->title }}
-                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
-                                            <span class="m-auto">
-                                                -{{ $item->discount }}%
+                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">
+                                        {{ Str::limit($item->title, 15, '...') }}
+                                        @if ($item->discount != 0)
+                                            <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                                <span class="m-auto">
+                                                    -{{ $item->discount }}%
+                                                </span>
                                             </span>
-                                        </span>
+                                        @endif
                                     </h4>
                                     <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
@@ -183,7 +212,8 @@
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) * $item->discount }}р</h5>
+                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) * $item->discount }}р
+                                    </h5>
                                 </div>
                             </div>
                         </div>

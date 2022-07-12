@@ -229,13 +229,16 @@
                                     style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
                                 </div>
                                 <div class=" text-break d-flex flex-column">
-                                    <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">{{ $item->title }}
-                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
-                                            <span class="m-auto">
-                                                -{{ $item->discount }}%
+                                    <div class="position-relative w-100" style="min-height: 3rem">
+                                        <h4 class="ps-3 pe-5 text-nowrap">{{ Str::limit($item->title, 24, '...') }}</h4>
+                                        @if ($item->discount != 0)
+                                            <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                                <span class="m-auto">
+                                                    -{{ $item->discount }}%
+                                                </span>
                                             </span>
-                                        </span>
-                                    </h4>
+                                        @endif
+                                    </div>
                                     <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
                             </a>
@@ -258,7 +261,8 @@
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price }}р</h5>
+                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) * $item->discount }}р
+                                    </h5>
                                 </div>
                             </div>
                         </div>
