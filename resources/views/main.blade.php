@@ -10,12 +10,12 @@
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
                 <div class="carousel-item active">
-                    <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
+                    <video preload="auto" muted="muted" class="mx-auto main_video" autoplay="autoplay">
                         <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
                     </video>
                 </div>
                 <div class="carousel-item">
-                    <video preload="auto" class="mx-auto main_video" loop="l" autoplay="autoplay">
+                    <video preload="auto" muted="muted" class="mx-auto main_video" loop="l" autoplay="autoplay">
                         <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm>
                         <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg>
                         <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
@@ -23,7 +23,7 @@
                     </video>
                 </div>
                 <div class="carousel-item">
-                    <video preload="auto" class="mx-auto main_video" autoplay="autoplay">
+                    <video preload="auto" muted="muted" class="mx-auto main_video" autoplay="autoplay">
                         <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
                     </video>
                 </div>
