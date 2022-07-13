@@ -4,7 +4,7 @@
     <div class="container d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
-            <div class="pe-3 mx-auto d-flex flex-column" style="min-width: 20rem; max-width:20rem; min-height: 100%">
+            <div class="pe-3 mx-auto d-flex flex-column" style="min-width: 20rem; max-width:20rem; min-height: 100%" data-aos="fade-right">
                 <form action="" class="d-flex flex-column h-100 py-3 m-lg-0 m-auto">
                     <div class="form-group mx-auto h-100">
                         <div class="d-flex justify-content-between mb-2">
@@ -94,7 +94,7 @@
             <div class="d-flex flex-column">
                 {{-- Выгодное предложение --}}
                 @if ($discount_products->count() > 0)
-                    <div id="RedChoose" class="carousel slide mt-3" data-bs-ride="carousel">
+                    <div id="RedChoose" class="carousel slide mt-3" data-bs-ride="carousel" data-aos="fade-down">
                         <div class="carousel-inner pb-3">
                             <div class="carousel-item active">
                                 <a href="{{ route('page_product', $discount_products->first()->id) }}"
@@ -171,7 +171,7 @@
                 <div class="d-flex flex-wrap justify-content-between mt-4 all-page">
 
                     @foreach ($products as $item)
-                        <div class="mb-4 d-flex flex-column game-card-all-products rounded">
+                        <div class="mb-4 d-flex flex-column game-card-all-products rounded" data-aos="fade-up">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"

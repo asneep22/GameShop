@@ -92,7 +92,7 @@
         {{-- Системные требования и дополнительная информация --}}
         <div class="row position-relative my-3 py-3">
             <div class="bg-light-block"></div>
-            <div class="col-lg-6 mb-3">
+            <div class="col-lg-6 mb-3" data-aos="fade-right">
                 <h5 class="mb-4">Системные требования</h5>
                 <div class="table-responsive">
                     <table class="table">
@@ -128,7 +128,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 px-lg-5 mb-3">
+            <div class="col-lg-6 px-lg-5 mb-3" data-aos="fade-left">
                 <h5 class="mb-4">Дополнительная информация</h5>
                 <p>Жанры:
                     @foreach ($product->genres as $genre)
@@ -144,10 +144,10 @@
 
         {{-- Похожие товары --}}
         <div class="d-flex flex-column">
-            <h5>Похожие игры</h5>
+            <h5 data-aos="fade-right">Похожие игры</h5>
             <div class="d-lg-flex justify-content-between flex-wrap">
                 @foreach ($similar_games as $game)
-                    <a href="{{ route('page_product', $game->id) }}">
+                    <a href="{{ route('page_product', $game->id) }}" data-aos="fade-up">
                         <div class="mb-4 similar-game-card d-flex rounded"
                             style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
                             <h4 style="z-index: 2"
