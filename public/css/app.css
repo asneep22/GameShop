@@ -21600,11 +21600,13 @@ a{
 }
 
 .fws[placeholder], [placeholder], *[placeholder] {
+    padding-left: 1rem;
     color: rgb(0, 0, 0) !important;
 }
 
 .formin{
 
+    display: none !important;
     position: absolute !important;
     z-index: -2 !important;
     opacity: 0;
@@ -21617,6 +21619,7 @@ a{
 
 .formin-h{
 
+    display: block !important;
     position: absolute !important;
     z-index: -2 !important;
     opacity: 1;
@@ -21624,13 +21627,20 @@ a{
 
 }
 
+.fws-i{
+
+    display: none !important;
+
+}
+
 .fws {
 
-    max-width: 13rem!important;
-    min-width: 13rem!important;
+    max-width: 6.5rem!important;
+    min-width: 6.5rem!important;
 
+    margin-top: -2.2rem !important;
    
-    margin-left: 1rem !important;
+    margin-left: -10rem !important;
 
     outline: none !important;
     box-shadow: none !important;
@@ -21661,12 +21671,32 @@ a{
 
 }
 
+.posit-h{
+
+    display: flex !important;
+    flex-direction: row !important;
+
+}
+
 @media screen and (max-width:800px) {
+
+    .theme{
+
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+
+    }
+
+    .mb-h{
+
+        display: none !important;
+
+    }
 
     .mdel-g{
 
         margin-left: 0 !important;
-        margin-bottom: 1rem !important;
+        margin-top: 1rem !important;
 
     }
 
@@ -21689,8 +21719,6 @@ a{
     .cs {
 
         min-width: 17% !important;
-
-        padding-top: 1.5rem !important;
 
     }
 
@@ -21726,11 +21754,15 @@ a{
 
     }
 
-    .fws {
+    .fws-i {
 
-        max-width: 15rem !important;
-        min-width: 15rem !important;
-        margin-left: 0 !important;
+        display: block !important;
+
+        max-width: 11rem !important;
+        min-width: 11rem !important;
+
+        margin-top: 2rem !important;
+        margin-left: -4.8rem !important;
 
     }
 
@@ -21818,6 +21850,18 @@ a{
 .top-stay-light .ui-border-element::before {
     border-left: 2px solid #fff !important;
     transition-duration: 300ms !important;
+}
+
+.btnt{
+
+    cursor: pointer !important;
+
+}
+
+.btnt:hover{
+
+    background-color: none !important;
+
 }
 
 /* #region FOOTER */
@@ -21984,12 +22028,19 @@ a{
 
 .img-bgl {
 
-    background: linear-gradient(rgba(255, 255, 255, 0.2), rgb(233, 233, 233 0)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
+    background:  linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),  url(/GameShop/resources/material/img/fon-site.jpg) !important;
 
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top;
+}
+
+.crdbg{
+
+    background: rgb(146,0,194);
+background: linear-gradient(180deg, rgba(146,0,194,1) 0%, rgba(76,0,101,1) 43%, rgba(0,0,0,0.9331933456976541) 100%);
+
 }
 
 /* #endregion */
@@ -22039,9 +22090,9 @@ a{
 
 /* Main */
 
-/* .img-bgd{
+.img-bgd{
 
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/GameShop/resources/material/img/dark-sont-site.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/dark-sont-site.jpg) !important;
 
     background-size: cover;
 
@@ -22050,7 +22101,7 @@ a{
     background-attachment: fixed;
     background-position: top;
 
-} */
+}
 
 /* #endregion */
 @font-face {

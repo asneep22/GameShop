@@ -3,6 +3,7 @@ import './bootstrap';
 import 'bootstrap';
 import 'select2';
 import 'ajax';
+import 'jquery-ui';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -191,7 +192,7 @@ $(function () {
     });
 
     // Бек хедера и футора
-    $('.btnt').click(function(){
+    $('.btnt').click(function () {
         var theme = $('.theme');
         theme.toggleClass('hbg').toggleClass('hbg-d');
         theme.toggleClass('navbar-light').toggleClass('navbar-dark');
@@ -201,7 +202,10 @@ $(function () {
         svgs.toggleClass('text-black').toggleClass('text-white');
         var borh = $('.borh');
         borh.toggleClass('top-stay-light').toggleClass('top-stay-dark');
-        
+
+        var borh = $('.mainbg');
+        borh.removeClass('img-bgl').toggleClass('img-bgd');
+
     })
 
     $('.btnsrc').click(function () {
@@ -210,5 +214,7 @@ $(function () {
         src.toggleClass('formin').toggleClass('formin-h');
 
     })
+
+
 
 });
