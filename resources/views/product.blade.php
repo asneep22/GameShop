@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <div class="container d-flex flex-column min-vh-100">
+    <div class="container d-flex flex-column">
         <div class="row py-3">
             <div class="col-lg-6">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="99999" data-bs-ride="carousel">
@@ -87,11 +87,12 @@
             <hr class="dotted mb-0">
 
         </div>
+    </div>
 
 
-        {{-- Системные требования и дополнительная информация --}}
-        <div class="row position-relative my-3 py-3">
-            <div class="bg-light-block"></div>
+    {{-- Системные требования и дополнительная информация --}}
+    <div class="container-fluid d-flex bg-light-inner-gradient my-3 py-3">
+        <div class="container row m-auto">
             <div class="col-lg-6 mb-3" data-aos="fade-right">
                 <h5 class="mb-4">Системные требования</h5>
                 <div class="table-responsive">
@@ -104,7 +105,6 @@
                                         {{ !$loop->last ? $os->pname . ', ' : $os->pname }}
                                     @endforeach
                                 </td>
-
                             </tr>
                             <tr>
                                 <td scope="row" class="p-0">Процессор</td>
@@ -127,7 +127,6 @@
                     </table>
                 </div>
             </div>
-
             <div class="col-lg-6 px-lg-5 mb-3" data-aos="fade-left">
                 <h5 class="mb-4">Дополнительная информация</h5>
                 <p>Жанры:
@@ -141,7 +140,11 @@
                     debitis labore reprehenderit perspiciatis voluptatibus.</p>
             </div>
         </div>
+    </div>
 
+    </div>
+
+    <div class="container">
         {{-- Похожие товары --}}
         <div class="d-flex flex-column">
             <h5 data-aos="fade-right">Похожие игры</h5>

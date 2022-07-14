@@ -2214,11 +2214,10 @@
 .hvr-underline-from-right:before {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   left: 100%;
   right: 0;
   bottom: 0;
-  background: #2098D1;
   height: 4px;
   -webkit-transition-property: left;
   transition-property: left;
@@ -2226,6 +2225,14 @@
   transition-duration: 0.3s;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+}
+
+.hvr-underline-from-right.underline-red:before{
+  background-color: rgb(228, 73, 53);
+}
+
+.hvr-underline-from-right.underline-blue:before{
+  background-color: rgb(53, 129, 228);
 }
 .hvr-underline-from-right:hover:before, .hvr-underline-from-right:focus:before, .hvr-underline-from-right:active:before {
   left: 0;

@@ -4,7 +4,8 @@
     <div class="container d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
-            <div class="pe-3 mx-auto d-flex flex-column" style="min-width: 20rem; max-width:20rem; min-height: 100%" data-aos="fade-right">
+            <div class="pe-3 mx-auto d-flex flex-column" style="min-width: 20rem; max-width:20rem; min-height: 100%"
+                data-aos="fade-right">
                 <form action="" class="d-flex flex-column h-100 py-3 m-lg-0 m-auto">
                     <div class="form-group mx-auto h-100">
                         <div class="d-flex justify-content-between mb-2">
@@ -16,25 +17,29 @@
                         <input type="text" class="form-input mb-3 w-100" name="title" id="title"
                             value="{{ Request::query('title') }}" placeholder="Название игры">
 
-                        <label for="genres">Жанры</label>
-                        <select class="form-control js-select2 w-100" name="genres[]" id="genres" data-tags="false"
-                            multiple="multiple" data-placeholder="Выберите жанры для поиска">
-                            @foreach ($genres as $key => $genre)
-                                <option
-                                    {{ isset($_GET['genres']) ? (in_array($genre->id, $_GET['genres']) ? 'selected' : '') : '' }}
-                                    value="{{ $genre->id }}">{{ $genre->pname }}</option>
-                            @endforeach
-                        </select>
-
-                        <label for="oses" class="mt-3">Платформы</label>
-                        <select class="form-control js-select2 w-100" name="oses[]" id="oses" data-tags="false"
-                            multiple="multiple" data-placeholder="Выберите платформы для поиска">
-                            @foreach ($oses as $key => $os)
-                                <option
-                                    {{ isset($_GET['oses']) ? (in_array($os->id, $_GET['oses']) ? 'selected' : '') : '' }}
-                                    value="{{ $os->id }}">{{ $os->pname }}</option>
-                            @endforeach
-                        </select>
+                        <div class="keys">
+                            <label for="genres">Жанры</label>
+                            <select class="form-control js-select2 w-100" name="genres[]" id="genres" data-tags="false"
+                                multiple="multiple" data-placeholder="Выберите жанры для поиска">
+                                @foreach ($genres as $key => $genre)
+                                    <option
+                                        {{ isset($_GET['genres']) ? (in_array($genre->id, $_GET['genres']) ? 'selected' : '') : '' }}
+                                        value="{{ $genre->id }}">{{ $genre->pname }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <div class="keys">
+                            <label for="oses" class="mt-3">Платформы</label>
+                            <select class="form-control js-select2 w-100" name="oses[]" id="oses" data-tags="false"
+                                multiple="multiple" data-placeholder="Выберите платформы для поиска">
+                                @foreach ($oses as $key => $os)
+                                    <option
+                                        {{ isset($_GET['oses']) ? (in_array($os->id, $_GET['oses']) ? 'selected' : '') : '' }}
+                                        value="{{ $os->id }}">{{ $os->pname }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="d-flex justify-content-between mt-3 m-auto">
                             <div class="d-flex flex-column me-1">
@@ -95,7 +100,7 @@
                 {{-- Выгодное предложение --}}
                 @if ($discount_products->count() > 0)
                     <div id="RedChoose" class="carousel slide mt-3" data-bs-ride="carousel" data-aos="fade-down">
-                        <div class="carousel-inner pb-3">
+                        <div class="carousel-inner hvr-underline-from-right underline-red">
                             <div class="carousel-item active">
                                 <a href="{{ route('page_product', $discount_products->first()->id) }}"
                                     class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
@@ -171,7 +176,8 @@
                 <div class="d-flex flex-wrap justify-content-between mt-4 all-page">
 
                     @foreach ($products as $item)
-                        <div class="mb-4 d-flex flex-column game-card-all-products rounded" data-aos="fade-up">
+                        <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
+                            data-aos="fade-left">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"
@@ -191,12 +197,13 @@
                                     <p class="text-justify px-3">{{ Str::limit($item->description, 200, '...') }}</p>
                                 </div>
                             </a>
-                            <div class="mb-0 my-auto p-0">
+                            <div class="mb-0 my-auto p-0 ">
                                 <hr class="dotted mb-0">
                                 <div class="btn-group mb-0 d-flex">
 
                                     {{-- В корзину --}}
-                                    <a href="{{ route('add_product_to_cart', $item->id) }}" class="btn-green"><svg
+                                    <a href="{{ route('add_product_to_cart', $item->id) }}"
+                                        class="btn-blue text-light text-decoration-none hvr-float"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
@@ -204,7 +211,7 @@
                                         </svg></a>
                                     {{-- На страницу товара --}}
                                     <a href="{{ route('page_product', $item->id) }}"
-                                        class="btn-green text-decoration-none text-light"><svg
+                                        class="btn-blue text-decoration-none text-light hvr-float"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"

@@ -26708,15 +26708,22 @@ select + .select2-container--bootstrap-5 {
 .hvr-underline-from-right:before {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   left: 100%;
   right: 0;
   bottom: 0;
-  background: #2098D1;
   height: 4px;
   transition-property: left;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
+}
+
+.hvr-underline-from-right.underline-red:before{
+  background-color: rgb(228, 73, 53);
+}
+
+.hvr-underline-from-right.underline-blue:before{
+  background-color: rgb(53, 129, 228);
 }
 .hvr-underline-from-right:hover:before, .hvr-underline-from-right:focus:before, .hvr-underline-from-right:active:before {
   left: 0;
@@ -28507,7 +28514,7 @@ body {
 
 .btn-green {
     border: none;
-    background-color: rgb(79, 160, 99);
+    background-color: rgb(228, 73, 53);
     color: rgb(238, 236, 236);
     font-size: 0.8rem;
     padding: 0.4rem 1rem;
@@ -28528,7 +28535,7 @@ body {
 }
 
 .btn-green:hover {
-    background-color: rgb(71, 136, 93);
+    background-color: rgb(228, 53, 53);
 }
 
 
@@ -28664,7 +28671,7 @@ body {
         min-width: 100% !important;
     }
 
-    .blue-block{
+    .blue-block {
         min-height: 100% !important;
         min-width: 100% !important;
     }
@@ -28697,7 +28704,7 @@ body {
         min-width: 100% !important;
     }
 
-    .blue-block{
+    .blue-block {
         min-height: 100% !important;
         min-width: 100% !important;
     }
@@ -28733,7 +28740,7 @@ body {
         min-width: 100% !important;
     }
 
-    .blue-block{
+    .blue-block {
         min-height: 100% !important;
         min-width: 100% !important;
     }
@@ -28996,4 +29003,17 @@ hr.dotted {
     max-width: 15rem;
     min-height: 15rem !important;
     box-shadow: 0px 0px 10px 1px rgb(34 60 80 / 75%) !important;
+}
+
+.btn-blue {
+    border: none;
+    background-color: rgb(53, 129, 228);
+    color: rgb(238, 236, 236);
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    transition: .2s;
+}
+
+.btn-blue:hover {
+    background-color: rgb(50, 115, 201);
 }
