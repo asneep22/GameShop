@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Главное видео -->
-    <div class="container py-0 m-0 mt-5 video-container w-100 m-auto img-bgl">
+    <div class="container py-0 m-0 mt-5 video-container w-100 m-auto">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner text-center">
                 <div class="carousel-item active">
@@ -36,7 +36,7 @@
             <div class="d-flex flex-column">
 
                 <div class="d-lg-flex flex-wrap w-100 mt-5 text-center justify-content-between">
-                    <div class="mb-4 our-pluses our-pluses-first d-flex rounded" style="background: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1613226331_195-p-fon-sinii-gradient-dlya-fotoshopa-243.jpg')">
+                    <div class="mb-4 our-pluses our-pluses-first d-flex crdbg rounded">
                         <div class="px-3 text-light m-auto">
                             <h4 class="mt-3">Низкие цены</h4>
                             <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -47,7 +47,7 @@
                         <div class="dark-up"></div>
                     </div>
 
-                    <div class="mb-4 mx-lg-2 our-pluses our-pluses-first d-flex rounded text-center" style="background: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1613226331_195-p-fon-sinii-gradient-dlya-fotoshopa-243.jpg')">
+                    <div class="mb-4 mx-lg-2 our-pluses our-pluses-first d-flex crdbg rounded text-center">
                         <div class="px-3 text-light m-auto">
                             <h4 class="mt-3">Большой выбор товаров</h4>
                             <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -58,7 +58,7 @@
                         <div class="dark-up"></div>
                     </div>
 
-                    <div class="mb-4 our-pluses our-pluses-last d-flex rounded text-center" style="background: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1613226331_195-p-fon-sinii-gradient-dlya-fotoshopa-243.jpg')">
+                    <div class="mb-4 our-pluses our-pluses-last d-flex crdbg rounded text-center">
                         <div class="px-3 text-light m-auto">
                             <h4 class="mt-3">Подарки</h4>
                             <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -75,7 +75,6 @@
         <div class="rounded">
             @if ($products_red->count() > 5)
             <div class="d-flex flex-column">
-
                 <div class="mt-3">
                     <h2 class="text-sm-center text-lg-start">Выбор редакции</h2>
                     <div class="d-lg-flex text-center">
@@ -172,7 +171,7 @@
 
                 </div>
                 @endif
-                <a href="{{ route('page_all_products') }}" class="btn-green mt-1 p-2 px-5 mb-4 m-auto text-decoration-none text-light">Больше</a>
+                <a href="{{ route('page_all_products') }}" class="btn-green mt-1 p-2 px-5 mb-4 m-auto text-decoration-none text-white">Больше</a>
             </div>
             @endif
         </div>
@@ -181,12 +180,12 @@
             <div class="d-flex flex-column">
 
                 <div class="mt-3 d-flex">
-                    <h2 class="text-sm-center text-lg-start">Все предложения</h2>
+                    <h2 class="text-sm-center text-lg-start text-black tcs">Все предложения</h2>
                     <div class="d-lg-flex text-center my-auto me-0 mx-auto">
                         <!-- Light them -->
-                        <a href="#" class="text-decoration-none text-black">Новинки</a>
-                        <a href="#" class="px-4 text-decoration-none text-black ">Популярное</a>
-                        <a href="#" class="text-decoration-none text-black">Часто покупаемые</a>
+                        <a href="#" class="text-decoration-none text-black text-black tcs">Новинки</a>
+                        <a href="#" class="px-4 text-decoration-none text-black text-black tcs">Популярное</a>
+                        <a href="#" class="text-decoration-none text-black text-black tcs">Часто покупаемые</a>
                         <!-- Dark Theme -->
                         {{-- <a href="#" class="text-decoration-none text-white">Новинки</a>
                     <a href="#" class="px-4 text-decoration-none text-white ">Популярное</a>

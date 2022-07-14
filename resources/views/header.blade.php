@@ -4,46 +4,25 @@
 
 <header class=" container-fluid hbg theme dfh">
 
-    <nav class="navbar navbar-expand-lg navbar-light theme hbg pb-4">
-        <div class="container-fluid d-flex justify-content-center">
-
-            <button class="navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Переключатель навигации">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
+    <div class="theme hbg pb-2">
+        <div class="container-fluid justify-content-center d-flex">
 
                 <div class="d-flex flex-column flex-nowrap align-items-center mb-4 cs">
                     <div class="divloga">
-                        <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none tcs text-black ts m-0">Гейм</a>
-                        <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none tcs text-black ts m-0">Шоп</a>
+                        <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none tcs text-black ts m-0">Tetter-Totter</a>
                     </div>
                 </div>
 
 
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <div class="d-flex align-items-center mt-1 tf">
-                        <a href="#" class="text-decoration-none ui-box top-stay mdel-g borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
+                <ul class="d-flex mb-2 mb-lg-0">
+                    <div class="d-flex align-items-center mt-2 tf">
                         <a href="#" class="text-decoration-none ui-box top-stay mdel-n borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">КЛЮЧИ</span></a>
                         <a href="#" class="text-decoration-none ui-box top-stay borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ГИФТЫ</span></a>
+                        <a href="#" class="text-decoration-none ui-box top-stay mdel-g borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">ГЛАВНАЯ</span></a>
                         <a href="#" class="text-decoration-none ui-box top-stay mdel-p borh top-stay-light"><span class="tcs text-black m-0 ts fsh-t ui-border-element">АККАУНТЫ</span></a>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center ip">
-                        <!-- Выпадающие меню поиска -->
-
-                        <div class="position-relative">
-                            <a class="text-black svgs sb position-relative text-decoration-none dropdown-toggle btnsrc" type="button">
-                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg>
-                            </a>
-
-                            <form action="search" class="p-0 mt-2 m-auto position-absolute" aria-labelledby="dropdownMenuButton1">
-                                <input type="search" class="bg-white fws src formin fs-6" placeholder="Найти">
-                            </form>
-                        </div>
-
+                    <div class="d-flex align-items-center justify-content-center ip mb-2">
 
                         <!-- Личный кабинет -->
 
@@ -70,17 +49,34 @@
                         </a>
                         <!-- Тема сайта -->
 
-                        <a href="#" class="ms-3 sb text-decoration-none text-black btnt">
+                        <a class="ms-3 sb text-decoration-none text-black btnt">
                             <svg class="text-black svgs" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
                                 <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
                             </svg>
                         </a>
+
+                        <!-- Выпадающие меню поиска -->
+
+                        <div class="position-relative mb-h">
+                            <a class="text-black svgs sb position-relative text-decoration-none btnsrc" type="button">
+                                <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </a>
+
+                            <form action="search" class="p-0 mt-2 m-auto position-absolute">
+                                <input type="search" class="bg-white fws src formin fs-6" placeholder="Найти">
+                            </form>
+                        </div>
+
+                        <form action="search" class="p-0 m-auto position-absolute" aria-labelledby="dropdownMenuButton1">
+                                <input type="search" class="bg-white fws-i src formin-h fs-6" placeholder="Найти">
+                        </form>
+
                     </div>
                 </ul>
-
-            </div>
         </div>
-    </nav>
+    </div>
 
 </header>
 </script>
