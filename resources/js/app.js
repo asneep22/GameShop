@@ -5,9 +5,16 @@ import 'select2';
 import 'ajax';
 import 'jquery-ui';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
+
 window.$ = window.jQuery = $;
 window.$ = require('jquery');
 
+window.AOS = require('aos');
+AOS.init();
 
 $(function () {
     $('.delete-keys-button').fadeOut()

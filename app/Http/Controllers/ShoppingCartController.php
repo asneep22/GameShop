@@ -78,7 +78,7 @@ class ShoppingCartController extends Controller
     public function buy(Request $req)
     {
         $payment = new \Idma\Robokassa\Payment(
-            'john_doe', 'password1', 'password2', true
+            'Teeter-totter', 'password1', 'password2', true
         );
 
         dd($payment);
