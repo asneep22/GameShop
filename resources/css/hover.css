@@ -1346,7 +1346,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgb(197, 68, 29), rgb(250, 119, 11));
+  background: linear-gradient(45deg, #d96f4c, #fe8e35);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 0;
@@ -1428,7 +1428,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg,rgb(255, 0, 0), rgb(223, 26, 102));;
+  background: linear-gradient(45deg, #fe3435, #e64883);;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -1471,7 +1471,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg,rgb(255, 0, 0), rgb(223, 26, 102));;
+  background: linear-gradient(45deg, #da2a2a, #e2325e);;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 100% 50%;
@@ -1514,7 +1514,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg,rgb(255, 0, 0), rgb(223, 26, 102));;
+  background: linear-gradient(45deg, #da2a2a, #e2325e);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 0;
@@ -1557,7 +1557,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg,rgb(255, 0, 0), rgb(223, 26, 102));;
+  background: linear-gradient(45deg, #da2a2a, #e2325e);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 100%;

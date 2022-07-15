@@ -209,7 +209,7 @@ body {
 
 
 .video-container {
-    margin: 5rem 0;
+    padding: 5rem 0;
 }
 
 .main_video {
@@ -651,9 +651,8 @@ hr.dotted {
 
 .bg-blue-gradient {
     height: 100%;
-    background: radial-gradient(circle at bottom, #2f71d3, #0c2a7c);
+    background: radial-gradient(circle at bottom, #517dbc, #3d5698);
     min-width: 100vw;
-    opacity: .8;
 }
 
 .bg-light-inner-gradient {
@@ -661,13 +660,12 @@ hr.dotted {
     -moz-box-shadow: 0px 0px 19px 0px rgba(34, 60, 80, 0.2) inset;
     box-shadow: 0px 0px 19px 0px rgba(34, 60, 80, 0.2) inset;
     height: 100%;
-    background: radial-gradient(circle at bottom, #ebebeb, #dfdfdf);
+    background: radial-gradient(circle at bottom, #dddddf, #dbdddd);
     min-width: 100vw;
-    opacity: .8;
 }
 
 .our-pluses-block {
-    background: linear-gradient(45deg, rgb(206, 74, 34), rgb(255, 115, 0));
+    background: linear-gradient(45deg, #d96f4d, #fe8e34);
     min-width: 15rem;
     max-width: 15rem;
     min-height: 15rem !important;
@@ -689,7 +687,7 @@ hr.dotted {
 }
 
 .blue-block {
-    background: linear-gradient(45deg, rgb(67, 89, 216), rgb(71, 137, 192));
+    background: linear-gradient(45deg, #697cdf, #6c9fcd);
     min-width: 15rem;
     max-width: 15rem;
     min-height: 15rem !important;
@@ -710,3 +708,62 @@ hr.dotted {
 .btn-blue:hover {
     background-color: rgb(50, 115, 201);
 }
+
+.btn-orange{
+    border: none;
+    background-color: rgb(53, 129, 228);
+    color: rgb(238, 236, 236);
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    transition: .2s;
+}
+
+/* particles-js */
+
+body {
+    margin: 0;
+    font:normal 75% Arial, Helvetica, sans-serif;
+  }
+  
+  /* ---- particles.js container ---- */
+  
+  #particles-js {
+    z-index: -999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  
+  .js-count-particles{
+    font-size: 1.1em;
+  }
+  
+  #stats,
+  .count-particles{
+    -webkit-user-select: none;
+  }
+  
+  #stats{
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+  }
+  
+  .count-particles{
+    border-radius: 0 0 3px 3px;
+  }
+
+  .bg-light-secondary{
+    border-radius: 3px;
+    background: linear-gradient(to top,rgb(247, 247, 247), rgb(240, 240, 240));
+  }
+
+  .text-gray{
+    color: rgb(133, 133, 133);
+    transition: .5s;
+  }
+  .text-gray:hover{
+    color: rgb(90, 71, 71);
+  }

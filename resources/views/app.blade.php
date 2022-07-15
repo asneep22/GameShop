@@ -19,8 +19,8 @@
 
 </head>
 
-<body class="min-vh-100 d-flex flex-column bg-body mainbg {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
-
+<body class="min-vh-100 d-flex flex-column mainbg position-relative {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
+    <div id="particles-js"></div>
 
     <!-- Хедер -->
     @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')

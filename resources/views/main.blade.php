@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Главное видео -->
-    <div class="container py-0 w-100 mx-auto video-container img-bgl" id="videos">
+    <div class="container w-100 mx-auto video-container bg-white" id="videos">
         <div id="carouselExampleFade" class="carousel slide carousel-fade py-0 m-0 w-100" data-bs-ride="carousel">
             <div class="carousel-inner text-center py-0  w-100" data-aos="zoom-in-down" data-aos-anchor="#videos">
                 <div class="carousel-item active">
@@ -65,10 +65,10 @@
                     </a>
                 </div>
 
-                <div class="me-3 d-lg-flex mb-3">
+                <div class="me-3 d-xl-flex mb-3">
                     <a href="" class="text-decoration-none flex-colum h-100 d-lg-flex " data-aos="fade-up">
                         <div
-                            class="px-3 d-flex text-light hvr-bounce-to-top text-center our-pluses-block our-pluses-block-md h-100">
+                            class="px-3 d-flex text-light hvr-bounce-to-top text-center our-pluses-block h-100">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="">Подарки</h4>
                                 <p class="">Мы предоставляем нашим покупателям подарки!</p>
@@ -121,7 +121,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container w-100 py-0 mx-auto bg-white my-0">
         <div class="rounded">
             @if ($products_red->count() > 5)
                 <div class="d-flex flex-column">
@@ -279,7 +279,7 @@
         </div>
     @endif
 
-    <div class="container">
+    <div class="container bg-white">
         <div class="rounded">
             <div class="d-flex flex-column">
 

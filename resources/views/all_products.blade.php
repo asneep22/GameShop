@@ -1,18 +1,23 @@
 @extends('app')
 
 @section('content')
-    <div class="container d-flex flex-column px-2">
+    <div class="container pt-3 bg-white d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
-            <div class="pe-3 mx-auto d-flex flex-column" style="min-width: 20rem; max-width:20rem; min-height: 100%"
-                data-aos="fade-right">
-                <form action="" class="d-flex flex-column h-100 py-3 m-lg-0 m-auto">
-                    <div class="form-group mx-auto h-100">
+            <div class="me-xl-3  px-2 mx-auto d-flex flex-column bg-light-secondary inner-shadow"
+                style="min-width: 20rem; max-width:20rem" data-aos="fade-right">
+                <form action="" class="d-flex flex-column py-3 m-lg-0 m-auto">
+                    <div class="form-group mx-auto d-flex flex-column">
                         <div class="d-flex justify-content-between mb-2">
-                            <label for="title" class="">Название</label>
+                            <div class="d-flex flex-column">
+                                <small class=" text-secondary">Всего найдено игр: {{ $products->count() }}</small>
+                                <label for="title" class="mb-0 my-auto mt-2">Название</label>
+                            </div>
                             <form action="">
-                                <a href="" class="btn-green text-decoration-none text-light">X</a>
+                                <a href="" class="text-decoration-none text-gray"><small>X Сбросить
+                                        фильтры</small></a>
                             </form>
+
                         </div>
                         <input type="text" class="form-input mb-3 w-100" name="title" id="title"
                             value="{{ Request::query('title') }}" placeholder="Название игры">
@@ -28,7 +33,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        
+
                         <div class="keys">
                             <label for="oses" class="mt-3">Платформы</label>
                             <select class="form-control js-select2 w-100" name="oses[]" id="oses" data-tags="false"
@@ -54,46 +59,71 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-wrap mb-3">
+                        <div class="d-flex flex-column mb-3">
 
-                            <div class="d-flex">
-                                <input type="checkbox" name="new" id="new" class="form-check-input mx-1"
+                            <div class="d-flex mb-3">
+                                <input type="checkbox" name="new" id="new" class="form-check-input mt-0 mx-1 p-2"
                                     {{ Request::query('new') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="new">
+                                <label class="form-check-label my-auto" for="new">
                                     Новинки
                                 </label>
                             </div>
 
-                            <div class="d-flex">
-                                <input type="checkbox" name="popular" id="popular" class="form-check-input mx-1">
-                                <label class="form-check-label" for="popular">
+                            <div class="d-flex mb-3">
+                                <input type="checkbox" name="popular" id="popular" class="form-check-input mt-0 mx-1 p-2">
+                                <label class="form-check-label my-auto" for="popular">
                                     Популярное
                                 </label>
                             </div>
 
-                            <div class="d-flex">
-                                <input type="checkbox" name="discount" id="discount" class="form-check-input mx-1"
+                            <div class="d-flex mb-3">
+                                <input type="checkbox" name="discount" id="discount" class="form-check-input mt-0 mx-1 p-2"
                                     {{ Request::query('discount') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="discount">
+                                <label class="form-check-label my-auto" for="discount">
                                     Скидки
                                 </label>
                             </div>
 
 
                             <div class="d-flex">
-                                <input type="checkbox" name="redChoose" id="redChoose" class="form-check-input mx-1"
+                                <input type="checkbox" name="redChoose" id="redChoose" class="form-check-input mt-0 mx-1 p-2"
                                     {{ Request::query('redChoose') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="redChoose">
+                                <label class="form-check-label my-auto" for="redChoose">
                                     Выбор редакции
                                 </label>
                             </div>
 
 
                         </div>
-                        <button type="submit" class="btn-green w-100">Поиск</button>
-                        <h6 class="mt-3">Всего найдено игр: {{ $products->count() }}</h6>
+                        <button type="submit" class="btn-green me-0 m-auto">Поиск</button>
                     </div>
                 </form>
+
+                <hr class="dotted">
+                <p class="fs-6 px-2"> Ваша персональная скидка: @if (!Auth::check())
+                        0%
+                    @elseif($discounts->where('id', Auth::user()->personal_discount_id)->first() == null)
+                        0%
+                    @else
+                        {{ $discounts->where('id', Auth::user()->personal_discount_id)->first()->disocunt_procent }}%
+                    @endif
+                </p>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Общая сумма покупок, руб</th>
+                            <th>Скидка, %</th>
+                        </tr>
+                        @foreach ($discounts as $discount)
+                            <tr>
+                                <td>{{ $discount->sum_buy }}</td>
+                                <td>{{ $discount->disocunt_procent }}%</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
 
             <div class="d-flex flex-column">

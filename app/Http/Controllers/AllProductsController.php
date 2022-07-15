@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\os;
+use App\Models\personal_discount;
 use Carbon\Carbon;
 
 class AllProductsController extends Controller
 {
     public function index(Request $req)
     {
+        $discounts = personal_discount::all();
         $genres = Genre::all();
         $oses = os::all();
 
@@ -65,6 +67,6 @@ class AllProductsController extends Controller
         $discount_products = Product::where('discount', '!=', 0)->limit(3)->get();
 
         $products = $products->distinct()->paginate(15, ['product.*']);
-        return view('all_products', compact('genres', 'products', 'oses', 'discount_products'));
+        return view('all_products', compact('genres', 'products', 'oses', 'discount_products', 'discounts'));
     }
 }
