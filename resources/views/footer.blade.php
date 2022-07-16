@@ -1,9 +1,9 @@
 <!-- Светлая тема -->
 
 
-<footer class="d-flex justify-content-center theme hbg align-items-center py-3 flex-column bg-light m-auto mb-0 container-fluid">
+<footer class="d-flex justify-content-center m-auto mb-0 theme hbg align-items-center p-0 flex-column bg-light container-fluid">
 
-    <nav class="hbg theme">
+    <nav class="hbg theme mt-4">
         <div class="container-fluid jcb">
             <ul class="me-auto mb-2 mb-lg-0 d-flex ft-f">
                 <div class="d-flex align-items-center mt-1 tf-f">
@@ -15,8 +15,6 @@
                 <div class="d-flex justify-content-center align-items-center ip-f">
                     <!-- Выпадающие меню поиска -->
 
-                    <!-- Выпадающие меню поиска -->
-
                     <div class="position-relative">
                             <a class="text-muted svgs sb position-relative text-decoration-none dropdown-toggle btnsrc" type="button">
                                 <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -25,7 +23,7 @@
                             </a>
 
                             <form action="search" class="p-0 mt-2 m-auto position-absolute" aria-labelledby="dropdownMenuButton1">
-                                <input type="search" class="bg-white fws src formin fs-6" placeholder="Найти">
+                                <input type="search" class="bg-white fws-f src formin fs-6" placeholder="Найти">
                             </form>
                         </div>
                     <!-- Личный кабинет -->
@@ -63,7 +61,6 @@
         </div>
 
     </div>
-
 
 </footer>
 </script>

@@ -9,6 +9,8 @@ import 'particles.js/particles';
 
 AOS.init();
 
+require('jquery-ui');
+
 window.$ = window.jQuery = $;
 window.$ = require('jquery');
 
@@ -197,17 +199,13 @@ $(function () {
     // Бек хедера и футора
     $('.btnt').click(function () {
         var theme = $('.theme');
-        theme.toggleClass('hbg').toggleClass('hbg-d');
         theme.toggleClass('navbar-light').toggleClass('navbar-dark');
         var tcs = $('.tcs');
         tcs.toggleClass('text-black').toggleClass('text-white');
-        var svgs = $('.svgs');
-        svgs.toggleClass('text-black').toggleClass('text-white');
         var borh = $('.borh');
         borh.toggleClass('top-stay-light').toggleClass('top-stay-dark');
-
         var borh = $('.mainbg');
-        borh.removeClass('img-bgl').toggleClass('img-bgd');
+        borh.toggleClass('img-bgl').toggleClass('img-bgd');
 
     })
 

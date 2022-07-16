@@ -95,20 +95,18 @@ a{
 
 .formin{
 
-    display: none !important;
     position: absolute !important;
     z-index: -2 !important;
     opacity: 0;
     transition: opacity 0.5s !important;
 
-
-    
-
+    pointer-events: none !important;
 }
+
 
 .formin-h{
 
-    display: block !important;
+
     position: absolute !important;
     z-index: 1 !important;
     opacity: 1;
@@ -139,12 +137,37 @@ a{
 
 .fws {
 
-    max-width: 6.5rem!important;
-    min-width: 6.5rem!important;
+    max-width: 53rem!important;
+    min-width: 53rem!important;
 
-    margin-top: -2.2rem !important;
+    max-height: 3rem!important;
+    min-height: 3rem!important;
+
+    margin-top: -2.6rem !important;
    
-    margin-left: -10rem !important;
+    margin-left: -52.7rem !important;
+
+    outline: none !important;
+    box-shadow: none !important;
+
+    border-radius: 10px;
+    border: solid black 2px !important;
+
+    z-index: 10 !important;
+
+}
+
+.fws-f{
+
+    max-width: 33rem!important;
+    min-width: 33rem!important;
+
+    max-height: 3rem!important;
+    min-height: 3rem!important;
+
+    margin-top: -2.6rem !important;
+   
+    margin-left: -32.7rem !important;
 
     outline: none !important;
     box-shadow: none !important;
@@ -215,6 +238,7 @@ a{
 
         margin-left: 0 !important;
         margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
 
     }
 
@@ -301,13 +325,6 @@ a{
 
     }
 
-    .fws-f {
-
-        max-width: 12rem !important;
-        min-width: 12rem !important;
-
-
-    }
 }
 
 /* Button Animation Custom */
@@ -386,21 +403,16 @@ a{
 /* Footer */
 
 .ip-f {
-    padding: 1rem 0 2rem 0 !important
+    padding: 1rem 0 2rem 0 !important;
+
+    margin-top: 0.5rem !important;
+    
 }
 
-.fws-f {
-
-    background: rgb(54, 57, 59) !important;
-    max-width: 8rem !important;
-    min-width: 8rem !important;
-
-
-}
 
 .fs {
 
-    font-size: 1.5vh !important;
+    font-size: 1rem !important;
 
 }
 
@@ -507,7 +519,9 @@ a{
 
     .ip-f {
 
-        padding: 0 !important
+        padding: 0 !important;
+
+        margin-top: 1rem !important;
     }
 
     .allt{
@@ -610,9 +624,7 @@ background: linear-gradient(180deg, rgba(146,0,194,1) 0%, rgba(76,0,101,1) 43%, 
 
 .img-bgd{
 
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/dark-sont-site.jpg) !important;
-
-    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
 
     background-repeat: no-repeat;
     background-size: cover;
