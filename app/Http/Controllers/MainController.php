@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function index(){
         $products = Product::inRandomOrder()->limit(9)->get();
-        $genres = Genre::inRandomOrder()->limit(5)->get();
+        $genres = Genre::inRandomOrder()->limit(12)->get();
 
         if (Product::where('redChoose', '!=', '0')->count() < 6){
             $changed_products = Product::inRandomOrder()->limit(6)->get();

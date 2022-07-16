@@ -381,7 +381,7 @@ body {
 
     .blue-block {
         min-height: 100% !important;
-        min-width: 100% !important;
+        width: 100% !important;
     }
 }
 
@@ -665,7 +665,7 @@ hr.dotted {
 }
 
 .our-pluses-block {
-    background: linear-gradient(45deg, #3cac6d, #34fe4f);
+    background: linear-gradient(45deg, #d96f4d, #fe8e34);
     min-width: 15rem;
     max-width: 15rem;
     min-height: 15rem !important;
@@ -687,13 +687,14 @@ hr.dotted {
 }
 
 .blue-block {
-    background: linear-gradient(45deg, #697cdf, #6c9fcd);
-    min-width: 15rem;
-    max-width: 15rem;
-    min-height: 15rem !important;
-    -webkit-box-shadow: 0px 0px 10px 1px rgb(34 60 80 / 75%) !important;
-    -moz-box-shadow: 0px 0px 10px 1px rgb(34 60 80 / 75%) !important;
-    box-shadow: 0px 0px 10px 1px rgb(34 60 80 / 75%) !important;
+    background: linear-gradient(to top, #679ac7, #74a9d8) ;
+    min-width: 12rem;
+    max-width: 12rem;
+    min-height: 12rem !important;
+    -webkit-box-shadow: 0px 0px 5px 1px rgb(34 60 80 / 10%) !important;
+    -moz-box-shadow: 0px 0px 5px 1px rgb(34 60 80 / 10%) !important;
+    box-shadow: 0px 0px 5px 1px rgb(34 60 80 / 10%) !important;
+    font-size: .5rem !important;
 }
 
 .btn-blue {

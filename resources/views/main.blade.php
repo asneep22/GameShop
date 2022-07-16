@@ -39,7 +39,7 @@
 
 <!-- Почему мы -->
 
-<div class="container-fluid">
+<div class="container-fluid bg-blue-gradient">
     <div class="container py-4 px-1">
         <div class="d-xl-flex justify-content-center">
 
@@ -225,17 +225,17 @@
 </div>
 
 {{-- Интересное --}}
-@if ($genres->count() == 5)
+@if ($genres->count() == 12)
 <div class="container-fluid bg-light-inner-gradient">
     <div class="container pb-5">
         <h5 class="pb-4 pt-4">Интересные жанры</h5>
-        <div class="d-xl-flex justify-content-between">
+        <div class="d-flex flex-wrap justify-content-center">
             @foreach ($genres as $genre)
-            <div class="hvr-float w-100 mb-3 {{ !$loop->last ? 'me-3' : ' ' }}">
-                <a href="" class="text-decoration-none text-break text-center d-flex blue-block hvr-sweep-to-bottom" data-aos="fade-left" data-aos-anchor-placement="center-bottom">
-                    <div class="px-3 text-light m-auto  our-pluses-border-orange d-flex">
+            <div class="mb-3 mx-2 d-lg-flex blue-block  hvr-sweep-to-bottom">
+                <a href="" class="text-decoration-none m-auto text-break text-center d-flex" data-aos="fade-left" data-aos-anchor-placement="center-bottom">
+                    <div class="px-3 text-light m-auto  our-pluses-border-orange">
                         <div class="m-auto" style="z-index: 2">
-                            <h4 class="">{{ $genre->pname }}</h4>
+                            <h4 class=" fs-5">{{ $genre->pname }}</h4>
                         </div>
                     </div>
                 </a>
