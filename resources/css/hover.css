@@ -1428,7 +1428,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #fe3435, #e64883);;
+  background: linear-gradient(45deg, #a82ada, #e232d9);;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -1471,7 +1471,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #da2a2a, #e2325e);;
+  background: linear-gradient(45deg, #a82ada, #e232d9);;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 100% 50%;
@@ -1514,7 +1514,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #da2a2a, #e2325e);
+  background: linear-gradient(45deg, #a82ada, #e232d9);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 0;
@@ -1557,7 +1557,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #da2a2a, #e2325e);
+  background: linear-gradient(45deg, #a82ada, #e232d9);
   -webkit-transform: scaleY(0);
   transform: scaleY(0);
   -webkit-transform-origin: 50% 100%;
@@ -2157,7 +2157,7 @@
   left: 0;
   right: 100%;
   bottom: 0;
-  background: linear-gradient(45deg, rgb(206, 74, 34), rgb(255, 115, 0));
+  background: linear-gradient(45deg, #a82ada, #e232d9);
   height: 4px;
   -webkit-transition-property: right;
   transition-property: right;
