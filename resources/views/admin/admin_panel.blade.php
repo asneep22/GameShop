@@ -1,7 +1,7 @@
     <div class="container-fluid d-flex flex-column">
         <div class="d-xxl-flex">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-light mx-auto mx-xxl-0" style="width: 280px;">
-                <a href="/" class="d-flex align-items-center mb-3 me-md-auto link-dark text-decoration-none">
+                <a href="{{route ('page_welcome')}}" class="d-flex align-items-center mb-3 me-md-auto link-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"></use>
                     </svg>
