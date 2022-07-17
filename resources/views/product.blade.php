@@ -67,7 +67,7 @@
             {{-- Основной блок с названием и описанием --}}
             <div class="col-lg-6 d-flex flex-column ps-lg-5">
                 <h2 class="text-center mb-3 mt-0 m-auto">{{ $product->title }}</h2>
-                <p class="" class="fs-5 my-auto">{{ $product->description }}</p>
+                <p class="text-break">{{ $product->description }}</p>
                 <div class="mb-0 my-auto">
                     <hr class="dotted">
                     <div class="d-flex">

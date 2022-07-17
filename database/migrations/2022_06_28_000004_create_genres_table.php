@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('pname');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

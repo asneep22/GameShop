@@ -12,17 +12,18 @@ use App\Models\Product;
 use App\Models\videocard;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminDirectoryController extends Controller
 {
     public function index(Request $req)
     {
         if ($req->search != null) {
-            $disounts = personal_discount::where('sum_buy', '=', $req->search)->orWhere('disocunt_procent', '=', $req->search)->get();
-            $genres = Genre::where('pname', '=', $req->search)->get();
-            $videocards = videocard::where('pname', '=', $req->search)->get();
-            $oses = os::where('pname', '=', $req->search)->get();
-            $cpus = cpu::where('pname', '=', $req->search)->get();
+            $discounts = personal_discount::where('sum_buy', 'LIKE', '%' . $req->search . '%')->orWhere('disocunt_procent', '%' . 'LIKE' . '%', $req->search)->get();
+            $genres = Genre::where('pname', 'LIKE', '%' . $req->search . '%')->get();
+            $videocards = videocard::where('pname', 'LIKE', '%' . $req->search . '%')->get();
+            $oses = os::where('pname', 'LIKE', '%' . $req->search . '%')->get();
+            $cpus = cpu::where('pname', 'LIKE', '%' . $req->search . '%')->get();
         } else {
             $discounts = personal_discount::all();
             $genres = Genre::all();
@@ -80,7 +81,17 @@ class AdminDirectoryController extends Controller
     //Обновление
     public function updateGenre(Request $req, $id)
     {
-        Genre::find($id)->update($req->all());
+        $genre = Genre::find($id);
+
+        //Заменяем иконку при обновлении иконки
+        if ($req->file) {
+            if ($genre->file_path != null) {
+                Storage::disk('public')->delete('GenreIcons', $genre->file_path);
+            }
+            $req['file_path'] = Storage::disk('public')->put('GenreIcons', $req->file);
+        }
+
+        $genre->update($req->all());
         return back();
     }
 

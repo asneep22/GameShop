@@ -11,6 +11,7 @@ class Genre extends Model
 
     protected $fillable = [
         'pname',
+        'file_path',
     ];
 
     public function products(){

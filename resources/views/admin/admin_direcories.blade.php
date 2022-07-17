@@ -102,7 +102,8 @@
                                             aria-labelledby="addGenresLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <!--Форма добавления-->
-                                                <form action="{{ route('addGenres') }}" method="post">
+                                                <form action="{{ route('addGenres') }}" method="post"
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -112,9 +113,12 @@
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <label for="genres" class="mt-3 mb-2">Навзвание
+                                                                жанра</label>
                                                             <select name="genres[]" id="genres"
-                                                                data-dropdown-parent="#addGenres" class="js-select2"
-                                                                multiple="multiple"></select>
+                                                                data-dropdown-parent="#addGenres"
+                                                                data-placeholder="Введите название жанра в этом поле"
+                                                                class="js-select2" multiple="multiple"></select>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn-green">Добавить</button>
@@ -125,14 +129,23 @@
                                         </div>
                                     </th>
                                     <th scope="col" class="w-75">Жанр</th>
+                                    <th scope="col" class="w-75">Иконка</th>
                                     <th scope="col">Действия</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($genres as $key => $genre)
-                                    <tr>
+                                    <tr class="align-middle">
                                         <th scope="row">{{ $key + 1 }}</th>
                                         <td>{{ $genre->pname }}</td>
+                                        <td>
+                                            @if ($genre->file_path != null)
+                                                <img src="{{ URL::asset('/storage/' . $genre->file_path) }}"
+                                                    style="width: 1.5rem; height: 1.5rem;">
+                                            @else
+                                            @endif
+
+                                        </td>
                                         <td>
                                             <div class="btn-group">
                                                 <!--Редактировать название жанра-->
@@ -154,7 +167,8 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <!--Форма обновления-->
-                                                            <form action="{{ route('updateGenre', $genre->id) }}">
+                                                            <form action="{{ route('updateGenre', $genre->id) }}"
+                                                                method="post" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title"
@@ -172,6 +186,14 @@
                                                                         class="form-input" name="pname"
                                                                         id="pnameGenre{{ $genre->id }}"
                                                                         value="{{ $genre->pname }}">
+
+
+                                                                    <label for="icon_img{{ $genre->id }}"
+                                                                        class="mt-3 mb-2">Иконка
+                                                                        жанра</label>
+                                                                    <input type="file" name="file"
+                                                                        id="icon_img{{ $genre->id }}"
+                                                                        class="form-control">
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="submit"
@@ -581,12 +603,14 @@
                                                 </svg>
                                             </button>
 
-                                            <div class="modal fade" id="editDiscount{{ $discount->id }}" tabindex="-1"
-                                                aria-labelledby="editDiscount{{ $discount->id }}Label" aria-hidden="true">
+                                            <div class="modal fade" id="editDiscount{{ $discount->id }}"
+                                                tabindex="-1" aria-labelledby="editDiscount{{ $discount->id }}Label"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <!--Форма обновления-->
-                                                        <form action="{{ route('updateDiscount', $discount->id) }}" method="POST">
+                                                        <form action="{{ route('updateDiscount', $discount->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
@@ -596,16 +620,16 @@
                                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <label for="sumBuyDiscount{{ $discount->id }}">Общая сумма покупок, руб</label>
-                                                                <input type="text"
-                                                                    placeholder="1000" required
+                                                                <label for="sumBuyDiscount{{ $discount->id }}">Общая
+                                                                    сумма покупок, руб</label>
+                                                                <input type="text" placeholder="1000" required
                                                                     class="form-input" name="sum_buy"
                                                                     id="sumBuyDiscount{{ $discount->id }}"
                                                                     value="{{ $discount->sum_buy }}">
 
-                                                            <label for="discountPorcentDiscount{{ $discount->id }}" class="mt-3">Скидка, %</label>
-                                                                <input type="text"
-                                                                    placeholder="1000" required
+                                                                <label for="discountPorcentDiscount{{ $discount->id }}"
+                                                                    class="mt-3">Скидка, %</label>
+                                                                <input type="text" placeholder="1000" required
                                                                     class="form-input" name="disocunt_procent"
                                                                     id="discountPorcentDiscount{{ $discount->id }}"
                                                                     value="{{ $discount->disocunt_procent }}">

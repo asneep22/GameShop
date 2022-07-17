@@ -24,10 +24,10 @@
 
                 <ul class="navbar-nav mt-2 mb-lg-0">
                     <div class="d-flex align-items-center mt-1 tf">
-                        <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-g borh py-2 px-2 text-light"><span class="tcs m-0 ts fsh-t">ГЛАВНАЯ</span></a>
-                        <a href="#" class="hvr-bounce-in hvr-underline-from-left text-decoration-none mdel-n borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t  text-light px-2 py-2">КЛЮЧИ</span></a>
-                        <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t  ">ГИФТЫ</span></a>
-                        <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-p borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t ">АККАУНТЫ</span></a>
+                        <a href="{{route('page_welcome')}}" class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-g borh py-2 px-2 text-light"><span class="tcs m-0 ts fsh-t">ГЛАВНАЯ</span></a>
+                        <a href="{{route('page_all_products')}}" class="hvr-bounce-in hvr-underline-from-left text-decoration-none mdel-n borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t  text-light px-2 py-2">КЛЮЧИ</span></a>
+                        {{-- <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t  ">ГИФТЫ</span></a>
+                        <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-p borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t ">АККАУНТЫ</span></a> --}}
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center ip">

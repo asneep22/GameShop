@@ -212,7 +212,7 @@
                             <td>{{ $product->title }}</td>
                             <!-- Описание -->
                             <td>
-                                <p class="p-0 m-0">{{ Str::limit($product->description, 170, '...') }}</p>
+                                <p class="p-0 m-0 text-break">{{ Str::limit($product->description, 170, '...') }}</p>
                             </td>
                             <!-- Жанры -->
                             <td>
