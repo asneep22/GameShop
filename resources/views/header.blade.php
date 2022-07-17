@@ -9,7 +9,7 @@
 
             <div class="d-flex flex-column flex-nowrap align-items-center cs">
                 <div class="divloga">
-                    <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none ts m-0">TeeterTotter</a>
+                    <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none ts m-0">Teeter-Totter</a>
                 </div>
             </div>
 
