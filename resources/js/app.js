@@ -206,16 +206,18 @@ $(function () {
         borh.toggleClass('top-stay-light').toggleClass('top-stay-dark');
         var borh = $('.mainbg');
         borh.toggleClass('img-bgl').toggleClass('img-bgd');
+        var borh = $('.mainend');
+        borh.toggleClass('bg-white');
 
     })
 
     $('.btnsrc').click(function () {
 
         var src = $('.src');
-        src.toggleClass('formin').toggleClass('formin-h');
+        src.switchClass('formin','formin-h', 1000);
+        src.switchClass('formin-h','formin', 1000);
 
     })
-
 
 
 

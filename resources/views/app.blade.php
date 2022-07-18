@@ -41,6 +41,7 @@
     @endif
 
     <script src="{{ URL::asset('js/app.js')}}"></script>
+    <script src="/GameShop/resources/js/jquery-ui.js"></script>
 </body>
 
 </html>

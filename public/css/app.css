@@ -21655,15 +21655,15 @@ a{
 
 .fws {
 
-    max-width: 53rem!important;
-    min-width: 53rem!important;
+    max-width: 43rem!important;
+    min-width: 43rem!important;
 
     max-height: 3rem!important;
     min-height: 3rem!important;
 
     margin-top: -2.6rem !important;
    
-    margin-left: -52.7rem !important;
+    margin-left: -42.7rem !important;
 
     outline: none !important;
     box-shadow: none !important;
@@ -22084,6 +22084,9 @@ a{
     background-size: cover;
     background-attachment: fixed;
     background-position: top;
+
+    opacity: 1 ;
+    transition: opacity 0.5s !important;
 }
 
 .crdbg{
@@ -22142,12 +22145,17 @@ background: linear-gradient(180deg, rgba(146,0,194,1) 0%, rgba(76,0,101,1) 43%, 
 
 .img-bgd{
 
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.93), rgba(0, 0, 0, 0.93)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
 
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top;
+
+    z-index: -2 !important;
+
+    opacity: 0;
+    transition: opacity 0.5s !important;
 
 }
 
