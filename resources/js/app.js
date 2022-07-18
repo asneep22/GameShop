@@ -6,6 +6,7 @@ import 'ajax';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
+import gifshot from 'gifshot/dist/gifshot';
 
 AOS.init();
 
@@ -216,10 +217,7 @@ $(function () {
 
     })
 
-
-
-
-
+    // Преобразование видео в гиф
 });
 
 particlesJS("particles-js", {
@@ -332,6 +330,3 @@ particlesJS("particles-js", {
     },
     "retina_detect": false
 });
-
-
-/* ---- stats.js config ---- */

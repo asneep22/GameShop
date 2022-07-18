@@ -6,42 +6,26 @@
 
 @section('content')
     <!-- Главное видео -->
-    <div class="container w-100 mx-auto video-container" id="videos">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade py-0 m-0 w-100 position-relative"
-            data-bs-ride="carousel">
-            <div class="carousel-inner text-center py-0 w-100" data-aos="zoom-in-down" data-aos-anchor="#videos">
-                <div class="carousel-item active">
-                    <div class="d-flex">
-                        <video preload="auto" muted="muted" class="main_video" autoplay="autoplay">
-                            <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
-                        </video>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex">
-                        <video preload="auto" muted="muted" class="main_video" loop="l" autoplay="autoplay">
-                            <source src=http://techslides.com/demos/sample-videos/small.webm type=video/webm>
-                            <source src=http://techslides.com/demos/sample-videos/small.ogv type=video/ogg>
-                            <source src=http://techslides.com/demos/sample-videos/small.mp4 type=video/mp4>
-                            <source src=http://techslides.com/demos/sample-videos/small.3gp type=video/3gp>
-                        </video>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex">
-                        <video preload="auto" muted="muted" class="main_video" autoplay="autoplay">
-                            <source src="https://woolyss.com/f/Chimera-AV1-8bit-480x270-552kbps.mp4">
-                        </video>
-                    </div>
-                </div>
 
-                <button class="position-absolute btn-blue-outline">К игре</button>
-                <div class="dark-up"
-                style="min-height: 100%; max-height: 100%; opacity:.3; z-index:1">
-            </div>
-            </div>
+    <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade  m-0"
+        data-bs-ride="carousel" data-bs-interval="20000">
+
+        <div class="carousel-inner text-center" data-aos="zoom-in-down" data-aos-anchor="#videos">
+
+            @foreach ($games_for_video as $product)
+                <div class="carousel-item video-backround @if ($loop->first) active @endif" id="videos" style="background-image: linear-gradient(to top, rgba(22, 22, 22, 1), rgba(26, 26, 26, 0.98))">
+                    <div class="d-flex container position-relative p-0">
+                        <video preload="auto" muted="muted" class="main_video m-auto position-relative" autoplay="autoplay"
+                            src="{{ URL::asset('/storage/' . $product->join('product_materials', 'product_materials.product_id', 'products.id')->select('product_materials.*')->where('product_materials.product_id', $product->id)->where('product_materials.file_path','LIKE', '%'.'webm'."%")->first()->file_path) }}">
+                        </video>
+                        <p class="position-absolute text-light w-100 fs-5" style="z-index:3; top:1rem">{{$product->title}}</p>
+                        <a href="{{route('page_product', $product->id)}}" class="position-absolute d-flex text-center btn-blue-outline text-decoration-none text-light"><p class="m-auto">К игре</p> </a>
+                        <div class="dark-up" style="min-height: 100%; max-height: 100%; opacity:.3; z-index:1"> </div>
+                    </div>
+                </div>
+            @endforeach
+
         </div>
-
     </div>
 
     <!-- Почему мы -->

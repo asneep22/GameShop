@@ -21558,7 +21558,7 @@ a{
 
     margin-top: -1rem !important;
     margin-left: 1.5rem !important;
-    
+
 }
 
 .sb {
@@ -21640,7 +21640,7 @@ a{
     min-width: 6.5rem!important;
 
     margin-top: -2.2rem !important;
-   
+
     margin-left: -10rem !important;
 
     outline: none !important;
@@ -21662,7 +21662,7 @@ a{
     min-height: 3rem!important;
 
     margin-top: -2.6rem !important;
-   
+
     margin-left: -52.7rem !important;
 
     outline: none !important;
@@ -21684,7 +21684,7 @@ a{
     min-height: 3rem!important;
 
     margin-top: -2.6rem !important;
-   
+
     margin-left: -32.7rem !important;
 
     outline: none !important;
@@ -21729,14 +21729,14 @@ a{
 
         display: flex !important;
         flex-direction: column !important;
-        
+
     }
 
     .rmt{
 
         margin-top: -0.7rem !important;
         margin-left: -0.5rem !important;
-        
+
     }
 
     .theme{
@@ -21765,7 +21765,7 @@ a{
         margin-right: 0!important;
         margin-left: 0!important;
         margin-bottom: 1rem !important;
-    
+
     }
 
     .mdel-p{
@@ -21773,7 +21773,7 @@ a{
         margin-right: 0!important;
         margin-left: 0!important;
         margin-top: 1rem !important;
-    
+
     }
 
     .cs {
@@ -21876,7 +21876,7 @@ a{
 .top-stay{
 
     padding: 0.5rem 0.8rem 0.5rem 0.8rem !important;
-    
+
 }
 
 .top-stay:hover,.top-stay:focus,.top-stay:active{
@@ -21924,7 +21924,7 @@ a{
     padding: 1rem 0 2rem 0 !important;
 
     margin-top: 0.5rem !important;
-    
+
 }
 
 
@@ -21984,9 +21984,9 @@ a{
 
         margin-left: 0 !important;
         margin-right: 0 !important;
-    
+
     }
-    
+
     .mb-f{
 
         font-size: 0.7rem !important;
@@ -22078,8 +22078,6 @@ a{
 
 .img-bgl {
 
-    background:  linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),  url(/GameShop/resources/material/img/fon-site.jpg) !important;
-
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -22142,8 +22140,6 @@ background: linear-gradient(180deg, rgba(146,0,194,1) 0%, rgba(76,0,101,1) 43%, 
 
 .img-bgd{
 
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/GameShop/resources/material/img/fon-site.jpg) !important;
-
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -22152,6 +22148,7 @@ background: linear-gradient(180deg, rgba(146,0,194,1) 0%, rgba(76,0,101,1) 43%, 
 }
 
 /* #endregion */
+
 @font-face {
   font-family: "bootstrap-icons";
   src: url(/fonts/vendor/bootstrap-icons/bootstrap-icons.woff2?f2539a501be3a673de05437f73913ca3) format("woff2"),
@@ -28637,12 +28634,8 @@ select + .select2-container--bootstrap-5 {
     background-color: rgb(228, 53, 53);
 }
 
-
-.video-container {
-    padding: 5rem 0;
-}
-
 .main_video {
+    box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
     min-width: 100% !important;
     min-height: 100% !important;
 }
@@ -29131,9 +29124,9 @@ body {
     margin: 0;
     font:normal 75% Arial, Helvetica, sans-serif;
   }
-  
+
   /* ---- particles.js container ---- */
-  
+
   #particles-js {
     z-index: -999;
     position: absolute;
@@ -29143,21 +29136,21 @@ body {
     background-size: cover;
     background-position: 50% 50%;
   }
-  
+
   .js-count-particles{
     font-size: 1.1em;
   }
-  
+
   #stats,
   .count-particles{
     -webkit-user-select: none;
   }
-  
+
   #stats{
     border-radius: 3px 3px 0 0;
     overflow: hidden;
   }
-  
+
   .count-particles{
     border-radius: 0 0 3px 3px;
   }
@@ -29176,25 +29169,31 @@ body {
   }
 
 .btn-blue-outline{
-
-    padding: 1rem 5rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 1.5% 5%;
+    bottom: 3%;
+    right: 3%;
     font-weight: 600;
     color: #fff;
     cursor: pointer;
-    margin: 20px;
     height: 55px;
     text-align:center;
     border: none;
     background-size: 300% 100%;
     transition: all .4s ease-in-out;
     z-index: 2;
-    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    background-image: linear-gradient(to right,#e4a240, #dd5126, #dd3e22, #ca0808);
 }
 
 .btn-blue-outline:hover{
     background-position: 100% 0;
     transition: all .4s ease-in-out;
 }
+
+.video-backround{
+    padding: 4rem;
+    background-size: 100% auto  !important;
+    background-position: left center !important;
+    background-repeat: no-repeat !important;
+}
+
