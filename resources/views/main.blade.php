@@ -274,7 +274,7 @@
         </div>
     @endif
 
-    <div class="container bg-white">
+    <div class="container mainend bg-white">
         <div class="rounded">
             <div class="d-flex flex-column">
                 <div class="mt-3 d-flex text-black tcs">
