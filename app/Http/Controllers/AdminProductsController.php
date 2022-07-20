@@ -26,11 +26,12 @@ class AdminProductsController extends Controller
         } else {
             $products = Product::with(['videocard', 'cpu', 'oses', 'genres', 'keys'])->paginate(20);
         }
+        $all_products = Product::all();
         $genres = Genre::all();
         $oses = os::all();
         $cpus = cpu::all();
         $videocards = videocard::all();
-        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards'));
+        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards', 'all_products'));
     }
 
     public function create(Request $req)

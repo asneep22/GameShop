@@ -34,8 +34,12 @@ body {
 
 .keys .select2-container--default .select2-selection--multiple .select2-selection__choice {
     min-width: 98% !important;
-    background-color: rgb(247, 247, 247) !important;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(233, 233, 233));
     font-size: 0.8rem !important;
+    border: 1px solid rgb(168, 168, 168);
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    -moz-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -46,7 +50,7 @@ body {
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     margin: 0 !important;
-    border: 1.2px solid rgb(141, 141, 141) !important;
+    border: 1px solid rgb(160, 160, 160) !important;
     border-radius: 5px !important;
 }
 
@@ -79,6 +83,31 @@ body {
     line-height: 32px;
 }
 
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    background: #fc3f31;
+    border: 0;
+    border-right: 1px solid rgb(255, 255, 255);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    -moz-box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    box-shadow: 0px 0px 1px 1px rgba(34, 60, 80, 0.05) !important;
+    transition: .5s;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover{
+    background: #e22121;
+    color: #fff;
+}
 
 /*#endregion */
 
@@ -784,7 +813,7 @@ body {
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
     z-index: 2;
-    background-image: linear-gradient(to right,#e4a240, #dd5126, #dd3e22, #ca0808);
+    background-image: linear-gradient(to right,#37d4fd, #3254f6, #dd6d22, #eb1b0c);
 }
 
 .btn-blue-outline:hover{
@@ -796,8 +825,15 @@ body {
 }
 
 .video-backround{
-    padding: 4rem;
+    padding: 6rem 0;
     background-size: 100% auto  !important;
     background-position: left center !important;
     background-repeat: no-repeat !important;
+}
+
+.price{
+    font-weight: 600;
+    background-image: linear-gradient(150deg, #37d4fd 0%, #3254f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
 }

@@ -6,7 +6,6 @@ import 'ajax';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
-import gifshot from 'gifshot/dist/gifshot';
 
 AOS.init();
 

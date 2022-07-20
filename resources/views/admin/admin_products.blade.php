@@ -98,8 +98,9 @@
                                                     placeholder="Выберите или введите дату выхода игры">
 
                                                 <label for="price" class="">Цена</label>
-                                                <input type="number" required step="0.01" class="form-input mb-3 py-3"
-                                                    name="price" id="price" placeholder="1000">
+                                                <input type="number" required step="0.01"
+                                                    class="form-input mb-3 py-3" name="price" id="price"
+                                                    placeholder="1000">
 
                                                 <label for="discount" class="">Скидка, %</label>
                                                 <input type="number" step="1" class="form-input mb-3 py-3"
@@ -220,10 +221,11 @@
                                     <div class="d-none">
                                         {{ $all_genres = '' }}
                                         @foreach ($product->genres as $genre)
-                                            <p class="p-0 m-0 pe-1">{{ $all_genres .= $genre->pname . ($loop->last ? '. ':', ')  }}</p>
+                                            <p class="p-0 m-0 pe-1">
+                                                {{ $all_genres .= $genre->pname . ($loop->last ? '. ' : ', ') }}</p>
                                         @endforeach
                                     </div>
-                                    <p class="p-0 m-0 pe-1">{{Str::limit($all_genres, 170, '...')  }}</p>
+                                    <p class="p-0 m-0 pe-1">{{ Str::limit($all_genres, 170, '...') }}</p>
                                 </div>
                             </td>
                             <!-- Цена -->
@@ -286,7 +288,8 @@
                                                                 @if (pathinfo($material->file_path, PATHINFO_EXTENSION) != 'jpg')
                                                                     <div class="position-relative">
                                                                         <video preload="auto" class="mx-auto main_video"
-                                                                            autoplay="autoplay" muted='m'>
+                                                                            style="max-width:100%" autoplay="autoplay"
+                                                                            muted='m'>
                                                                             <source
                                                                                 src={{ URL::asset('/storage/' . $material->file_path) }}
                                                                                 type=video/mp4>

@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
-    <div class="container d-flex flex-column">
-        <div class="row py-3">
+    <div class="container py-4 bg-white d-flex flex-column">
+        <div class="row">
             <div class="col-lg-6">
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="99999" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -91,7 +91,7 @@
 
 
     {{-- Системные требования и дополнительная информация --}}
-    <div class="container-fluid d-flex bg-light-inner-gradient my-3 py-3">
+    <div class="container-fluid d-flex bg-light-inner-gradient py-3">
         <div class="container row m-auto">
             <div class="col-lg-6 mb-3" data-aos="fade-right">
                 <h5 class="mb-4">Системные требования</h5>
@@ -143,25 +143,26 @@
     </div>
 
     </div>
+    @if ($similar_games->count() > 0)
+        <div class="container">
+            {{-- Похожие товары --}}
+            <div class="d-flex flex-column">
+                <h5 data-aos="fade-right">Похожие игры</h5>
+                <div class="d-lg-flex justify-content-between flex-wrap">
+                    @foreach ($similar_games as $game)
+                        <a href="{{ route('page_product', $game->id) }}" data-aos="fade-up">
+                            <div class="mb-4 similar-game-card d-flex rounded"
+                                style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
+                                <h4 style="z-index: 2"
+                                    class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
+                                    {{ $game->title }}</h4>
+                                <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
 
-    <div class="container">
-        {{-- Похожие товары --}}
-        <div class="d-flex flex-column">
-            <h5 data-aos="fade-right">Похожие игры</h5>
-            <div class="d-lg-flex justify-content-between flex-wrap">
-                @foreach ($similar_games as $game)
-                    <a href="{{ route('page_product', $game->id) }}" data-aos="fade-up">
-                        <div class="mb-4 similar-game-card d-flex rounded"
-                            style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
-                            <h4 style="z-index: 2"
-                                class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
-                                {{ $game->title }}</h4>
-                            <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
-                        </div>
-                    </a>
-                @endforeach
             </div>
-
         </div>
-    </div>
+    @endif
 @endsection

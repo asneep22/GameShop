@@ -7,26 +7,38 @@
 @section('content')
     <!-- Главное видео -->
 
-    <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade  m-0"
-        data-bs-ride="carousel" data-bs-interval="20000">
+    @if ($games_for_video->count() > 0)
+        <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade  m-0" data-bs-ride="carousel"
+            data-bs-interval="20000">
 
-        <div class="carousel-inner text-center" data-aos="zoom-in-down" data-aos-anchor="#videos">
+            <div class="carousel-inner text-center" data-aos="zoom-in-down" data-aos-anchor="#videos">
 
-            @foreach ($games_for_video as $product)
-                <div class="carousel-item video-backround @if ($loop->first) active @endif" id="videos" style="background-image: linear-gradient(to top, rgba(22, 22, 22, 1), rgba(26, 26, 26, 0.98))">
-                    <div class="d-flex container position-relative p-0">
-                        <video preload="auto" muted="muted" class="main_video m-auto position-relative" autoplay="autoplay"
-                            src="{{ URL::asset('/storage/' . $product->join('product_materials', 'product_materials.product_id', 'products.id')->select('product_materials.*')->where('product_materials.product_id', $product->id)->where('product_materials.file_path','LIKE', '%'.'webm'."%")->first()->file_path) }}">
-                        </video>
-                        <p class="position-absolute text-light w-100 fs-5" style="z-index:3; top:1rem">{{$product->title}}</p>
-                        <a href="{{route('page_product', $product->id)}}" class="position-absolute d-flex text-center btn-blue-outline text-decoration-none text-light"><p class="m-auto">К игре</p> </a>
-                        <div class="dark-up" style="min-height: 100%; max-height: 100%; opacity:.3; z-index:1"> </div>
+                @foreach ($games_for_video as $product)
+                    <div class="carousel-item video-backround @if ($loop->first) active @endif" id="videos"
+                        style="background-image: linear-gradient(to top, rgba(22, 22, 22, 1), rgba(26, 26, 26, 0.98))">
+                        <div class="d-flex container position-relative p-0">
+                            <video preload="auto" muted="muted" class="main_video m-auto position-relative"
+                                autoplay="autoplay"
+                                src="{{ URL::asset('/storage/' .$product->join('product_materials', 'product_materials.product_id', 'products.id')->select('product_materials.*')->where('product_materials.product_id', $product->id)->where('product_materials.file_path', 'LIKE', '%' . 'webm' . '%')->first()->file_path) }}">
+                            </video>
+                            <p class="position-absolute text-light w-100 fs-5" style="z-index:3; top:1rem;">
+                                {{ $product->title }}р</p>
+                            <div class="w-100 d-flex position-absolute" style="z-index:3; top:2.3rem">
+                                <p class="fs-5 price m-auto">
+                                    {{ $product->price }}р</p>
+                            </div>
+                            <a href="{{ route('page_product', $product->id) }}"
+                                class="position-absolute d-flex text-center btn-blue-outline text-decoration-none text-light">
+                                <p class="m-auto">К игре</p>
+                            </a>
+                            <div class="dark-up" style="min-height: 100%; max-height: 100%; opacity:.3; z-index:1"> </div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
 
+            </div>
         </div>
-    </div>
+    @endif
 
     <!-- Почему мы -->
 
@@ -273,70 +285,71 @@
             </div>
         </div>
     @endif
-
-    <div class="container mainend bg-white">
-        <div class="rounded">
-            <div class="d-flex flex-column">
-                <div class="mt-3 d-flex text-black tcs">
-                    <h2 class="text-sm-center text-lg-start" data-aos="fade-right">Все предложения</h2>
-                    <div class="d-lg-flex text-center my-auto me-0 mx-auto text-black tcs" data-aos="fade-left">
-                        <a href="{{ route('page_all_products') }}?new=on"
-                            class="text-decoration-none text-black tcs">Новинки</a>
-                        <a href="{{ route('page_all_products') }}?popular=on"
-                            class="px-4 text-decoration-none text-black tcs ">Популярное</a>
-                        <a href="{{ route('page_all_products') }}?discount=on"
-                            class="text-decoration-none text-black tcs">Скидки</a>
-                    </div>
-                    <div class="d-lg-flex text-center">
-                    </div>
-                </div>
-                <hr class="gradient">
-                <div class="d-flex flex-wrap justify-content-between">
-                    @foreach ($products as $item)
-                        <div class="mb-4 d-flex flex-column game-card pb-0 rounded hvr-underline-from-right underline-blue"
-                            data-aos="fade-up">
-                            <a href="{{ route('page_product', $item->id) }}"
-                                class="card-body-my text-decoration-none text-dark">
-                                <div class="img"
-                                    style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
-                                </div>
-                                <div class="px-3 text-break d-flex flex-column">
-                                    <h4 class="" style="min-height: 3rem">{{ $item->title }}</h4>
-                                    <p class="text-justify">{{ Str::limit($item->description, 200, '...') }}</p>
-                                </div>
-                            </a>
-                            <div class=" mb-0 my-auto p-0">
-                                <hr class="dotted mb-0">
-                                <div class="btn-group mb-0 d-flex">
-                                    <a href="{{ route('add_product_to_cart', $item->id) }}"
-                                        class="btn-blue hvr-float text-decoration-none text-light"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                        </svg></a>
-                                    <a href="{{ route('page_product', $item->id) }}"
-                                        class="btn-blue hvr-float text-decoration-none text-light"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
-                                            <path fill-rule="evenodd"
-                                                d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
-                                        </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price }}р</h5>
-                                </div>
-                            </div>
-                            <div class="line-blue-to-orange">
-                            </div>
+    @if ($products->count() > 0)
+        <div class="container mainend bg-white">
+            <div class="rounded">
+                <div class="d-flex flex-column">
+                    <div class="mt-3 d-flex text-black tcs">
+                        <h2 class="text-sm-center text-lg-start" data-aos="fade-right">Все предложения</h2>
+                        <div class="d-lg-flex text-center my-auto me-0 mx-auto text-black tcs" data-aos="fade-left">
+                            <a href="{{ route('page_all_products') }}?new=on"
+                                class="text-decoration-none text-black tcs">Новинки</a>
+                            <a href="{{ route('page_all_products') }}?popular=on"
+                                class="px-4 text-decoration-none text-black tcs ">Популярное</a>
+                            <a href="{{ route('page_all_products') }}?discount=on"
+                                class="text-decoration-none text-black tcs">Скидки</a>
                         </div>
-                    @endforeach
-                </div>
-                <div data-aos="fade-right" class="m-auto">
-                    <a href="{{ route('page_all_products') }}"
-                        class="btn-green mt-1 p-2 px-5 mb-4 m-auto text-decoration-none text-light hvr-grow-shadow">Больше</a>
+                        <div class="d-lg-flex text-center">
+                        </div>
+                    </div>
+                    <hr class="gradient">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        @foreach ($products as $item)
+                            <div class="mb-4 d-flex flex-column game-card pb-0 rounded hvr-underline-from-right underline-blue"
+                                data-aos="fade-up">
+                                <a href="{{ route('page_product', $item->id) }}"
+                                    class="card-body-my text-decoration-none text-dark">
+                                    <div class="img"
+                                        style="background: url({{ URL::asset('/storage/' . $item->file_path) }})">
+                                    </div>
+                                    <div class="px-3 text-break d-flex flex-column">
+                                        <h4 class="" style="min-height: 3rem">{{ $item->title }}</h4>
+                                        <p class="text-justify">{{ Str::limit($item->description, 200, '...') }}</p>
+                                    </div>
+                                </a>
+                                <div class=" mb-0 my-auto p-0">
+                                    <hr class="dotted mb-0">
+                                    <div class="btn-group mb-0 d-flex">
+                                        <a href="{{ route('add_product_to_cart', $item->id) }}"
+                                            class="btn-blue hvr-float text-decoration-none text-light"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                            </svg></a>
+                                        <a href="{{ route('page_product', $item->id) }}"
+                                            class="btn-blue hvr-float text-decoration-none text-light"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                                            </svg></a>
+                                        <h5 class="me-3 m-auto">{{ $item->price }}р</h5>
+                                    </div>
+                                </div>
+                                <div class="line-blue-to-orange">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div data-aos="fade-right" class="m-auto">
+                        <a href="{{ route('page_all_products') }}"
+                            class="btn-green mt-1 p-2 px-5 mb-4 m-auto text-decoration-none text-light hvr-grow-shadow">Больше</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

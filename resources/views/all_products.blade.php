@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('content')
-    <div class="container pt-3 bg-white d-flex flex-column px-2">
+    <div class="container pt-3 bg-white h-100 min-vh-100 d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
-            <div class="me-xl-3  px-2 mx-auto d-flex flex-column bg-light-secondary inner-shadow"
+            <div class="me-xl-3  px-2 d-flex flex-column bg-light-secondary inner-shadow"
                 style="min-width: 20rem; max-width:20rem" data-aos="fade-right">
                 <form action="" class="d-flex flex-column py-3 m-lg-0 m-auto">
                     <div class="form-group mx-auto d-flex flex-column">
@@ -14,7 +14,8 @@
                                 <label for="title" class="mb-0 my-auto mt-2">Название</label>
                             </div>
                             <form action="">
-                                <a href="" class="text-decoration-none text-gray"><small>X Сбросить
+                                <a href="{{ route('page_all_products') }}" class="text-decoration-none text-gray"><small>X
+                                        Сбросить
                                         фильтры</small></a>
                             </form>
 
@@ -86,7 +87,8 @@
 
 
                             <div class="d-flex">
-                                <input type="checkbox" name="redChoose" id="redChoose" class="form-check-input mt-0 mx-1 p-2"
+                                <input type="checkbox" name="redChoose" id="redChoose"
+                                    class="form-check-input mt-0 mx-1 p-2"
                                     {{ Request::query('redChoose') ? 'checked' : '' }}>
                                 <label class="form-check-label my-auto" for="redChoose">
                                     Выбор редакции
@@ -95,7 +97,7 @@
 
 
                         </div>
-                        <button type="submit" class="btn-green me-0 m-auto">Поиск</button>
+                        <button type="submit" class="btn-green me-0 m-auto hvr-grow-shadow">Поиск</button>
                     </div>
                 </form>
 
@@ -200,10 +202,8 @@
                         </div>
                     </div>
                 @endif
-
-                <hr class="gradient">
                 {{-- Все продукты --}}
-                <div class="d-flex flex-wrap justify-content-between mt-4 all-page">
+                <div class="d-flex flex-wrap justify-content-between all-page">
 
                     @foreach ($products as $item)
                         <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
