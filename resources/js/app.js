@@ -216,6 +216,13 @@ $(function () {
 
     })
 
+    $('.btnsrcf').click(function () {
+
+        var src = $('.srcf');
+        src.toggleClass('formin').toggleClass('formin-h');
+
+    })
+
     // Преобразование видео в гиф
 });
 
