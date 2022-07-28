@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('publishing_date');
             $table->foreignId('videocard_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('cpu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('product_id')->nullable();
+            $table->integer('product_id')->nullable(); //Если товар являяется DLC то указываем ссылку на игру
             $table->string('desc_ram');
             $table->string('desc_memory');
             $table->double('price');

@@ -91,11 +91,11 @@
 
 
     {{-- Системные требования и дополнительная информация --}}
-    <div class="container-fluid d-flex bg-light-inner-gradient py-3">
-        <div class="container row m-auto">
-            <div class="col-lg-6 mb-3" data-aos="fade-right">
-                <h5 class="mb-4">Системные требования</h5>
-                <div class="table-responsive">
+    <div class="container-fluid d-flex bg-light-inner-gradient py-4" id="info_block">
+        <div class="container row m-auto pt-4">
+            <div class="col-lg-6 mb-3">
+                <h5 class="mb-4" >Системные требования</h5>
+                <div class="table-responsive" >
                     <table class="table">
                         <tbody>
                             <tr>
@@ -127,7 +127,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-lg-6 px-lg-5 mb-3" data-aos="fade-left">
+            <div class="col-lg-6 px-lg-5 mb-3">
                 <h5 class="mb-4">Дополнительная информация</h5>
                 <p>Жанры:
                     @foreach ($product->genres as $genre)
@@ -141,22 +141,48 @@
             </div>
         </div>
     </div>
-
     </div>
+
+    @if ($dlcs->count() > 0)
+        <div class="container py-3 bg-white" style="z-index: 5" id="dlcs_block">
+            {{-- Дополнения --}}
+            <div class="d-flex flex-column text-center">
+                <h5>Дополнения к этой игре</h5>
+                <div class="d-lg-flex justify-content-center flex-wrap">
+                    @foreach ($dlcs as $dlc)
+                        <a href="{{ route('page_product', $dlc->id) }}"
+                            class="@if ($loop->last) ms-3 @endif @if (!$loop->last) me-3 @endif">
+                            <div class="mb-4 similar-game-card d-flex rounded"
+                                style="background: url({{ URL::asset('/storage/' . $dlc->file_path) }})">
+                                <h4 style="z-index: 2"
+                                    class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
+                                    {{ $dlc->title }}</h4>
+                                <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+    @endif
+
     @if ($similar_games->count() > 0)
-        <div class="container">
+        <div class="container py-3 bg-white" style="z-index: 5" id="similar_block">
             {{-- Похожие товары --}}
-            <div class="d-flex flex-column">
-                <h5 data-aos="fade-right">Похожие игры</h5>
-                <div class="d-lg-flex justify-content-between flex-wrap">
+            <div class="d-flex flex-column text-center">
+                <h5>Похожие игры</h5>
+                <div class="d-lg-flex justify-content-center flex-wrap">
                     @foreach ($similar_games as $game)
-                        <a href="{{ route('page_product', $game->id) }}" data-aos="fade-up">
+                        <a href="{{ route('page_product', $game->id) }}"
+                            class="@if ($loop->last) ms-3 @endif @if (!$loop->last) me-3 @endif">
                             <div class="mb-4 similar-game-card d-flex rounded"
                                 style="background: url({{ URL::asset('/storage/' . $game->file_path) }})">
                                 <h4 style="z-index: 2"
                                     class="mt-3 text-center text-light w-100 position-absolute bottom-0 start-0">
                                     {{ $game->title }}</h4>
-                                <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1"></div>
+                                <div class="dark-up" style="min-height: 35%; max-height: 50%; opacity:.65; z-index:1">
+                                </div>
                             </div>
                         </a>
                     @endforeach

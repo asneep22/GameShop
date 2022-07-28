@@ -6,6 +6,7 @@ import 'ajax';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
+import 'daterangepicker/daterangepicker'
 
 AOS.init();
 
@@ -19,7 +20,58 @@ AOS.init();
 
 const particlesJS = window.particlesJS;
 
+//date
+$('.discount-period').daterangepicker({
+    "showDropdowns": true,
+    'autoUpdateInput': false,
+    "showWeekNumbers": true,
+    "autoApply": true,
+    "locale": {
+        "format": "MM/DD/YYYY",
+        "separator": " - ",
+        "applyLabel": "Apply",
+        "cancelLabel": "Cancel",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": [
+            "Вс",
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб"
+        ],
+        "monthNames": [
+            "Январь",
+            "Февраль",
+            "Март",
+            "Парель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь"
+        ],
+        "firstDay": 1
+    },
+    "startDate": "07/22/2022",
+    "endDate": "07/28/2022",
+    "opens": "center",
+    "drops": "auto",
+    "cancelClass": "btn-clear"
+}, function(start, end, label) {
+  console.log('New date range selected: ' + start.format('DD.MM.YYYY') + ' to ' + end.format('DD.MM.YYYY') + ' (predefined range: ' + label + ')');
+});
 
+$('.discount-period').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('DD.MM.YYYY') + ' - ' + picker.endDate.format('DD.MM.YYYY'));
+});
 
 $(function () {
     $('.delete-keys-button').fadeOut()
@@ -43,6 +95,8 @@ $(function () {
         language: "ru",
         tokenSeparators: [','],
     });
+
+    $('.clear-select2').val(null).trigger("change");
 
     //Увеличение количества ключей и подсчет итоговой цены
     $('.shop_cart_input').change(function () {

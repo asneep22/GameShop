@@ -20,7 +20,8 @@ class Product extends Model
         'desc_memory',
         'discount',
         'redChoose',
-        'publishing_date'
+        'publishing_date',
+        'product_id'
     ];
 
     protected $casts =[
@@ -49,5 +50,9 @@ class Product extends Model
 
     public function keys(){
         return $this->hasMany(key::class);
+    }
+
+    public function discounts(){
+        return $this->hasMany(discount::class);
     }
 }

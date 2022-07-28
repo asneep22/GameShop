@@ -207,7 +207,7 @@
 
                     @foreach ($products as $item)
                         <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
-                            data-aos="fade-left">
+                            >
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"
@@ -255,8 +255,8 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class=""> {{ $products->withQueryString()->links() }}</div>
                 </div>
+                <div class=""> {{ $products->withQueryString()->links() }}</div>
             </div>
         </div>
     </div>

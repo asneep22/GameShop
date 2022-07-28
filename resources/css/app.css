@@ -5,6 +5,7 @@
 @import 'select2';
 @import './animated-border.min.css';
 @import './hover.css';
+@import 'daterangepicker';
 
 
 body {

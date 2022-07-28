@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -95,6 +96,11 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::get('/directories/delete_discount/{id}', 'deleteDiscount')->name('deleteDiscount')->middleware('chiefAdmin');;
             Route::post('/directories/delete_irectories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
         });
+    });
+
+    //Для создания ссылки на файловое хранилище
+    Route::get('/linkstorage', function(){
+        Artisan::call('storage:link');
     });
 });
 

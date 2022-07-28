@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cpu;
 use App\Models\cpu_product;
+use App\Models\discount;
 use App\Models\Genre;
 use App\Models\genre_product;
 use App\Models\key as key_db;
@@ -27,11 +28,12 @@ class AdminProductsController extends Controller
             $products = Product::with(['videocard', 'cpu', 'oses', 'genres', 'keys'])->paginate(20);
         }
         $all_products = Product::all();
+        $all_products_not_dlc = Product::whereNull('product_id')->get();
         $genres = Genre::all();
         $oses = os::all();
         $cpus = cpu::all();
         $videocards = videocard::all();
-        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards', 'all_products'));
+        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards', 'all_products', 'all_products_not_dlc'));
     }
 
     public function create(Request $req)
@@ -83,6 +85,17 @@ class AdminProductsController extends Controller
             os_product::create($req->all());
         }
 
+        //Создание записей скидок для товара, если они имеются
+        for ($i = 1; $i < 6; $i++) {
+            if ($req['discount' . $i] != null && $req['daterange' . $i] != null) {
+                $dates = explode(' - ', $req['daterange' . $i]);
+                $req['date_start'] = $dates[0];
+                $req['date_end'] = $dates[1];
+                $req['discount'] = $req['discount' . $i];
+                discount::create($req->all());
+            }
+        }
+
         return back();
     }
 
@@ -115,9 +128,15 @@ class AdminProductsController extends Controller
             $req['redChoose'] = 0;
         }
 
+        if (!$req->product_id) {
+            $req['product_id'] = null;
+        } else {
+            $req['product_id'] = $req->product_id;
+        }
+
+
         //Обновление игры
         $product = Product::find($id)->update($req->all());
-        $req['product_id'] = $id;
         //Добавление материалов к игре
         if ($req->materials) {
             foreach ($req->materials as $material) {

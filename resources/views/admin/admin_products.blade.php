@@ -93,18 +93,25 @@
                                                 </select>
 
                                                 <label for="publishing_date" class="mt-3">Дата выхода</label>
-                                                <input type="date" required class="form-input mb-3 py-3"
+                                                <input type="date" required class="form-input py-3"
                                                     name="publishing_date" id="publishing_date"
                                                     placeholder="Выберите или введите дату выхода игры">
 
-                                                <label for="price" class="">Цена</label>
+                                                <label for="product_id" class="mt-3">Основная игра</label>
+                                                <select class="form-input js-select2 clear-select2 mb-3" data-tags="false"
+                                                    data-placeholder="Если товар является дополнение к игре, укажите эту игру"
+                                                    data-dropdown-parent="#addProduct" name="product_id" id="product_id"
+                                                    data-allow-clear="true">
+                                                    @foreach ($all_products_not_dlc as $not_dlc_product)
+                                                        <option value="{{ $not_dlc_product->id }}">
+                                                            {{ $not_dlc_product->title }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                                <label for="price" class="mt-3">Цена</label>
                                                 <input type="number" required step="0.01"
                                                     class="form-input mb-3 py-3" name="price" id="price"
                                                     placeholder="1000">
-
-                                                <label for="discount" class="">Скидка, %</label>
-                                                <input type="number" step="1" class="form-input mb-3 py-3"
-                                                    name="discount" id="discount" placeholder="Например: 50">
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
@@ -165,6 +172,90 @@
                                                 <input type="number"
                                                     placeholder="Введите количество требуемого места на жестком диске"
                                                     class="form-input mb-3" required name="desc_memory" id="desc_memory">
+
+                                                <hr>
+                                                <h5 class="my-4 text-center">Скидки</h5>
+                                                <hr>
+
+                                                {{-- Периоды скидок --}}
+                                                <div class="row">
+                                                    <div class="col">Период</div>
+                                                    <div class="col">Скидка, %</div>
+                                                </div>
+
+                                                <div id="discounts" class="w-100 mt-3">
+                                                    {{-- Период 1 --}}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" name="daterange1" id="datarange1"
+                                                                class="form-input discount-period" value=""
+                                                                autocomplete="off" placeholder="Выберите период скидки" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="number" step="1"
+                                                                class="form-input mb-3 py-3" name="discount1"
+                                                                id="discount1" placeholder="Например: 50">
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Период 2 --}}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" name="daterange2" id="datarange2"
+                                                                class="form-input discount-period" value=""
+                                                                autocomplete="off" placeholder="Выберите период скидки" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="number" step="1"
+                                                                class="form-input mb-3 py-3" name="discount2"
+                                                                id="discount2" placeholder="Например: 50">
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Период 3 --}}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" name="daterange3" id="datarange3"
+                                                                class="form-input discount-period" value=""
+                                                                autocomplete="off" placeholder="Выберите период скидки" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="number" step="1"
+                                                                class="form-input mb-3 py-3" name="discount3"
+                                                                id="discount3" placeholder="Например: 50">
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Период 4 --}}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" name="daterange4" id="datarange4"
+                                                                class="form-input discount-period" value=""
+                                                                autocomplete="off" placeholder="Выберите период скидки" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="number" step="1"
+                                                                class="form-input mb-3 py-3" name="discount4"
+                                                                id="discount4" placeholder="Например: 50">
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Период 5 --}}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="text" name="daterange5" id="datarange5"
+                                                                class="form-input discount-period" value=""
+                                                                autocomplete="off" placeholder="Выберите период скидки" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="number" step="1"
+                                                                class="form-input mb-3 py-3" name="discount5"
+                                                                id="discount5" placeholder="Например: 50">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn-green">Добавить</button>
                                                 </div>
@@ -328,8 +419,7 @@
                                                         <label for="price{{ $product->id }}">Цена</label>
                                                         <input type="number" required step="0.01"
                                                             class="form-input mb-3 py-3" name="price"
-                                                            id="price{{ $product->id }}"
-                                                            value="{{ $product->price }}">
+                                                            id="price{{ $product->id }}" value="{{ $product->price }}">
 
                                                         <label for="genre{{ $product->id }}">Жанры</label>
                                                         <select class="form-input js-select2 mb-3" name="genre[]"
@@ -346,16 +436,31 @@
 
                                                         <label for="publiching_date{{ $product->id }}"
                                                             class="mt-3">Дата выхода</label>
-                                                        <input type="datetime" required class="form-input mb-3 py-3"
+                                                        <input type="datetime" required class="form-input py-3"
                                                             name="publishing_date"
                                                             id="publishing_date{{ $product->id }}"
                                                             placeholder="Выберите или введите дату выхода игры"
                                                             value="{{ $product->publishing_date->format('d.m.Y') }}">
 
-                                                        <label for="price{{ $product->id }}"
-                                                            class="mt-3">Цена</label>
+                                                        <label for="product_id{{ $product->id }}"
+                                                            class="mt-3">Основная игра</label>
+                                                        <select
+                                                            class="form-input js-select2 @if ($product->product_id == null) clear-select2 @endif mb-3"
+                                                            data-tags="false"
+                                                            data-placeholder="Если товар является дополнением к игре, укажите эту игру"
+                                                            data-dropdown-parent="#productEdit{{ $product->id }}"
+                                                            data-allow-clear="true" name="product_id"
+                                                            id="product_id{{ $product->id }}">
+                                                            @foreach ($all_products_not_dlc as $not_dlc_product)
+                                                                <option value="{{ $not_dlc_product->id }}"
+                                                                    {{ $not_dlc_product->product_id == $product->id ? 'selected' : '' }}>
+                                                                    {{ $not_dlc_product->title }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                        <label for="price{{ $product->id }}" class="mt-3">Цена</label>
                                                         <input type="number" required step="0.01"
-                                                            class="form-input mb-3 py-3" name="price"
+                                                            class="form-input mb-3" name="price"
                                                             id="price{{ $product->id }}" placeholder="1000"
                                                             value="{{ $product->price }}">
 
@@ -363,8 +468,7 @@
                                                             %</label>
                                                         <input type="number" step="1" class="form-input mb-3 py-3"
                                                             name="discount" id="discount{{ $product->id }}"
-                                                            placeholder="Например: 50"
-                                                            value="{{ $product->discount }}">
+                                                            placeholder="Например: 50" value="{{ $product->discount }}">
 
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
