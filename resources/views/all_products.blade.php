@@ -131,18 +131,18 @@
             <div class="d-flex flex-column">
                 {{-- Выгодное предложение --}}
                 @if ($discount_products->count() > 0)
-                    <div id="RedChoose" class="carousel slide mt-3" data-bs-ride="carousel" data-aos="fade-down">
+                    <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel" data-aos="fade-down">
                         <div class="carousel-inner hvr-underline-from-right underline-red">
                             <div class="carousel-item active">
                                 <a href="{{ route('page_product', $discount_products->first()->id) }}"
-                                    class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
+                                    class="text-decoration-none d-xl-flex rounded mt-3 profitable-card"
                                     style="background-color: #FFF">
                                     <div class="profitable-card-image rounded"
                                         style="background: url({{ URL::asset('/storage/' . $discount_products->first()->file_path) }})">
                                     </div>
                                     <div class=" text-dark ps-3 d-flex flex-column">
                                         <h4 class="mt-3 pe-3">{{ $discount_products->first()->title }}</h4>
-                                        <p class="m-0">
+                                        <p class="m-0 text-break">
                                             {{ Str::limit($discount_products->first()->description, 200, '...') }}</p>
                                         <div class="d-flex flex-column mb-0 my-auto">
                                             <hr class="dotted m-0 p-0">

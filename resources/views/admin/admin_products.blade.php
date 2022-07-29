@@ -464,12 +464,6 @@
                                                             id="price{{ $product->id }}" placeholder="1000"
                                                             value="{{ $product->price }}">
 
-                                                        <label for="discount{{ $product->id }}" class="">Скидка,
-                                                            %</label>
-                                                        <input type="number" step="1" class="form-input mb-3 py-3"
-                                                            name="discount" id="discount{{ $product->id }}"
-                                                            placeholder="Например: 50" value="{{ $product->discount }}">
-
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="1" id="redChoose{{ $product->id }}"
@@ -545,11 +539,111 @@
                                                             id="desc_memory{{ $product->id }}"
                                                             value="{{ $product->desc_memory }}">
 
+
+                                                        {{-- Периоды скидок --}}
+
+                                                        <hr>
+                                                        <h5 class="my-4 text-center">Скидки</h5>
+                                                        <hr>
+                                                        {{-- Периоды скидок --}}
+                                                        <div class="row">
+                                                            <div class="col">Период</div>
+                                                            <div class="col">Скидка, %</div>
+                                                        </div>
+
+                                                        <div id="discounts" class="w-100 mt-3">
+                                                            {{-- Период 1 --}}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="text" name="daterange1"
+                                                                        id="datarange1{{ $product->id }}"
+                                                                        class="form-input discount-period"
+                                                                        value="{{ $product->discounts->count() > 0 ? $product->discounts->first()->date_start->format('d.m.Y').' - '.$product->discounts->first()->date_end->format('d.m.Y') : '' }}"
+                                                                        autocomplete="off"
+                                                                        placeholder="Выберите период скидки" />
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="number" step="1"
+                                                                        class="form-input mb-3 py-3" name="discount1"
+                                                                        id="discount1{{ $product->id }}"
+                                                                        placeholder="Например: 50" value="{{ $product->discounts->count() > 0 ? $product->discounts->first()->discount : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- Период 2 --}}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="text" name="daterange2"
+                                                                        id="datarange2{{ $product->id }}"
+                                                                        class="form-input discount-period" value="{{ $product->discounts->count() > 1 ? $product->discounts->get(1)->date_start->format('d.m.Y').' - '.$product->discounts->get(1)->date_end->format('d.m.Y') : '' }}"
+                                                                        autocomplete="off"
+                                                                        placeholder="Выберите период скидки" />
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="number" step="1"
+                                                                        class="form-input mb-3 py-3" name="discount2"
+                                                                        id="discount2{{ $product->id }}"
+                                                                        placeholder="Например: 50" value="{{ $product->discounts->count() > 1 ? $product->discounts->get(1)->discount : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- Период 3 --}}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="text" name="daterange3"
+                                                                        id="datarange3{{ $product->id }}"
+                                                                        class="form-input discount-period" value="{{ $product->discounts->count() > 2 ? $product->discounts->get(2)->date_start->format('d.m.Y').' - '.$product->discounts->get(2)->date_end->format('d.m.Y') : '' }}"
+                                                                        autocomplete="off"
+                                                                        placeholder="Выберите период скидки" />
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="number" step="1"
+                                                                        class="form-input mb-3 py-3" name="discount3"
+                                                                        id="discount3{{ $product->id }}"
+                                                                        placeholder="Например: 50" value="{{ $product->discounts->count() > 2 ? $product->discounts->get(2)->discount : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- Период 4 --}}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="text" name="daterange4"
+                                                                        id="datarange4{{ $product->id }}"
+                                                                        class="form-input discount-period" value="{{ $product->discounts->count() > 3 ? $product->discounts->get(3)->date_start->format('d.m.Y').' - '.$product->discounts->get(3)->date_end->format('d.m.Y') : '' }}"
+                                                                        autocomplete="off"
+                                                                        placeholder="Выберите период скидки" />
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="number" step="1"
+                                                                        class="form-input mb-3 py-3" name="discount4"
+                                                                        id="discount4{{ $product->id }}"
+                                                                        placeholder="Например: 50" value="{{ $product->discounts->count() > 3 ? $product->discounts->get(3)->discount : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- Период 5 --}}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="text" name="daterange5"
+                                                                        id="datarange5{{ $product->id }}"
+                                                                        class="form-input discount-period" value="{{ $product->discounts->count() > 4 ? $product->discounts->get(4)->date_start->format('d.m.Y').' - '.$product->discounts->get(4)->date_end->format('d.m.Y') : '' }}"
+                                                                        autocomplete="off"
+                                                                        placeholder="Выберите период скидки" />
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="number" step="1"
+                                                                        class="form-input mb-3 py-3" name="discount5"
+                                                                        id="discount5{{ $product->id }}"
+                                                                        placeholder="Например: 50" value="{{ $product->discounts->count() > 4 ? $product->discounts->get(4)->discount : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
                                                 </div>
+
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                                                    <button type="submit" class="btn-green">Сохранить</button>
                                                 </div>
                                                 </form>
                                             </div>

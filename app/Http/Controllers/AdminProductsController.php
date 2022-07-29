@@ -134,6 +134,21 @@ class AdminProductsController extends Controller
             $req['product_id'] = $req->product_id;
         }
 
+        //Обновление скидок
+        discount::where('product_id', $id)->delete();
+        $req['product_id'] = $id;
+        for ($i = 1; $i < 6; $i++) {
+            if ($req['discount' . $i] != null && $req['daterange' . $i] != null) {
+                $dates = explode(' - ', $req['daterange' . $i]);
+                $req['date_start'] = $dates[0];
+                $req['date_end'] = $dates[1];
+                $req['discount'] = $req['discount' . $i];
+                discount::create($req->all());
+            }
+        }
+
+
+
 
         //Обновление игры
         $product = Product::find($id)->update($req->all());
