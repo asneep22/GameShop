@@ -17,11 +17,12 @@
                             <table class="table">
                                 <tbody>
                                     @foreach ($products as $product)
-                                        <tr class="align-middle">
-                                            <th scope="row" class="w-25">
-                                                <p class="shop_cart_title{{ $product->id }}">{{ $product->title }}</p>
+                                        <tr class="align-middle d-flex">
+                                            <th scope="row" class="col-2">
+                                                <p class="shop_cart_title{{ $product->id }} m-auto">{{ $product->title }}
+                                                </p>
                                             </th>
-                                            <td class="w-25 text-center p-0">
+                                            <td class="col-6 text-center p-0">
 
                                                 <div class="d-flex flex-column">
                                                     @if ($product->discount != 0)
@@ -39,13 +40,13 @@
                                             <td class="p-0">
                                                 <div class="d-flex justify-content-end"><input type="number"
                                                         name="count{{ $product->id }}" value="1" min="1"
-                                                        class="shop_cart_input form-input w-50"
+                                                        class="shop_cart_input form-input" max="9"
                                                         data-id="{{ $product->id }}"
                                                         data-discount="{{ $product->discount }}"
                                                         data-game-title="{{ $product->title }}"
                                                         data-price="{{ $product->price }}">
                                                     <a href="{{ route('delete_product_from_card', $product->id) }}"
-                                                        class="btn-green text-decoration-none text-light m-0 text-center p-0 w-25">X</a>
+                                                        class="btn-green text-decoration-none text-light text-center p-auto">X</a>
                                                 </div>
                                             </td>
 
@@ -57,7 +58,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column mb-3">
                         <hr class="dotted">
                         <h5 class="m-0">Ваша персональная скидка:
                             @if (Auth::check() && Auth::user()->Discount)
@@ -85,9 +86,12 @@
                             </table>
                         </div>
                         <hr class="dotted">
-                        <h4 class="finish_price mt-2">Итоговая цена:
-                            {{ $product->price - ($product->price / 100) * $product->discount }}р</h4>
-                        <button type="submit" class="btn-green ms-0 m-auto my-3">Оплатить</button>
+                        <h4 class="finish_price mt-2" id="price">Итоговая цена:
+                            {{ $price }}р</h4>
+                        <div class="d-flex">
+                            <input type="email" name="email" class="form-input m-auto me-2" placeholder="Email адрес" value="{{Auth::check() ? Auth::user()->where('id', Auth::user()->id)->first()->email : ''}}">
+                            <button type="submit" class="btn-green ms-0 m-auto m-auto">Оплатить</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg shop_carts">
@@ -95,6 +99,7 @@
                         <h5 class="m-0 m-auto">Игры в корзине</h5>
                         <hr class="gradient">
                         @foreach ($products as $product)
+                            <input type="hidden" name="games[]" value="{{ $product->id }}">
                             <a href="{{ route('page_product', $product->id) }}"
                                 class="mb-4 ms-lg-3 game-card-block d-flex rounded"
                                 style="background: url('{{ URL::asset('/storage/' . $product->file_path) }}')">

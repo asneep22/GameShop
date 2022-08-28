@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\personal_discount;
 use App\Models\Product;
 use App\Models\product_user;
-use Illuminate\Contracts\Session\Session;
+use App\Models\Order;
+use App\Models\Order_products;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +29,7 @@ class ShoppingCartController extends Controller
             $shopping_cart_products = session('shopping_cart_products');
         }
         //Добавление продуктов в коллецию для дальнейшей работы с ней
-        if (count($shopping_cart_products) > 0) {
+        if (collect($shopping_cart_products)->count() > 0) {
             $products = Product::where(function ($query) use ($shopping_cart_products) {
                 foreach ($shopping_cart_products as $id) {
                     $query->orWhere('id', $id);
@@ -39,7 +41,7 @@ class ShoppingCartController extends Controller
 
         //Вычисление итоговой цены
         foreach ($products as $product) {
-            $price += $product->price;
+            $price += $product->price - ($product->price / 100) * $product->discount;
         }
 
         return view('shopping_cart', compact('products', 'price', 'personal_disounts'));
@@ -77,10 +79,36 @@ class ShoppingCartController extends Controller
 
     public function buy(Request $req)
     {
+        $order = Order::create([
+            'email' => $req->email,
+            'total_price' => 0,
+        ]);
+        $price = 0;
+        $description ="";
         $payment = new \Idma\Robokassa\Payment(
-            'Teeter-totter', 'password1', 'password2', true
+            'Teeter-totter',
+            'jBJHRU39ZDjq8USUx2Z1',
+            'sqq3c1iqTjDYz360VVQR',
+            true
         );
 
-        dd($payment);
+        foreach ($req->games as $game) {
+            $product = Product::where('id', $game)->first();
+            $count = $req['count'.$game];
+            Order_products::create([
+                'order_id' => $order->id,
+                'product_id' => $game,  
+            ]);
+            $price += ($product->price - ($product->price / 100) * $product->discount) * $count;
+            $description .= $product->title.':'.$count.'шт - '.$price.'руб'."\n";
+        }
+        $order->update(['total_price', $price]);
+
+        $payment
+            ->setInvoiceId($order->id)
+            ->setSum($price)
+            ->setDescription($description);
+
+        return redirect($payment->getPaymentUrl());
     }
 }

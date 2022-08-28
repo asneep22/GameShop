@@ -12,6 +12,7 @@ use App\Http\Controllers\mainController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SuccessPageController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -113,6 +114,10 @@ Route::middleware(['checkId'])->group(function () {
 
 Route::controller(AllProductsController::class)->group(function () {
     Route::get('/all_products/{tag?}', 'index')->name('page_all_products');
+});
+
+Route::controller(SuccessPageController::class)->group(function (){
+    Route::get('/success_pay', 'index')->name('success_payment');
 });
 
 Route::controller(ProductController::class)->group(function () {
