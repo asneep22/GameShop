@@ -12,6 +12,7 @@ class Order extends Model
     protected $fillable = [
         "order_product_id",
         "total_price",
+        "state",
         "email"
     ];
 

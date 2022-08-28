@@ -20,7 +20,8 @@ class SuccessPageController extends Controller
             $order = Order::find($payment->getInvoiceId());
 
             if ($payment->getSum() == $order->totalPrice) {
-                // payment is valid
+                $order->update(['state' => true]);
+                dd('okay');
             }
         }
 
