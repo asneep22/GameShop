@@ -15,4 +15,12 @@ class KeysAwaitingPayment extends Model
         "key",
         "key_price",
     ];
+
+    public function Product(){
+        return $this->belongsTo(Product::class);
+    }
+
+    public function Order(){
+        return $this->belongsTo(Order::class);
+    }
 }

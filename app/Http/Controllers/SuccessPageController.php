@@ -7,7 +7,7 @@ use App\Models\Order;
 use App\Mail\OrderShipped;
 use App\Models\Order_products;
 use App\Models\KeysAwaitingPayment;
-use  Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SuccessPageController extends Controller
 {
@@ -27,8 +27,8 @@ class SuccessPageController extends Controller
             if ($payment->getSum() == $order->totalPrice) {
                 $order->state = true;
                 $order->save();
-                Mail::to($order->email)->send(new OrderShipped($order_keys));
-                foreach ($order_keys as  $key) {
+                Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
+                foreach ($order_keys->get() as  $key) {
                     $key->delete();
                 }
                 $order_keys->delete();

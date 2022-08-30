@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderShipped;
 use App\Models\key;
 use App\Models\personal_discount;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use App\Models\Order_products;
 use App\Models\KeysAwaitingPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ShoppingCartController extends Controller
 {
@@ -99,40 +101,40 @@ class ShoppingCartController extends Controller
             Order_products::create([
                 'order_id' => $order->id,
                 'product_id' => $game,
+                'count' => $count,
             ]);
             $price += ($product->price - ($product->price / 100) * $product->discount) * $count;
-            $description .= 'После оплаты, товар будет выслан на указанную почту: '.$order->email;
+            $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
         }
         $order->total_price = $price;
         $order->save();
-
         $order_products = Order_products::where('order_id', $order->id)->get();
 
         foreach ($order_products as $order_product) {
-            if($order_product->Product->keys()->first() == null){
+            for ($i = 0; $i < $order_product->count; $i++) {
+                if ($order_product->Product->keys()->first() == null) {
 
-                $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order->id);
-                foreach ($keysOfUserAwaitingPayment as $key) {
-                    key::create([
-                        "product_id" => $keysOfUserAwaitingPayment->product_id,
-                        "key" => $keysOfUserAwaitingPayment->key,
-                        "key_price" => $keysOfUserAwaitingPayment->key_price,
-                    ]);
+                    $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order->id);
+                    foreach ($keysOfUserAwaitingPayment as $key) {
+                        key::create([
+                            "product_id" => $keysOfUserAwaitingPayment->product_id,
+                            "key" => $keysOfUserAwaitingPayment->key,
+                            "key_price" => $keysOfUserAwaitingPayment->key_price,
+                        ]);
+                    }
+                    return redirect()->back(); //На данный момент ключа к игре в магазине нет
                 }
 
-                $keysOfUserAwaitingPayment->delete();
-                return redirect()->back(); //На данный момент ключа к игре в магазине нет
+                $key = $order_product->Product->keys()->first();
+                KeysAwaitingPayment::create([
+                    "order_id" => $order->id,
+                    "product_id" => $key->product_id,
+                    "key" => $key->key,
+                    "key_price" => $key->key_price,
+                ]);
+
+                key::where("key", $key->key)->first()->delete();
             }
-
-            $key = $order_product->Product->keys()->first();
-            KeysAwaitingPayment::create([
-                "order_id" => $order->id,
-                "product_id" => $key->product_id,
-                "key" => $key->key,
-                "key_price" => $key->key_price,
-            ]);
-
-            $order_product->Product->keys()->first()->delete();
         }
 
         $payment
@@ -140,10 +142,13 @@ class ShoppingCartController extends Controller
             ->setSum($price)
             ->setDescription($description);
 
-        return redirect($payment->getPaymentUrl());
-
-        function AddKeyToPaymentIfExist(){
-
+        $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
+        Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
+        foreach ($order_keys->get() as  $key) {
+            $key->delete();
         }
+        $order_keys->delete();
+
+        return redirect($payment->getPaymentUrl());
     }
 }

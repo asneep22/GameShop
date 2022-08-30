@@ -52,6 +52,10 @@ class Product extends Model
         return $this->hasMany(key::class);
     }
 
+    public function keysAwaitingPayments(){
+        return $this->hasMany(keysAwaitingpayments::class);
+    }
+
     public function discounts(){
         return $this->hasMany(discount::class);
     }
