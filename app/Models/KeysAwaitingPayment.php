@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class key extends Model
+class KeysAwaitingPayment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'key_price',
-        'key',
-        'product_id'
+        "order_id",
+        "product_id",
+        "key",
+        "key_price",
     ];
-
-    public function product(){
-        return $this->belongsTo(product::class);
-    }
 }

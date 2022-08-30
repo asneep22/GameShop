@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\key;
 use App\Models\personal_discount;
 use App\Models\Product;
 use App\Models\product_user;
 use App\Models\Order;
 use App\Models\Order_products;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\KeysAwaitingPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class ShoppingCartController extends Controller
         $shopping_cart_products = [];
         $products = collect([]);
         $personal_disounts = personal_discount::all();
-        //Добавление id продуктов, которые были добавлены в корзину к массиву 
+        //Добавление id продуктов, которые были добавлены в корзину к массиву
         if (Auth::check()) {
             $shopping_cart_products = product_user::where('user_id', Auth::id())->get();
             $shopping_cart_products = $shopping_cart_products->map(function ($product) {
@@ -84,7 +85,7 @@ class ShoppingCartController extends Controller
             'total_price' => 0,
         ]);
         $price = 0;
-        $description ="";
+        $description = "";
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
             'jBJHRU39ZDjq8USUx2Z1',
@@ -94,15 +95,45 @@ class ShoppingCartController extends Controller
 
         foreach ($req->games as $game) {
             $product = Product::where('id', $game)->first();
-            $count = $req['count'.$game];
+            $count = $req['count' . $game];
             Order_products::create([
                 'order_id' => $order->id,
-                'product_id' => $game,  
+                'product_id' => $game,
             ]);
             $price += ($product->price - ($product->price / 100) * $product->discount) * $count;
-            $description .= $product->title.':'.$count.'шт - '.$price.'руб'."\n";
+            $description .= 'После оплаты, товар будет выслан на указанную почту: '.$order->email;
         }
-        $order->update(['total_price', $price]);
+        $order->total_price = $price;
+        $order->save();
+
+        $order_products = Order_products::where('order_id', $order->id)->get();
+
+        foreach ($order_products as $order_product) {
+            if($order_product->Product->keys()->first() == null){
+
+                $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order->id);
+                foreach ($keysOfUserAwaitingPayment as $key) {
+                    key::create([
+                        "product_id" => $keysOfUserAwaitingPayment->product_id,
+                        "key" => $keysOfUserAwaitingPayment->key,
+                        "key_price" => $keysOfUserAwaitingPayment->key_price,
+                    ]);
+                }
+
+                $keysOfUserAwaitingPayment->delete();
+                return redirect()->back(); //На данный момент ключа к игре в магазине нет
+            }
+
+            $key = $order_product->Product->keys()->first();
+            KeysAwaitingPayment::create([
+                "order_id" => $order->id,
+                "product_id" => $key->product_id,
+                "key" => $key->key,
+                "key_price" => $key->key_price,
+            ]);
+
+            $order_product->Product->keys()->first()->delete();
+        }
 
         $payment
             ->setInvoiceId($order->id)
@@ -110,5 +141,9 @@ class ShoppingCartController extends Controller
             ->setDescription($description);
 
         return redirect($payment->getPaymentUrl());
+
+        function AddKeyToPaymentIfExist(){
+
+        }
     }
 }
