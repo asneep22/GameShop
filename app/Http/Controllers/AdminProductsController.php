@@ -96,6 +96,8 @@ class AdminProductsController extends Controller
             }
         }
 
+        //Обновление скидок
+        $product->update($req->all());
         return back();
     }
 
@@ -147,11 +149,8 @@ class AdminProductsController extends Controller
             }
         }
 
-
-
-
         //Обновление игры
-        $product = Product::find($id)->update($req->all());
+        Product::find($id)->update($req->all());
         //Добавление материалов к игре
         if ($req->materials) {
             foreach ($req->materials as $material) {

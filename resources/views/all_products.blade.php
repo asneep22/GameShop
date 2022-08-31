@@ -4,8 +4,8 @@
     <div class="container pt-3 bg-white h-100 min-vh-100 d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
-            <div class="me-xl-3  px-2 d-flex flex-column bg-light-secondary inner-shadow"
-                style="min-width: 20rem; max-width:20rem" data-aos="fade-right">
+            <div class="col mx-auto me-xl-3 mt-5 px-2 d-flex flex-column bg-light-secondary inner-shadow"
+                style="min-width: 15rem; max-width:20rem">
                 <form action="" class="d-flex flex-column py-3 m-lg-0 m-auto">
                     <div class="form-group mx-auto d-flex flex-column">
                         <div class="d-flex justify-content-between mb-2">
@@ -128,19 +128,20 @@
 
             </div>
 
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column col">
                 {{-- Выгодное предложение --}}
+                <h5 class="text-center">Выгодное предложение</h5>
                 @if ($discount_products->count() > 0)
-                    <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel" data-aos="fade-down">
+                    <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner hvr-underline-from-right underline-red">
                             <div class="carousel-item active">
                                 <a href="{{ route('page_product', $discount_products->first()->id) }}"
-                                    class="text-decoration-none d-xl-flex rounded mt-3 profitable-card"
+                                    class="text-decoration-none row rounded mt-3 profitable-card"
                                     style="background-color: #FFF">
-                                    <div class="profitable-card-image rounded"
+                                    <div class="profitable-card-image rounded col"
                                         style="background: url({{ URL::asset('/storage/' . $discount_products->first()->file_path) }})">
                                     </div>
-                                    <div class=" text-dark ps-3 d-flex flex-column">
+                                    <div class=" text-dark ps-3 d-flex flex-column col">
                                         <h4 class="mt-3 pe-3">{{ $discount_products->first()->title }}</h4>
                                         <p class="m-0 text-break">
                                             {{ Str::limit($discount_products->first()->description, 200, '...') }}</p>
@@ -202,8 +203,9 @@
                         </div>
                     </div>
                 @endif
+                <hr class="gradient">
                 {{-- Все продукты --}}
-                <div class="d-flex flex-wrap justify-content-between all-page">
+                <div class="d-flex flex-fill flex-wrap justify-content-between all-page">
 
                     @foreach ($products as $item)
                         <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"

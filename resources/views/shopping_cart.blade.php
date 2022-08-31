@@ -89,7 +89,7 @@
                         <h4 class="finish_price mt-2" id="price">Итоговая цена:
                             {{ $price }}р</h4>
                         <div class="d-flex">
-                            <input type="email" name="email" class="form-input m-auto me-2" placeholder="Email адрес" value="{{Auth::check() ? Auth::user()->where('id', Auth::user()->id)->first()->email : ''}}">
+                            <input type="email" required name="email" class="form-input m-auto me-2" placeholder="Email адрес" value="{{Auth::check() ? Auth::user()->where('id', Auth::user()->id)->first()->email : ''}}">
                             <button type="submit" class="btn-green ms-0 m-auto m-auto">Оплатить</button>
                         </div>
                     </div>

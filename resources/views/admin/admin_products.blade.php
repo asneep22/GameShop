@@ -695,7 +695,7 @@
 
                                                         <label for="key_price{{ $product->id }}" class="mt-3">Цена
                                                             закупа за шт, руб</label>
-                                                        <input type="numeric" class="form-input" step=".01"
+                                                        <input type="numeric" required class="form-input" step=".01"
                                                             name="key_price" id="key_price{{ $product->id }}"
                                                             placeholder="Введите цену закупки ключей за штуку">
 
