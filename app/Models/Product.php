@@ -18,7 +18,7 @@ class Product extends Model
         'cpu_id',
         'desc_ram',
         'desc_memory',
-        'discount',
+        'discount_id',
         'redChoose',
         'publishing_date',
         'product_id'
@@ -57,6 +57,10 @@ class Product extends Model
     }
 
     public function discounts(){
-        return $this->hasMany(discount::class);
+        return $this->belongsToMany(discount::class, 'product_discounts');
+    }
+
+    public function discount(){
+            return $this->belongsTo(discount::class);
     }
 }

@@ -20,7 +20,6 @@ class ProductController extends Controller
         $similar_games = Product::with(['genres', 'oses', 'videocard', 'cpu'])->join('genre_products', 'genre_products.product_id', '=', 'products.id')->select('products.*')
             ->where(function ($query) use ($product) {
                 foreach ($product->genres as $key => $genre) {
-
                     $query->orWhere('genre_products.genre_id', '=', $genre->id);
                 }
             })->whereNot('products.id', '=', $id)->distinct()->inRandomOrder()->limit(5)->get();

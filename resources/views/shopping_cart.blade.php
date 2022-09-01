@@ -5,44 +5,45 @@
 @endsection
 
 @section('content')
-    <div class="container d-flex flex-column mt-4">
+    <div class="container bg-white d-flex flex-column mt-4">
         <form action="{{ route('buy') }}" method="POST">
             @csrf
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="d-flex flex-column" style="min-height: 15rem; max-height: 15rem">
-                        <h5 class="m-auto m-lg-0">Всего игр в корзине: {{ count($products) }}</h5>
-                        <hr class="gradient">
+                <div class="col-lg-3 p-2 bg-light-secondary inner-shadow">
+                    <div class="d-flex flex-column p-2 " style="min-height: 15rem; max-height: 15rem">
+                        <small class="mx-auto m-lg-0 text-secondary">Всего игр в корзине: {{ count($products) }}</small>
+                        <hr class="gradient mb-0">
                         <div class="overflow-y-auto table-responsive">
-                            <table class="table">
-                                <tbody>
+                            <table class="table overflow-hidden">
+                                <tbody class="">
                                     @foreach ($products as $product)
-                                        <tr class="align-middle d-flex">
-                                            <th scope="row" class="col-2">
+                                        <tr class="d-flex">
+                                            <th scope="row" class="col-4 d-flex p-0 py-3    ">
                                                 <p class="shop_cart_title{{ $product->id }} m-auto">{{ $product->title }}
                                                 </p>
                                             </th>
-                                            <td class="col-6 text-center p-0">
-
-                                                <div class="d-flex flex-column">
-                                                    @if ($product->discount != 0)
-                                                        <small style="font-size: 0.75rem"
-                                                            class="m-0 p-0 text-center text-secondary text-nowrap"
-                                                            style=""><s>{{ $product->price }}</s>
-                                                            <span class="discount-small ">
-                                                                -{{ $product->discount }}%</span>
-                                                        </small>
-                                                    @endif
-                                                    <span
-                                                        class="m-auto text-center">{{ $product->price - ($product->price / 100) * $product->discount }}р</span>
+                                            <td class="col-4 d-flex p-0">
+                                                <div class="m-auto d-flex flex-column">
+                                                    <div class="m-auto">
+                                                        @if ($product->discount != null)
+                                                            <small style="font-size: 0.75rem"
+                                                                class="p-0 text-center text-secondary text-nowrap"
+                                                                style=""><s>{{ $product->price }}</s>
+                                                                <span class="discount-small">
+                                                                    -{{ $product->discount->discount }}%</span>
+                                                            </small>
+                                                        @endif
+                                                        <span
+                                                            class="text-center">{{ $product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount) }}р</span>
+                                                    </div>
                                                 </div>
                                             </td>
-                                            <td class="p-0">
-                                                <div class="d-flex justify-content-end"><input type="number"
+                                            <td class="col d-flex p-0">
+                                                <div class="d-flex justify-content-end  m-auto"><input type="number"
                                                         name="count{{ $product->id }}" value="1" min="1"
                                                         class="shop_cart_input form-input" max="9"
                                                         data-id="{{ $product->id }}"
-                                                        data-discount="{{ $product->discount }}"
+                                                        data-discount="{{ $product->discount->discount }}"
                                                         data-game-title="{{ $product->title }}"
                                                         data-price="{{ $product->price }}">
                                                     <a href="{{ route('delete_product_from_card', $product->id) }}"
@@ -60,14 +61,14 @@
 
                     <div class="d-flex flex-column mb-3">
                         <hr class="dotted">
-                        <h5 class="m-0">Ваша персональная скидка:
+                        <h6 class="m-0 text-center">Ваша персональная скидка:
                             @if (Auth::check() && Auth::user()->Discount)
                                 {{ Auth::user()->Discount->disocunt_procent }}
                             @else
                                 0
                             @endif
                             %
-                        </h5>
+                        </h6>
                         <hr class="dotted">
                         <div class="overflow-y-auto">
                             <table class="table">
@@ -86,10 +87,12 @@
                             </table>
                         </div>
                         <hr class="dotted">
-                        <h4 class="finish_price mt-2" id="price">Итоговая цена:
-                            {{ $price }}р</h4>
+                        <h6 class="finish_price mt-2" id="price">Итоговая цена:
+                            {{ $price }}р</h6>
                         <div class="d-flex">
-                            <input type="email" required name="email" class="form-input m-auto me-2" placeholder="Email адрес" value="{{Auth::check() ? Auth::user()->where('id', Auth::user()->id)->first()->email : ''}}">
+                            <input type="email" required name="email" class="form-input m-auto me-2"
+                                placeholder="Email адрес"
+                                value="{{ Auth::check()? Auth::user()->where('id', Auth::user()->id)->first()->email: '' }}">
                             <button type="submit" class="btn-green ms-0 m-auto m-auto">Оплатить</button>
                         </div>
                     </div>

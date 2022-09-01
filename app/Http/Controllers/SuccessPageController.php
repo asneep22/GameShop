@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\key;
 use App\Models\Order;
 use App\Mail\OrderShipped;
 use App\Models\Order_products;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Mail;
 
 class SuccessPageController extends Controller
 {
-    public function index()
+
+    public function resultIndex()
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
@@ -20,7 +22,7 @@ class SuccessPageController extends Controller
             true
         );
 
-        if ($payment->validateSuccess($_GET)) {
+        if ($payment->validateResult($_GET)) {
             $order = Order::find($payment->getInvoiceId());
             $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
 
@@ -32,7 +34,54 @@ class SuccessPageController extends Controller
                     $key->delete();
                 }
                 $order_keys->delete();
-                return view("payment_success");
+            }
+        }
+
+        echo $payment->getSuccessAnswer();
+    }
+
+    public function indexFail()
+    {
+        $payment = new \Idma\Robokassa\Payment(
+            'Teeter-totter',
+            'jBJHRU39ZDjq8USUx2Z1',
+            'sqq3c1iqTjDYz360VVQR',
+            true
+        );
+
+        if ($payment->validateSuccess($_GET)) {
+            $order = Order::find($payment->getInvoiceId());
+
+            if ($payment->getSum() == $order->sum) {
+                $order = Order::find($payment->getInvoiceId());
+                $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
+
+                foreach ($order_keys as $key) {
+                    key::create([
+                        'key' => $key->key,
+                        'key_price' => $key->key_price,
+                        'product_id' => $order->order_product_id,
+                ]);
+
+                $key->delete();
+                }
+            }
+        }
+    }
+
+    public function indexSuccess()
+    {
+        $payment = new \Idma\Robokassa\Payment(
+            'Teeter-totter',
+            'jBJHRU39ZDjq8USUx2Z1',
+            'sqq3c1iqTjDYz360VVQR',
+            true
+        );
+
+        if ($payment->validateSuccess($_GET)) {
+            $order = Order::find($payment->getInvoiceId());
+            if ($payment->getSum() == $order->sum) {
+
             }
         }
     }

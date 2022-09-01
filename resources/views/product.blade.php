@@ -2,7 +2,15 @@
 @section('content')
     <div class="container py-4 bg-white d-flex flex-column">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 position-relative">
+                @if ($product->discount != null)
+                <span class="discount-medium text-center d-flex fw-bold" style="right: .7rem; top: 0rem; z-index:5">
+                    <span class="m-auto">
+                        -{{ $product->discount->discount }}%<br/>
+                        <small>До {{$product->discount->date_end->format('d.m.Y')}}</small>
+                    </span>
+                </span>
+            @endif
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="99999" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="visually-hidden">{{ $i = 0 }}</div>
@@ -68,10 +76,11 @@
             <div class="col-lg-6 d-flex flex-column ps-lg-5">
                 <h2 class="text-center mb-3 mt-0 m-auto">{{ $product->title }}</h2>
                 <p class="text-break">{{ $product->description }}</p>
+                
                 <div class="mb-0 my-auto">
                     <hr class="dotted">
                     <div class="d-flex">
-                        <p class="fs-4 my-auto">Цена: {{ $product->price }}р</p>
+                        <p class="fs-4 my-auto">Цена: {{ $product->price - ($product->price / 100) *  ($product->discount == null ? 0 : $product->discount->discount) }}р</p>
                         <div class="btn-group me-0 m-auto">
                             @if (!$product_is_on_shopping_cart)
                                 <a href="{{ route('add_product_to_cart', $product->id) }}"

@@ -52,8 +52,8 @@ class AllProductsController extends Controller
             $products = $products->where('redChoose', '!=', 0);
         }
 
-        if ($req->discount) {
-            $products = $products->where('discount', '!=', 0);
+        if ($req->discount_id) {
+            $products = $products->where('discount_id', '!=', null);
         }
 
         if ($req->new) {
@@ -64,7 +64,7 @@ class AllProductsController extends Controller
             });
         }
 
-        $discount_products = Product::where('discount', '!=', 0)->limit(3)->get();
+        $discount_products = Product::where('discount_id', '!=', null)->limit(3)->get();
 
         $products = $products->distinct()->paginate(15, ['product.*']);
         return view('all_products', compact('genres', 'products', 'oses', 'discount_products', 'discounts'));

@@ -44,7 +44,7 @@ class ShoppingCartController extends Controller
 
         //Вычисление итоговой цены
         foreach ($products as $product) {
-            $price += $product->price - ($product->price / 100) * $product->discount;
+            $price += $product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount);
         }
 
         return view('shopping_cart', compact('products', 'price', 'personal_disounts'));
@@ -143,7 +143,6 @@ class ShoppingCartController extends Controller
             ->setDescription($description);
 
         $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
-        Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
         foreach ($order_keys->get() as  $key) {
             $key->delete();
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Carbon;
 use App\Models\cpu;
 use App\Models\cpu_product;
 use App\Models\discount;
@@ -11,6 +12,7 @@ use App\Models\key as key_db;
 use App\Models\os;
 use App\Models\os_product;
 use App\Models\Product;
+use App\Models\product_discounts;
 use App\Models\product_material;
 use App\Models\videocard;
 use Illuminate\Http\Request;
@@ -38,10 +40,6 @@ class AdminProductsController extends Controller
 
     public function create(Request $req)
     {
-        //Если скидка не установлена, значит равно 0
-        if (!$req->discount) {
-            $req['discount'] = 0;
-        }
 
         if (!$req->redChoose) {
             $req['redChoose'] = false;
@@ -85,16 +83,8 @@ class AdminProductsController extends Controller
             os_product::create($req->all());
         }
 
-        //Создание записей скидок для товара, если они имеются
-        for ($i = 1; $i < 6; $i++) {
-            if ($req['discount' . $i] != null && $req['daterange' . $i] != null) {
-                $dates = explode(' - ', $req['daterange' . $i]);
-                $req['date_start'] = $dates[0];
-                $req['date_end'] = $dates[1];
-                $req['discount'] = $req['discount' . $i];
-                discount::create($req->all());
-            }
-        }
+        $this->AddDiscounts($req, $product->id);
+        $this->UpdateDiscount($product);
 
         //Обновление скидок
         $product->update($req->all());
@@ -136,19 +126,10 @@ class AdminProductsController extends Controller
             $req['product_id'] = $req->product_id;
         }
 
-        //Обновление скидок
-        discount::where('product_id', $id)->delete();
-        $req['product_id'] = $id;
-        for ($i = 1; $i < 6; $i++) {
-            if ($req['discount' . $i] != null && $req['daterange' . $i] != null) {
-                $dates = explode(' - ', $req['daterange' . $i]);
-                $req['date_start'] = $dates[0];
-                $req['date_end'] = $dates[1];
-                $req['discount'] = $req['discount' . $i];
-                discount::create($req->all());
-            }
-        }
-
+        //Удаление предыдущих скидок
+        product_discounts::where('product_id', $id)->delete();
+        $this->AddDiscounts($req, $id);
+        $this->UpdateDiscount(Product::find($id));
         //Обновление игры
         Product::find($id)->update($req->all());
         //Добавление материалов к игре
@@ -179,6 +160,53 @@ class AdminProductsController extends Controller
 
 
         return back();
+    }
+
+    private function AddDiscounts(Request $req, $product_id)
+    {
+        for ($i = 1; $i < 6; $i++) {
+            if ($req['discount' . $i] != null && $req['daterange' . $i] != null) {
+                $dates = explode(' - ', $req['daterange' . $i]);
+                $req['date_start'] = $dates[0];
+                $req['date_end'] = $dates[1];
+                $req['discount'] = $req['discount' . $i];
+                $discount = discount::create($req->all());
+                product_discounts::create([
+                    'product_id' => $product_id,
+                    'discount_id' => $discount->id,
+                ]);
+            }
+        }
+    }
+
+    private function UpdateDiscount($product)
+    {
+        //Вычисляем нынешнюю дату
+        $date_now = Carbon::now();
+        $date_now = strtotime($date_now->format('d.m.Y'));
+        $discount = null;
+        //Перебираем отложенные скидки у товара
+        if ($product->discounts->count() > 0) {
+            for ($i = 0; $i < $product->discounts->count(); $i++) {
+                //Вычисляем даты начала и конца скидки
+                $date_in = strtotime($product->discounts->get($i)->date_start);
+                $date_out = strtotime($product->discounts->get($i)->date_end);
+                //Если даты записи скидки находятся в диапазоне date_in и date_out тогда помещаем id скидки в discount_id
+
+                //Удаляем запись о скидке, если она просрочена
+                if ($date_now - $date_out > 0) {
+                    discount::where('id', $product->discounts->get($i)->id)->delete();
+                    continue;
+                }
+
+                //Запоминаем скидку, если даты скидки находятся в диапазоне
+                if ($date_now > $date_in && $date_now < $date_out) {
+                    $discount = $product->discounts->get($i);
+                    return $product->update(['discount_id' => $discount->id]); 
+                }
+                //Присваиваем товару скидку, которая находится в диапазоне
+            }
+        }
     }
 
     public function delete_material($id)

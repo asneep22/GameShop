@@ -664,9 +664,11 @@ hr.dotted {
 .discount-medium {
     position: absolute;
     right: 0;
-    top: 0;
+    top: -3rem;
+    max-height: 3rem;
     font-size: 1rem;
-    width: 15%;
+    border-radius: 0px 0 0 12px;
+    width: 8rem;
     right: 0;
     bottom: 0;
     background-color: rgb(243, 67, 67);

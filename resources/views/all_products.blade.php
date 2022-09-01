@@ -130,8 +130,8 @@
 
             <div class="d-flex flex-column col">
                 {{-- Выгодное предложение --}}
-                <h5 class="text-center">Выгодное предложение</h5>
                 @if ($discount_products->count() > 0)
+                <h5 class="text-center">Выгодное предложение</h5>
                     <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner hvr-underline-from-right underline-red">
                             <div class="carousel-item active">
@@ -150,11 +150,12 @@
                                             <div class="d-flex flex-column flex-nowrap text-center position-relative">
                                                 <small><s>{{ $discount_products->first()->price }}р</s></small>
                                                 <h3 class=" ">
-                                                    {{ $discount_products->first()->price - ($discount_products->first()->price / 100) * $discount_products->first()->discount }}р
+                                                    {{ $discount_products->first()->price - ($discount_products->first()->price / 100) * $discount_products->first()->discount->discount }}р
                                                 </h3>
                                                 <span class="discount-medium my-auto text-center d-flex fw-bold">
                                                     <span class="m-auto">
-                                                        -{{ $discount_products->first()->discount }}%
+                                                        -{{ $discount_products->first()->discount->discount }}%<br/>
+                                                        <small style="font-size:.8rem">до {{$discount_products->first()->discount->date_end->format('d.m.Y')}}</small>
                                                     </span>
                                                 </span>
                                                 <hr class="dotted m-0 p-0">
@@ -189,7 +190,7 @@
                                                         </h3>
                                                         <span class="discount-medium my-auto text-center d-flex fw-bold">
                                                             <span class="m-auto">
-                                                                -{{ $product->discount }}%
+                                                                -{{ $product->discount->discount }}%
                                                             </span>
                                                         </span>
                                                         <hr class="dotted m-0 p-0">
@@ -203,13 +204,11 @@
                         </div>
                     </div>
                 @endif
-                <hr class="gradient">
                 {{-- Все продукты --}}
-                <div class="d-flex flex-fill flex-wrap justify-content-between all-page">
+                <div class="d-flex flex-fill flex-wrap justify-content-between @if($discount_products->count() == 0) mt-5 @endif all-page">
 
                     @foreach ($products as $item)
-                        <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
-                            >
+                        <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"
@@ -218,10 +217,11 @@
                                 <div class="text-break d-flex flex-column">
                                     <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">
                                         {{ Str::limit($item->title, 15, '...') }}
-                                        @if ($item->discount != 0)
+                                        @if ($item->discount != null)
                                             <span class="discount-medium my-auto text-center d-flex fw-bold">
                                                 <span class="m-auto">
-                                                    -{{ $item->discount }}%
+                                                    -{{ $item->discount->discount }}%<br/>
+                                                    <small>До {{$item->discount->date_end->format('d.m.Y')}}</small>
                                                 </span>
                                             </span>
                                         @endif
@@ -251,7 +251,7 @@
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) * $item->discount }}р
+                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) *  ($item->discount == null ? 0 : $item->discount->discount) }}р
                                     </h5>
                                 </div>
                             </div>

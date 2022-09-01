@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
                         //Присваиваем товару скидку, которая находится в диапазоне
                     }
 
-                    $product->update(['discount' => $discount]);
+                    $product->update(['discount_id' => $discount->id]);
 
                 }
             }
