@@ -30,7 +30,6 @@ class SuccessPageController extends Controller
                 $order->save();
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
                 $order_keys->delete();
-                dd($payment->getPaymentState($_POST));
                 echo $payment->getSuccessAnswer();
             }
         }
@@ -72,6 +71,7 @@ class SuccessPageController extends Controller
         if ($payment->validateSuccess($_POST)) {
             $order = Order::find($payment->getInvoiceId());
             if ($payment->getSum() == $order->total_price) {
+                dd($payment->getPaymentState($_POST));
                 return view('robokassa.payment_success');
             }
         }
