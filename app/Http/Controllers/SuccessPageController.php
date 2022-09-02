@@ -48,8 +48,8 @@ class SuccessPageController extends Controller
             true
         );
 
+        $order = Order::find($payment->getInvoiceId());
         if ($payment->getSum() == $order->total_price) {
-            $order = Order::find($payment->getInvoiceId());
             $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
 
             foreach ($order_keys as $key) {
