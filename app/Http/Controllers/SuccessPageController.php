@@ -33,6 +33,8 @@ class SuccessPageController extends Controller
                 echo $payment->getSuccessAnswer();
             }
         }
+
+        return redirect()->route('paymentFail');
     }
 
     public function indexFail()
