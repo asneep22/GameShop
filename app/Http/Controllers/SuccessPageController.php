@@ -30,6 +30,7 @@ class SuccessPageController extends Controller
                 $order->save();
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
                 $order_keys->delete();
+                dd($payment->getPaymentState($_POST));
                 echo $payment->getSuccessAnswer();
             }
         }
