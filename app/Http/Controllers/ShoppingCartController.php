@@ -141,12 +141,6 @@ class ShoppingCartController extends Controller
             ->setSum($price)
             ->setDescription($description);
 
-        $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
-        foreach ($order_keys->get() as  $key) {
-            $key->delete();
-        }
-        $order_keys->delete();
-
         return redirect($payment->getPaymentUrl());
     }
 }
