@@ -10,7 +10,7 @@
  Подтвердить почту
 @endcomponent
                 <p style>Если кнопка не работает, перейдите по ссылке:</p>
-                <p><a href="{{ $url }}">{{ $url }}</a>
+                <p><a href="{{ $url }}"><small>{{ $url }}</small></a></p>
                 <p>
                     С уважением,<br />
                     {{ config('app.name') }}<br />

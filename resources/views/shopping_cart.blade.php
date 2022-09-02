@@ -43,7 +43,7 @@
                                                         name="count{{ $product->id }}" value="1" min="1"
                                                         class="shop_cart_input form-input" max="9"
                                                         data-id="{{ $product->id }}"
-                                                        data-discount="{{ $product->discount->discount }}"
+                                                        data-discount="{{ $product->discount == null ? 0 : $product->discount->discount }}"
                                                         data-game-title="{{ $product->title }}"
                                                         data-price="{{ $product->price }}">
                                                     <a href="{{ route('delete_product_from_card', $product->id) }}"
