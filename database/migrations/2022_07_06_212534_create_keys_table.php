@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->string('key');
-            $table->double('key_price');
+            $table->double('key_price',8,2);
             $table->timestamps();
         });
     }

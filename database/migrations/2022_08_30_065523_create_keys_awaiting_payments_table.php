@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("order_id")->constrained("orders")->onUpdate("Cascade")->onDelete("Cascade");
             $table->foreignId("product_id")->constrained("products")->onUpdate("Cascade")->onDelete("Cascade");
             $table->string("key");
-            $table->double("key_price");
+            $table->double("key_price",8,2);
             $table->timestamps();
         });
     }

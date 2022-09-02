@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('product_id')->nullable(); //Если товар являяется DLC то указываем ссылку на игру
             $table->string('desc_ram');
             $table->string('desc_memory');
-            $table->double('price');
+            $table->double('price',8,2);
             $table->foreignId('discount_id')->nullable()->constrained('discounts')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('redChoose');
             $table->timestamps();
