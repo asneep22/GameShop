@@ -103,7 +103,7 @@ class ShoppingCartController extends Controller
                 'product_id' => $game,
                 'count' => $count,
             ]);
-            $price += ($product->price - ($product->price / 100) * $product->discount) * $count;
+            $price += ($product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount)) * $count;
             $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
         }
         $order->total_price = $price;
