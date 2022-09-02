@@ -24,9 +24,8 @@ class SuccessPageController extends Controller
 
         if ($payment->validateResult($_POST)) {
             $order = Order::find($payment->getInvoiceId());
-            $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
-
             if ($payment->getSum() == $order->totalPrice) {
+                $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
                 $order->state = true;
                 $order->save();
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
@@ -49,22 +48,21 @@ class SuccessPageController extends Controller
             true
         );
 
+        if ($payment->getSum() == $order->total_price) {
             $order = Order::find($payment->getInvoiceId());
-            if ($payment->getSum() == $order->sum) {
-                $order = Order::find($payment->getInvoiceId());
-                $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
+            $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
 
-                foreach ($order_keys as $key) {
-                    key::create([
-                        'key' => $key->key,
-                        'key_price' => $key->key_price,
-                        'product_id' => $order->order_product_id,
+            foreach ($order_keys as $key) {
+                key::create([
+                    'key' => $key->key,
+                    'key_price' => $key->key_price,
+                    'product_id' => $order->order_product_id,
                 ]);
 
                 $key->delete();
-                }
-                return view('robokassa.payment_fail');
             }
+            return view('robokassa.payment_fail');
+        }
     }
 
     public function indexSuccess()
@@ -78,7 +76,7 @@ class SuccessPageController extends Controller
 
         if ($payment->validateSuccess($_POST)) {
             $order = Order::find($payment->getInvoiceId());
-            if ($payment->getSum() == $order->sum) {
+            if ($payment->getSum() == $order->total_price) {
                 return view('robokassa.payment_success');
             }
         }
