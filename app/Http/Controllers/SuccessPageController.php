@@ -54,7 +54,7 @@ class SuccessPageController extends Controller
                 key::create([
                     'key' => $key->key,
                     'key_price' => $key->key_price,
-                    'product_id' => $order->product_id,
+                    'product_id' => $key->product_id,
                 ]);
 
                 KeysAwaitingPayment::where('id', $key->id)->delete();
