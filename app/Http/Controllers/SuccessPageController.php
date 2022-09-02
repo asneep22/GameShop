@@ -49,12 +49,12 @@ class SuccessPageController extends Controller
         );
         $order = Order::find($_POST['InvId']);
         if ($_POST['OutSum'] == $order->total_price) {
-            $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
+            $order_keys = KeysAwaitingPayment::where("order_id", $order->id)->get();
             foreach ($order_keys as $key) {
                 key::create([
                     'key' => $key->key,
                     'key_price' => $key->key_price,
-                    'product_id' => $order->order_product_id,
+                    'product_id' => $order->product_id,
                 ]);
 
                 KeysAwaitingPayment::where('id', $key->id)->delete();
