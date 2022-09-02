@@ -117,9 +117,9 @@ Route::controller(AllProductsController::class)->group(function () {
 });
 
 Route::prefix('robokassa')->controller(SuccessPageController::class)->group(function (){
-    Route::get('/pay_result', 'indexResult')->name('paymentResult');
-    Route::get('/pay_success', 'indexSuccess')->name('paymentSuccess');
-    Route::get('/pay_fail', 'indexFail')->name('paymentFail');
+    Route::post('/pay_result', 'indexResult')->name('paymentResult');
+    Route::post('/pay_success', 'indexSuccess')->name('paymentSuccess');
+    Route::post('/pay_fail', 'indexFail')->name('paymentFail');
 });
 
 Route::controller(ProductController::class)->group(function () {

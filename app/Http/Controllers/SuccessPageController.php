@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class SuccessPageController extends Controller
 {
 
-    public function resultIndex()
+    public function indexResult()
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
