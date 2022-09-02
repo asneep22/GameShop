@@ -48,7 +48,7 @@ class SuccessPageController extends Controller
             true
         );
         $order = Order::find($_POST['InvId']);
-        if ($_POST['OutSum'] == $order->totalPrice) {
+        if ($_POST['OutSum'] == $order->total_price) {
             $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
             foreach ($order_keys as $key) {
                 key::create([
