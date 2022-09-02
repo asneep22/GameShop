@@ -126,12 +126,13 @@ class ShoppingCartController extends Controller
                 }
 
                 $key = $order_product->Product->keys()->first();
-                KeysAwaitingPayment::create([
+                $sad = KeysAwaitingPayment::create([
                     "order_id" => $order->id,
                     "product_id" => $key->product_id,
                     "key" => $key->key,
                     "key_price" => $key->key_price,
                 ]);
+                dd($sad );
 
                 key::where("key", $key->key)->first()->delete();
             }
