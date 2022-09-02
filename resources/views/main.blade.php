@@ -11,7 +11,7 @@
         <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade  m-0" data-bs-ride="carousel"
             data-bs-interval="20000">
 
-            <div class="carousel-inner text-center" data-aos="zoom-in-down" data-aos-anchor="#videos">
+            <div class="carousel-inner text-center">
 
                 @foreach ($games_for_video as $product)
                     <div class="carousel-item video-backround @if ($loop->first) active @endif" id="videos"
@@ -315,7 +315,7 @@
                                     <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">
                                         {{ Str::limit($item->title, 15, '...') }}
                                         @if ($item->discount != null)
-                                            <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                            <span class="discount-medium my-auto text-center d-flex fw-bold" style="top: -2rem">
                                                 <span class="m-auto">
                                                     -{{ $item->discount->discount }}%<br/>
                                                     <small>До {{$item->discount->date_end->format('d.m.Y')}}</small>
