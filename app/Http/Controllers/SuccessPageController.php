@@ -39,29 +39,6 @@ class SuccessPageController extends Controller
         echo $payment->getSuccessAnswer();
     }
 
-    public function indexFail()
-    {
-        $payment = new \Idma\Robokassa\Payment(
-            'Teeter-totter',
-            'jBJHRU39ZDjq8USUx2Z1',
-            'sqq3c1iqTjDYz360VVQR',
-            true
-        );
-        $order = Order::find($payment->getInvoiceId());
-        $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
-
-        foreach ($order_keys as $key) {
-            key::create([
-                'key' => $key->key,
-                'key_price' => $key->key_price,
-                'product_id' => $order->order_product_id,
-            ]);
-
-            $key->delete();
-        }
-        return view('robokassa.payment_fail');
-    }
-
     public function indexSuccess()
     {
         $payment = new \Idma\Robokassa\Payment(
@@ -71,11 +48,24 @@ class SuccessPageController extends Controller
             true
         );
 
+        $order = Order::find($payment->getInvoiceId());
         if ($payment->validateSuccess($_POST)) {
-            $order = Order::find($payment->getInvoiceId());
             if ($payment->getSum() == $order->total_price) {
                 return view('robokassa.payment_success');
             }
+        } else {
+            $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
+
+            foreach ($order_keys as $key) {
+                key::create([
+                    'key' => $key->key,
+                    'key_price' => $key->key_price,
+                    'product_id' => $order->order_product_id,
+                ]);
+
+                $key->delete();
+            }
+            return view('robokassa.payment_fail');
         }
     }
 }
