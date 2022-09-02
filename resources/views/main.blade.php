@@ -315,7 +315,7 @@
                                     <h4 class="ps-3 position-relative w-100" style="min-height: 3rem">
                                         {{ Str::limit($item->title, 15, '...') }}
                                         @if ($item->discount != null)
-                                            <span class="discount-medium my-auto text-center d-flex fw-bold" style="top: -2rem">
+                                            <span class="discount-medium my-auto text-center d-flex fw-bold" style="top: -2rem; max-height:3rem; width:2rem">
                                                 <span class="m-auto">
                                                     -{{ $item->discount->discount }}%<br/>
                                                     <small>До {{$item->discount->date_end->format('d.m.Y')}}</small>
