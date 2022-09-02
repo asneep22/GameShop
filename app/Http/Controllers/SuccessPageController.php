@@ -24,19 +24,15 @@ class SuccessPageController extends Controller
 
         if ($payment->validateResult($_POST)) {
             $order = Order::find($payment->getInvoiceId());
-            if ($payment->getSum() == $order->totalPrice) {
+            if ($payment->getSum() == $order->total_price) {
                 $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
                 $order->state = true;
                 $order->save();
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
-                foreach ($order_keys->get() as  $key) {
-                    $key->delete();
-                }
                 $order_keys->delete();
+                echo $payment->getSuccessAnswer();
             }
         }
-
-        echo $payment->getSuccessAnswer();
     }
 
     public function indexFail()
