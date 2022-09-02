@@ -47,18 +47,17 @@ class SuccessPageController extends Controller
             'sqq3c1iqTjDYz360VVQR',
             true
         );
-
-        $order = Order::find($payment->getInvoiceId());
-        if ($payment->getSum() == $order->total_price) {
+        $order = Order::find($_POST['InvId']);
+        if ($_POST['OutSum'] == $order->totalPrice) {
             $order_keys = KeysAwaitingPayment::where("order_id", $order->id);
-
             foreach ($order_keys as $key) {
                 key::create([
                     'key' => $key->key,
                     'key_price' => $key->key_price,
                     'product_id' => $order->order_product_id,
                 ]);
-                $key->delete();
+
+                KeysAwaitingPayment::where('id', $key->id)->delete();
             }
             return view('robokassa.payment_fail');
         }
@@ -73,8 +72,8 @@ class SuccessPageController extends Controller
             true
         );
 
-        $order = Order::find($payment->getInvoiceId());
         if ($payment->validateSuccess($_POST)) {
+            $order = Order::find($payment->getInvoiceId());
             if ($payment->getSum() == $order->total_price) {
                 return view('robokassa.payment_success');
             }
