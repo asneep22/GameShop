@@ -71,7 +71,7 @@ class SuccessPageController extends Controller
         if ($payment->validateSuccess($_POST)) {
             $order = Order::find($payment->getInvoiceId());
             if ($payment->getSum() == $order->total_price) {
-                dd($payment->getPaymentState($_POST));
+                dd($payment->getPaymentStateUrl($_POST));
                 return view('robokassa.payment_success');
             }
         }
