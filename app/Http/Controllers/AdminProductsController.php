@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 use Illuminate\Support\Carbon;
 use App\Models\cpu;
 use App\Models\cpu_product;
@@ -54,7 +53,6 @@ class AdminProductsController extends Controller
 
         //Добавление изображние в хранилище
         $path = Storage::disk('public')->put('GamesImages', $req->file);
-        ImageOptimizer::optimize($path);
         $req['file_path'] = $path;
         //Создание записи игры со всеми данными
         $product = Product::create($req->all());
