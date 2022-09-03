@@ -52,9 +52,9 @@ Route::middleware(['authAdmin'])->group(function () {
 
         Route::controller(AdminProductsController::class)->group(function () {
             Route::get('/products', 'index')->name('page_admin_products');
-            Route::post('/products/add', 'create')->name("create_product");
+            Route::post('/products/add', 'create')->name("create_product")->middleware('optimizeImages');
             Route::post('/products/add_keys/{id}', 'add_keys')->name("add_keys");
-            Route::post('/products/update/{id}', 'update')->name("update_product");
+            Route::post('/products/update/{id}', 'update')->name("update_product")->middleware('optimizeImages');
             Route::delete('/products/delete/{id}', 'delete')->name("delete_product");
             Route::get('/products/delete_material/{id}', 'delete_material')->name("delete_material");
             Route::post('/products/delete_many', 'delete_many')->name("delete_many_products");

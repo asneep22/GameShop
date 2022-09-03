@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 use Illuminate\Support\Carbon;
 use App\Models\cpu;
 use App\Models\cpu_product;
@@ -53,6 +54,7 @@ class AdminProductsController extends Controller
 
         //Добавление изображние в хранилище
         $path = Storage::disk('public')->put('GamesImages', $req->file);
+        ImageOptimizer::optimize($path);
         $req['file_path'] = $path;
         //Создание записи игры со всеми данными
         $product = Product::create($req->all());
@@ -202,7 +204,7 @@ class AdminProductsController extends Controller
                 //Запоминаем скидку, если даты скидки находятся в диапазоне
                 if ($date_now > $date_in && $date_now < $date_out) {
                     $discount = $product->discounts->get($i);
-                    return $product->update(['discount_id' => $discount->id]); 
+                    return $product->update(['discount_id' => $discount->id]);
                 }
                 //Присваиваем товару скидку, которая находится в диапазоне
             }
