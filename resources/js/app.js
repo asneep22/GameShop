@@ -276,8 +276,6 @@ $(function () {
         src.toggleClass('formin').toggleClass('formin-h');
 
     })
-
-    // Преобразование видео в гиф
 });
 
 particlesJS("particles-js", {

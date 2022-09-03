@@ -15,7 +15,7 @@ return [
     'optimizers' => [
 
         Jpegoptim::class => [
-            '-m30', // set maximum quality to 85%
+            '-m85', // set maximum quality to 85%
             '--strip-all',  // this strips out all text information such as comments and EXIF data
             '--all-progressive',  // this will make sure the resulting image is a progressive one
         ],
@@ -62,5 +62,5 @@ return [
      * If set to `true` all output of the optimizer binaries will be appended to the default log.
      * You can also set this to a class that implements `Psr\Log\LoggerInterface`.
      */
-    'log_optimizer_activity' => false,
+    'log_optimizer_activity' => true,
 ];

@@ -54,6 +54,8 @@ class AdminProductsController extends Controller
         //Добавление изображние в хранилище
         $path = Storage::disk('public')->put('GamesImages', $req->file);
         $req['file_path'] = $path;
+        dd($path);
+
         //Создание записи игры со всеми данными
         $product = Product::create($req->all());
         $req['product_id'] = $product->id;
@@ -86,8 +88,6 @@ class AdminProductsController extends Controller
         $this->AddDiscounts($req, $product->id);
         $this->UpdateDiscount($product);
 
-        //Обновление скидок
-        $product->update($req->all());
         return back();
     }
 
@@ -219,22 +219,32 @@ class AdminProductsController extends Controller
         return back();
     }
 
+    public function delete_many(Request $req)
+    {
+        if ($req->delete_products_id) {
+            foreach ($req->delete_products_id as $product_id) {
+                $this->delete($product_id);
+            }
+        }
+        return response('ok', 200);
+    }
+
     public function delete($id)
     {
         if (Product::find($id)) {
+            $this->delete_materails($id);
             Product::find($id)->delete();
         }
         return back();
     }
 
-    public function delete_many(Request $req)
-    {
-        if ($req->delete_products_id) {
-            foreach ($req->delete_products_id as $product) {
-                Product::where("id", '=', $product)->delete();
-            }
+    private function delete_materails($product_id){
+        $product = Product::where("id", '=', $product_id)->first();
+        $product_material = product_material::where('product_id', $product_id)->get();
+        Storage::disk('public')->delete($product->file_path);
+        foreach ($product_material as $material) {
+            Storage::disk('public')->delete($material->file_path);
         }
-        return response('ok', 200);
     }
 
     public function delete_many_keys(Request $req)
