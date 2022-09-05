@@ -37,7 +37,7 @@
 
     <!-- Футер -->
     @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
-    {{-- @include('footer') --}}
+     @include('footer')
     @endif
 
     <script defer src="{{ URL::asset('js/app.js')}}"></script>

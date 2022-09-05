@@ -15,10 +15,16 @@ use App\Models\Product;
 use App\Models\product_discounts;
 use App\Models\product_material;
 use App\Models\videocard;
+use FFMpeg\Filters\Video\ResizeFilter;
+use FFMpeg\Filters\Video\VideoFilters;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
 use Illuminate\Support\Facades\Storage;
-use Response;
+use Illuminate\Http\File;
+
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use FFMpeg\Format\Video\WebM;
+use FFMpeg\Format\Video\X264;
 
 class AdminProductsController extends Controller
 {
@@ -40,49 +46,28 @@ class AdminProductsController extends Controller
 
     public function create(Request $req)
     {
-
         if (!$req->redChoose) {
             $req['redChoose'] = false;
         }
-
-        //Добавление процессора и видеокарты в справочник если их нет
         $cpu = cpu::firstOrCreate(['pname' => $req->cpu]);
-        $videocard = videocard::firstOrCreate(['pname' => $req->videocard]);
         $req['cpu_id'] = $cpu->id;
+
+        $videocard = videocard::firstOrCreate(['pname' => $req->videocard]);
         $req['videocard_id'] = $videocard->id;
 
-        //Добавление изображние в хранилище
-        $path = Storage::disk('public')->put('GamesImages', $req->file);
-        $req['file_path'] = $path;
-        dd($path);
-
-        //Создание записи игры со всеми данными
+        $req['file_path'] = Storage::disk('public')->put('GamesImages', $req->file);
         $product = Product::create($req->all());
-        $req['product_id'] = $product->id;
 
-        //Добавление материалов к игре
-        if ($req->materials) {
-            foreach ($req->materials as $material) {
-                $req['file_path'] = Storage::disk('public')->put('materials', $material);
-                product_material::create($req->all());
-            }
+        $this->CreateProductMaterials($req->materials, $product->id); //videos and images
+
+        foreach ($req->genre as $genreName) {
+            $genre = Genre::firstOrCreate(['pname' => $genreName]);
+            $this->AddGenreToProduct($genre->id, $product->id);
         }
 
-        //Перебор введенных тегов
-        foreach ($req->genre as $key => $genre) {
-            //Создание записи названия жанра в таблице genres, если она остутствует
-            $genre = Genre::firstOrCreate(['pname' => $genre]);
-
-            //Добавление введенных жанров товару
-            $req['genre_id'] = $genre->id;
-            genre_product::create($req->all());
-        }
-
-        //Добавление операционной системы в справочник, если её/их нет и добавление её/их к систмным требованиям
-        foreach ($req->desc_os as $item) {
-            $os = os::firstOrCreate(['pname' => $item]);
-            $req['os_id'] = $os->id;
-            os_product::create($req->all());
+        foreach ($req->desc_os as $osName) {
+            $os = os::firstOrCreate(['pname' => $osName]);
+            $this->AddOsToProduct($os->id, $product->id);
         }
 
         $this->AddDiscounts($req, $product->id);
@@ -90,6 +75,57 @@ class AdminProductsController extends Controller
 
         return back();
     }
+
+    #region MethodsOfCreateFunction
+    private function CreateProductMaterials($materials, $productId)
+    {
+        if ($materials) {
+            foreach ($materials as $material) {
+                $path = Storage::disk('public')->putFileAs('materials', $material, $material->getClientOriginalName());
+                if (pathinfo($path, PATHINFO_EXTENSION) == 'webm') { //Images automaticly compress with spatie/laravel-image-optimizer
+                    $this->CompressVideo($material, $path);
+                }
+                $this->AddMaterialToProduct($path, $productId);
+            }
+        }
+    }
+
+    private function CompressVideo($video, $savePath)
+    {
+        $bitrateOfResolution480p = (new WebM())->setKiloBitrate(500);
+        FFMpeg::fromDisk('public')
+            ->open($video)
+            ->export()
+            ->inFormat($bitrateOfResolution480p)
+            ->resize(854, 480)
+            ->toDisk('public')
+            ->save($savePath);
+    }
+
+    private function AddMaterialToProduct($materialFilePath, $productId)
+    {
+        product_material::create([
+            'file_path' => $materialFilePath,
+            'product_id' => $productId,
+        ]);
+    }
+
+    private function AddGenreToProduct($genreId, $productId)
+    {
+        genre_product::create([
+            'genre_id' => $genreId,
+            'product_id' => $productId,
+        ]);
+    }
+
+    private function AddOsToProduct($osId, $productId)
+    {
+        os_product::create([
+            'os_id' => $osId,
+            'product_id' => $productId,
+        ]);
+    }
+    #endregion
 
     public function add_keys(Request $req, $id)
     {
@@ -238,7 +274,8 @@ class AdminProductsController extends Controller
         return back();
     }
 
-    private function delete_materails($product_id){
+    private function delete_materails($product_id)
+    {
         $product = Product::where("id", '=', $product_id)->first();
         $product_material = product_material::where('product_id', $product_id)->get();
         Storage::disk('public')->delete($product->file_path);
