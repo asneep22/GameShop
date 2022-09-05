@@ -128,7 +128,7 @@ Route::controller(ProductController::class)->group(function () {
 
 Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/shopping_cart', 'index')->name('page_shopping_cart');
-    Route::get('/add_product_to_cart/{id}', 'add_product_to_cart')->name('add_product_to_cart');
+    Route::post('/product_to_cart/{id}', 'product_to_cart')->name('product_to_cart');
     Route::post('/buy', 'buy')->name('buy');
     Route::get('/delete_product_from_card/{id}', 'delete_product_from_card')->name('delete_product_from_card');
 });

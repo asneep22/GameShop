@@ -7,7 +7,9 @@ use App\Models\Product;
 use App\Models\Genre;
 use App\Models\os;
 use App\Models\personal_discount;
+use App\Models\product_user;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AllProductsController extends Controller
 {
@@ -23,6 +25,11 @@ class AllProductsController extends Controller
 
         if (!$req->price_min) {
             $req->price_min = 0;
+        }
+
+        $product_users = collect();
+        if(Auth::check()){
+            $product_users = product_user::where('user_id', Auth::id())->get();
         }
 
         $products = Product::with(['genres', 'oses'])->select('products.*')
@@ -67,6 +74,6 @@ class AllProductsController extends Controller
         $discount_products = Product::where('discount_id', '!=', null)->limit(3)->get();
 
         $products = $products->distinct()->paginate(15, ['product.*']);
-        return view('all_products', compact('genres', 'products', 'oses', 'discount_products', 'discounts'));
+        return view('all_products', compact('genres', 'products', 'product_users', 'oses', 'discount_products', 'discounts'));
     }
 }

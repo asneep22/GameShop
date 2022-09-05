@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -22,11 +23,9 @@ class AuthController extends Controller
         }
     }
 
-    // Авторизация пользователя
     public function login_user(Request $req)
     {
         if (Auth::attempt($req->only(['email', 'password']))) {
-            //Обновляем время последнего посещения сайта
             $user = User::where('id', '=', Auth::id())->update(['last_online_at' => now()]);
             if (Auth::user()->role->id > 2) {
                 return redirect()->route('page_welcome');
@@ -41,6 +40,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->flush();
         return redirect()->route('page_welcome');
     }
 

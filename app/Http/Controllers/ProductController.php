@@ -15,6 +15,7 @@ class ProductController extends Controller
     {
         $materials = product_material::where('product_id', $id)->get();
         $product = Product::with(['genres', 'oses', 'videocard', 'cpu'])->find($id);
+        $product_users = product_user::all();
         $dlcs = Product::where('product_id', $id)->get(); //Находим все DLC
         //Находим похожие игры по жанрам
         $similar_games = Product::with(['genres', 'oses', 'videocard', 'cpu'])->join('genre_products', 'genre_products.product_id', '=', 'products.id')->select('products.*')
@@ -42,7 +43,7 @@ class ProductController extends Controller
                 }
             }
         }
-        
+
 
         return view('product', compact('materials', 'product', 'similar_games', 'product_is_on_shopping_cart', 'dlcs'));
     }

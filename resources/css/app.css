@@ -731,6 +731,7 @@ hr.dotted {
 }
 
 .btn-blue {
+    cursor: pointer;
     border: none;
     background-color: rgb(53, 129, 228);
     color: rgb(238, 236, 236);
@@ -899,9 +900,27 @@ body {
     transition:all ease-in-out 0.3s;
 }
 
-
 .content a:hover
 {
     text-decoration:none;
     background:#000;
+}
+
+.cart_product_count{
+    font-size:.75rem;
+    border-radius: 20px;
+    background-color: rgb(247, 9, 9);
+    right:-0.1rem;
+    bottom:-0.1rem;
+}
+
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
 }

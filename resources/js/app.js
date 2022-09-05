@@ -7,10 +7,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
 import 'daterangepicker/daterangepicker'
-
+import Headroom from "headroom.js";
 AOS.init();
-
-require('jquery-ui');
 
 window.$ = window.jQuery = $;
 window.$ = require('jquery');
@@ -65,17 +63,16 @@ $('.discount-period').daterangepicker({
     "opens": "center",
     "drops": "auto",
     "cancelClass": "btn-clear"
-}, function(start, end, label) {
-  console.log('New date range selected: ' + start.format('DD.MM.YYYY') + ' to ' + end.format('DD.MM.YYYY') + ' (predefined range: ' + label + ')');
+}, function (start, end, label) {
+    console.log('New date range selected: ' + start.format('DD.MM.YYYY') + ' to ' + end.format('DD.MM.YYYY') + ' (predefined range: ' + label + ')');
 });
 
-$('.discount-period').on('apply.daterangepicker', function(ev, picker) {
+$('.discount-period').on('apply.daterangepicker', function (ev, picker) {
     $(this).val(picker.startDate.format('DD.MM.YYYY') + ' - ' + picker.endDate.format('DD.MM.YYYY'));
 });
 
 $(function () {
     $('.delete-keys-button').fadeOut()
-
 
     $.ajaxSetup({
         headers: {
@@ -97,6 +94,22 @@ $(function () {
     });
 
     $('.clear-select2').val(null).trigger("change");
+
+    $('.product_add_to_shop_cart_button').click(function () {
+        var url = $(this).attr('data-url');
+        var svgPathId = '#' + $(this).attr('data-out-card-path');
+        var svgOutCartPathId = '#' + $(this).attr('data-path');
+        $(svgPathId).animate({ opacity: 'toggle' }, 'fast');
+        $(svgOutCartPathId).animate({ opacity: 'toggle' }, 'fast');
+        $.ajax({
+            url: url,
+            type: "post",
+            success: function (data) {
+                console.log(data);
+                $('#shopping_cart_products_count').html(data > 0 ? data : '');
+            }
+        });
+    })
 
     //Увеличение количества ключей и подсчет итоговой цены
     $('.shop_cart_input').change(function () {
@@ -250,19 +263,6 @@ $(function () {
         }
     });
 
-    // Бек хедера и футора
-    $('.btnt').click(function () {
-        var theme = $('.theme');
-        theme.toggleClass('navbar-light').toggleClass('navbar-dark');
-        var tcs = $('.tcs');
-        tcs.toggleClass('text-black').toggleClass('text-white');
-        var borh = $('.borh');
-        borh.toggleClass('top-stay-light').toggleClass('top-stay-dark');
-        var borh = $('.mainbg');
-        borh.toggleClass('img-bgl').toggleClass('img-bgd');
-
-    })
-
     $('.btnsrc').click(function () {
 
         var src = $('.src');
@@ -271,12 +271,12 @@ $(function () {
     })
 
     $('.btnsrcf').click(function () {
-
         var src = $('.srcf');
         src.toggleClass('formin').toggleClass('formin-h');
-
     })
 });
+
+
 
 particlesJS("particles-js", {
     "particles": {
@@ -388,3 +388,7 @@ particlesJS("particles-js", {
     },
     "retina_detect": false
 });
+
+var myElement = document.querySelector("header");
+var headroom = new Headroom(myElement);
+headroom.init();

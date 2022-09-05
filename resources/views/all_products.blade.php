@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="container pt-3 bg-white h-100 min-vh-100 d-flex flex-column px-2">
+    <div class="container pt-5 mt-2 bg-white h-100 min-vh-100 d-flex flex-column px-2">
         <div class="d-lg-flex">
             {{-- Боковая панель --}}
             <div class="col mx-auto me-xl-3 mt-5 px-2 d-flex flex-column bg-light-secondary inner-shadow"
@@ -131,7 +131,7 @@
             <div class="d-flex flex-column col">
                 {{-- Выгодное предложение --}}
                 @if ($discount_products->count() > 0)
-                <h5 class="text-center">Выгодное предложение</h5>
+                    <h5 class="text-center">Выгодное предложение</h5>
                     <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner hvr-underline-from-right underline-red">
                             <div class="carousel-item active">
@@ -154,8 +154,9 @@
                                                 </h3>
                                                 <span class="discount-medium my-auto text-center d-flex fw-bold">
                                                     <span class="m-auto">
-                                                        -{{ $discount_products->first()->discount->discount }}%<br/>
-                                                        <small style="font-size:.8rem">до {{$discount_products->first()->discount->date_end->format('d.m.Y')}}</small>
+                                                        -{{ $discount_products->first()->discount->discount }}%<br />
+                                                        <small style="font-size:.8rem">до
+                                                            {{ $discount_products->first()->discount->date_end->format('d.m.Y') }}</small>
                                                     </span>
                                                 </span>
                                                 <hr class="dotted m-0 p-0">
@@ -205,10 +206,12 @@
                     </div>
                 @endif
                 {{-- Все продукты --}}
-                <div class="d-flex flex-fill flex-wrap justify-content-between @if($discount_products->count() == 0) mt-5 @endif all-page">
+                <div
+                    class="d-flex flex-fill flex-wrap justify-content-between @if ($discount_products->count() == 0) mt-5 @endif all-page">
 
                     @foreach ($products as $item)
-                        <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue">
+                        <div
+                            class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"
@@ -220,8 +223,8 @@
                                         @if ($item->discount != null)
                                             <span class="discount-medium my-auto text-center d-flex fw-bold">
                                                 <span class="m-auto">
-                                                    -{{ $item->discount->discount }}%<br/>
-                                                    <small>До {{$item->discount->date_end->format('d.m.Y')}}</small>
+                                                    -{{ $item->discount->discount }}%<br />
+                                                    <small>До {{ $item->discount->date_end->format('d.m.Y') }}</small>
                                                 </span>
                                             </span>
                                         @endif
@@ -234,13 +237,22 @@
                                 <div class="btn-group mb-0 d-flex">
 
                                     {{-- В корзину --}}
-                                    <a href="{{ route('add_product_to_cart', $item->id) }}"
-                                        class="btn-blue text-light text-decoration-none hvr-float"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                                    <a class="btn-blue text-light text-decoration-none hvr-float product_add_to_shop_cart_button position-relative"
+                                        data-path="to-cart-btn-{{ $item->id }}"
+                                        data-out-card-path="to-cart-out-btn-{{ $item->id }}"
+                                        data-url={{ route('product_to_cart', $item->id) }} data-auth={{ Auth::check() }}>
+                                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
                                             <path
-                                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                                        </svg></a>
+                                                style="{{ Auth::check() ? ($product_users->where('product_id', $item->id)->first() ? 'display:none' : '') : (Session::get('shopping_cart_products') ? (in_array($item->id, Session::get('shopping_cart_products')) ? 'display:none' : '') : '') }}"
+                                                id="to-cart-btn-{{ $item->id }}"
+                                                d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z" />
+                                            <path
+                                                style="{{ Auth::check() ? ($product_users->where('product_id', $item->id)->first() ? '' : 'display:none') : (Session::get('shopping_cart_products') ? (in_array($item->id, Session::get('shopping_cart_products')) ? '' : 'display:none') : 'display:none') }}"
+                                                id="to-cart-out-btn-{{ $item->id }}"
+                                                d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z" />
+                                        </svg>
+                                    </a>
                                     {{-- На страницу товара --}}
                                     <a href="{{ route('page_product', $item->id) }}"
                                         class="btn-blue text-decoration-none text-light hvr-float"><svg
@@ -251,7 +263,8 @@
                                             <path fill-rule="evenodd"
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
-                                    <h5 class="me-3 m-auto">{{ $item->price - ($item->price / 100) *  ($item->discount == null ? 0 : $item->discount->discount) }}р
+                                    <h5 class="me-3 m-auto">
+                                        {{ $item->price - ($item->price / 100) * ($item->discount == null ? 0 : $item->discount->discount) }}р
                                     </h5>
                                 </div>
                             </div>

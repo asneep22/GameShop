@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container bg-white d-flex flex-column mt-4">
+    <div class="container bg-white d-flex flex-column pt-5 mt-5">
         <form action="{{ route('buy') }}" method="POST">
             @csrf
             <div class="row">
@@ -99,8 +99,6 @@
                 </div>
                 <div class="col-lg shop_carts">
                     <div class="d-flex flex-column">
-                        <h5 class="m-0 m-auto">Игры в корзине</h5>
-                        <hr class="gradient">
                         @foreach ($products as $product)
                             <input type="hidden" name="games[]" value="{{ $product->id }}">
                             <a href="{{ route('page_product', $product->id) }}"

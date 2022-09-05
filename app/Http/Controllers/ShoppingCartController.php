@@ -10,18 +10,25 @@ use App\Models\product_user;
 use App\Models\Order;
 use App\Models\Order_products;
 use App\Models\KeysAwaitingPayment;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\ErrorHandler\Debug;
 
 class ShoppingCartController extends Controller
 {
+
     public function index()
     {
         $price = 0;
         $shopping_cart_products = [];
-        $products = collect([]);
         $personal_disounts = personal_discount::all();
+        $products = collect([]);
+        $product_users = collect();
+        if(Auth::check()){
+            $product_users = product_user::where('user_id', Auth::id())->get();
+        }
         //Добавление id продуктов, которые были добавлены в корзину к массиву
         if (Auth::check()) {
             $shopping_cart_products = product_user::where('user_id', Auth::id())->get();
@@ -47,23 +54,67 @@ class ShoppingCartController extends Controller
             $price += $product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount);
         }
 
-        return view('shopping_cart', compact('products', 'price', 'personal_disounts'));
+        return view('shopping_cart', compact('products', 'product_users', 'price', 'personal_disounts'));
     }
 
-    public function add_product_to_cart(Request $req, $product_id)
+    public function product_to_cart($product_id)
     {
         if (Auth::check()) {
-            $req['user_id'] = Auth::id();
-            $req['product_id'] = $product_id;
-            product_user::create($req->all());
+            $this->update_cart_auth_user($product_id);
+            return response(product_user::where('user_id', Auth::id())->count(),200);
         } else {
-            $shopping_cart_products = session('shopping_cart_products') ? session('shopping_cart_products') : [];
-            array_push($shopping_cart_products, $product_id);
-            session(['shopping_cart_products' =>  $shopping_cart_products]);
+            $this->update_cart_session($product_id);
+            return response(count(session('shopping_cart_products',[])),200);
         }
-
-        return back();
     }
+
+    #region MethodsOfProductToCartFunction
+    private function update_cart_auth_user($product_id)
+    {
+        if (product_user::where('product_id', $product_id)->where('user_id', Auth::id())->first()) {
+            $this->remove_product_from_cart_auth_user($product_id);
+        } else {
+            $this->add_product_to_cart_auth_user($product_id);
+
+        }
+    }
+
+    private function remove_product_from_cart_auth_user($product_id)
+    {
+        product_user::where('product_id', $product_id)->where('user_id', Auth::id())->delete();
+    }
+
+    private function add_product_to_cart_auth_user($product_id)
+    {
+        product_user::create([
+            'user_id' => Auth::id(),
+            'product_id' => $product_id,
+        ]);
+    }
+
+    private function update_cart_session($product_id)
+    {
+        $shopping_cart_products = session('shopping_cart_products') ? session('shopping_cart_products') : [];
+        if (in_array($product_id, $shopping_cart_products)) {
+            $this->remove_product_from_cart_session($product_id);
+        } else {
+            $this->add_product_to_cart_session($product_id, $shopping_cart_products);
+        }
+    }
+
+    private function remove_product_from_cart_session($product_id)
+    {
+        $shopping_cart_products = session('shopping_cart_products') ? session('shopping_cart_products') : [];
+        array_splice($shopping_cart_products, array_search($product_id, $shopping_cart_products), 1);
+        session(['shopping_cart_products' =>  $shopping_cart_products]);
+    }
+
+    private function add_product_to_cart_session($product_id, $shopping_cart_products)
+    {
+        array_push($shopping_cart_products, $product_id);
+        session(['shopping_cart_products' =>  $shopping_cart_products]);
+    }
+    #endregion
 
     public function delete_product_from_card($id)
     {
