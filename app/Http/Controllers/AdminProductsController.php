@@ -83,7 +83,7 @@ class AdminProductsController extends Controller
             foreach ($materials as $material) {
                 $path = Storage::disk('public')->putFileAs('materials', $material, $material->getClientOriginalName());
                 if (pathinfo($path, PATHINFO_EXTENSION) == 'webm') { //Images automaticly compress with spatie/laravel-image-optimizer
-                    $this->CompressVideo($material, $path);
+                    // $this->CompressVideo($material, $path); Очень долго выполняется
                 }
                 $this->AddMaterialToProduct($path, $productId);
             }

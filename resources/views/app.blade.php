@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="min-vh-100 overflow-none d-flex flex-column mainbg position-relative {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
+<body class="min-vh-100 w-100 d-flex flex-column mainbg position-relative {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
     <div id="particles-js"></div>
     <div id="1" class="message fade">
         Message

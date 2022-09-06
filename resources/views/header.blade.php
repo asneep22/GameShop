@@ -1,41 +1,25 @@
-<!-- Светлая тема -->
-<header class="container-fluid blue-background p-0 z-index-5 headroom position-fixed">
+<header class="container-fluid blue-background p-0 m-0 z-index-5 headroom position-fixed">
 
-    <nav class="navbar container p-0 text-center navbar-expand-lg navbar-light pb-4">
-        <div class="d-lg-flex m-auto fch pt-3">
+    <div class="container d-flex flex-column p-0">
+        <nav class="navbar text-center navbar-expand-lg navbar-light flex-column flex-lg-row">
 
-            <div class="d-flex flex-column flex-nowrap align-items-center cs">
-                <div class="divloga">
-                    <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none ts m-0">Teeter-Totter</a>
-                </div>
-            </div>
+            <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none ts pt-3">
+                <h1 class="text-light">Teeter-Totter</h1>
+            </a>
 
-            <button class="navbar-toggler m-auto mt-2" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
-                aria-label="Переключатель навигации">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
-
-                <ul class="navbar-nav mt-2 mb-lg-0">
-                    <div class="d-flex align-items-center mt-1 tf">
+            <div class="collapse navbar-collapse justify-content-md-end justify-content-center" id="navbarColor01">
+                <ul class="navbar-nav mt-2 mb-lg-0 d-lg-flex">
+                    <div class="d-xl-flex align-items-center mt-1 tf text-center">
                         <a href="{{ route('page_welcome') }}"
-                            class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-g borh py-2 px-2 text-light"><span
-                                class="tcs m-0 ts fsh-t">ГЛАВНАЯ</span></a>
+                            class="hvr-bounce-in text-decoration-none hvr-underline-from-left borh py-2 px-2 text-light"><span
+                                class="m-0 ts">ГЛАВНАЯ</span></a>
+
                         <a href="{{ route('page_all_products') }}"
                             class="hvr-bounce-in hvr-underline-from-left text-decoration-none mdel-n borh text-light px-2 py-2"><span
-                                class="tcs  m-0 ts fsh-t  text-light px-2 py-2">КЛЮЧИ</span></a>
-                        {{-- <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t  ">ГИФТЫ</span></a>
-                        <a href="#" class="hvr-bounce-in text-decoration-none hvr-underline-from-left mdel-p borh text-light px-2 py-2"><span class="tcs  m-0 ts fsh-t ">АККАУНТЫ</span></a> --}}
-                    </div>
-
-                    <div class="d-lg-flex align-items-center justify-content-center ip">
-
-                        <!-- Личный кабинет -->
+                                class="tcs  m-0 ts  text-light">КЛЮЧИ</span></a>
 
                         <a href="{{ route('page_user_auth') }}"
-                            class="ms-3 sb text-decoration-none text-white dm ddm hvr-bounce-in">
+                            class="me-4 text-decoration-none text-white hvr-bounce-in">
                             <svg class="text-white svgs" xmlns="http://www.w3.org/2000/svg" width="25"
                                 height="25" fill="currentColor" class="bi bi-person-bounding-box"
                                 viewBox="0 0 16 16">
@@ -44,9 +28,9 @@
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                             </svg>
                         </a>
-                        <!-- Корзина -->
+
                         <a href="{{ route('page_shopping_cart') }}"
-                            class="ms-3 sb text-decoration-none text-white dm hvr-bounce-in position-relative">
+                            class="text-decoration-none text-white hvr-bounce-in position-relative">
                             <small id="shopping_cart_products_count"
                                 class="position-absolute cart_product_count px-1">{{ Auth::check() ? ($product_users->count() > 0 ? $product_users->count() : '') : (count(Session::get('shopping_cart_products', [])) > 0 ? count(Session::get('shopping_cart_products', [])) : '') }}</small>
                             <svg class="text-white svgs" xmlns="http://www.w3.org/2000/svg" width="25"
@@ -56,15 +40,22 @@
                             </svg>
                         </a>
 
-                        <!-- Выпадающие меню поиска -->
-                        <form action="search" class="ms-3" aria-labelledby="dropdownMenuButton1">
+                        <form action="search" class="mt-3 mt-xl-0 ms-xl-3" aria-labelledby="dropdownMenuButton1">
                             <input type="search" class="form-input search fs-6" placeholder="Поик игр">
                         </form>
                     </div>
                 </ul>
 
             </div>
-        </div>
-    </nav>
+
+            <div class="pt-3">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Переключатель навигации">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+        </nav>
+    </div>
 
 </header>

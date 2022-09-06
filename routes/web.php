@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminMainController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminUsersController;
+use App\Http\Controllers\DocumensController;
 use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
@@ -13,11 +14,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuccessPageController;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +28,10 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::controller(DocumensController::class)->group(function () {
+    Route::get('/offert', 'OpenOffert')->name('open_offert');
+});
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/auth', 'index_user')->name('page_user_auth');

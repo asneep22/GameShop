@@ -20,7 +20,7 @@
                     <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Возврат</a>
                 </div>
                 <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Оферта</a>
+                    <a href="{{ route('open_offert') }}" class="mb-2 text-light hvr-grow">Оферта</a>
                 </div>
                 <div>
                     <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Обработка данных</a>
