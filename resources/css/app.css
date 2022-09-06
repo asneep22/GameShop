@@ -3,9 +3,9 @@
 @import 'bootstrap-icons';
 @import 'select2-bootstrap-5-theme';
 @import 'select2';
-@import './animated-border.min.css';
 @import './hover.css';
 @import 'daterangepicker';
+@import './messages.css';
 
 a{
     text-decoration: none;
@@ -913,14 +913,15 @@ body {
     right:-0.1rem;
     bottom:-0.1rem;
 }
-
 .headroom {
     will-change: transform;
     transition: transform 200ms linear;
 }
+
 .headroom--pinned {
     transform: translateY(0%);
 }
+
 .headroom--unpinned {
     transform: translateY(-100%);
 }

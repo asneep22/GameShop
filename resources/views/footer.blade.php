@@ -1,7 +1,7 @@
 <!-- Светлая тема -->
 
 
-<footer class="mb-0 m-auto hbg py-4 container-fluid text-light">
+<footer class="mb-0 m-auto blue-background py-4 container-fluid text-light">
 
     <div class="d-flex flex-column container">
 

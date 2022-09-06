@@ -130,7 +130,6 @@ Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/shopping_cart', 'index')->name('page_shopping_cart');
     Route::post('/product_to_cart/{id}', 'product_to_cart')->name('product_to_cart');
     Route::post('/buy', 'buy')->name('buy');
-    Route::get('/delete_product_from_card/{id}', 'delete_product_from_card')->name('delete_product_from_card');
 });
 
 Route::controller(MainController::class)->group(function () {

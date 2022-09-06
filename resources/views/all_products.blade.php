@@ -238,6 +238,7 @@
 
                                     {{-- В корзину --}}
                                     <a class="btn-blue text-light text-decoration-none hvr-float product_add_to_shop_cart_button position-relative"
+                                        data-toggle="message" data-target="#1" data-expire="2000"
                                         data-path="to-cart-btn-{{ $item->id }}"
                                         data-out-card-path="to-cart-out-btn-{{ $item->id }}"
                                         data-url={{ route('product_to_cart', $item->id) }} data-auth={{ Auth::check() }}>

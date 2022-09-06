@@ -11,13 +11,14 @@
             <div class="row">
                 <div class="col-lg-3 p-2 bg-light-secondary inner-shadow">
                     <div class="d-flex flex-column p-2 " style="min-height: 15rem; max-height: 15rem">
-                        <small class="mx-auto m-lg-0 text-secondary">Всего игр в корзине: {{ count($products) }}</small>
+                        <small class="mx-auto d-flex m-lg-0 text-secondary">Всего игр в корзине:<option id="cart_games_cont" value="{{count($products)}}">
+                                {{ count($products) }}</option></small>
                         <hr class="gradient mb-0">
                         <div class="overflow-y-auto table-responsive">
                             <table class="table overflow-hidden">
                                 <tbody class="">
                                     @foreach ($products as $product)
-                                        <tr class="d-flex">
+                                        <tr class="d-flex" id="info{{ $product->id }}">
                                             <th scope="row" class="col-4 d-flex p-0 py-3    ">
                                                 <p class="shop_cart_title{{ $product->id }} m-auto">{{ $product->title }}
                                                 </p>
@@ -39,15 +40,20 @@
                                                 </div>
                                             </td>
                                             <td class="col d-flex p-0">
-                                                <div class="d-flex justify-content-end  m-auto"><input type="number"
+                                                <div class="d-flex justify-content-end m-auto"><input type="number"
                                                         name="count{{ $product->id }}" value="1" min="1"
                                                         class="shop_cart_input form-input" max="9"
                                                         data-id="{{ $product->id }}"
                                                         data-discount="{{ $product->discount == null ? 0 : $product->discount->discount }}"
                                                         data-game-title="{{ $product->title }}"
                                                         data-price="{{ $product->price }}">
-                                                    <a href="{{ route('delete_product_from_card', $product->id) }}"
-                                                        class="btn-green text-decoration-none text-light text-center p-auto">X</a>
+                                                    <a style="cursor: pointer" data-toggle="message" data-target="#1"
+                                                        data-expire="2000"
+                                                        data-url="{{ route('product_to_cart', $product->id) }}"
+                                                        data-input-id="input{{ $product->id }}"
+                                                        data-info-id="info{{ $product->id }}"
+                                                        data-card-id="card{{ $product->id }}"
+                                                        class="btn-green remove_produt_from_cart_btn text-decoration-none text-light text-center p-auto">X</a>
                                                 </div>
                                             </td>
 
@@ -101,7 +107,7 @@
                     <div class="d-flex flex-column">
                         @foreach ($products as $product)
                             <input type="hidden" name="games[]" value="{{ $product->id }}">
-                            <a href="{{ route('page_product', $product->id) }}"
+                            <a id="card{{ $product->id }}" href="{{ route('page_product', $product->id) }}"
                                 class="mb-4 ms-lg-3 game-card-block d-flex rounded"
                                 style="background: url('{{ URL::asset('/storage/' . $product->file_path) }}')">
                                 <div class="px-3 text-center bottom-0 w-100  text-light m-auto position-absolute"

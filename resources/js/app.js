@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import './bootstrap';
 import 'bootstrap';
+import './message';
 import 'select2';
 import 'ajax';
 import AOS from 'aos';
@@ -86,6 +87,16 @@ $(function () {
     var $delete_cpus_id = [];
     var $delete_videocards_id = [];
     var $delete_keys_id = [];
+    var total_price = 0;
+
+    function UpdateTotalPrice() {
+        let shop_cart_inputs = $('.shop_cart_input');
+        total_price = 0;
+        for (let index = 0; index < shop_cart_inputs.length; index++) {
+            total_price += (shop_cart_inputs[index].getAttribute('data-price') - (shop_cart_inputs[index].getAttribute('data-price') / 100 * shop_cart_inputs[index].getAttribute('data-discount'))) * shop_cart_inputs[index].value;
+        }
+        $('.finish_price').html("Итоговая цена: " + total_price + "р");
+    }
 
     $('.js-select2').select2({
         tags: true,
@@ -101,28 +112,46 @@ $(function () {
         var svgOutCartPathId = '#' + $(this).attr('data-path');
         $(svgPathId).animate({ opacity: 'toggle' }, 'fast');
         $(svgOutCartPathId).animate({ opacity: 'toggle' }, 'fast');
+        $('.message').html("Корзина обновлена");
         $.ajax({
             url: url,
             type: "post",
             success: function (data) {
-                console.log(data);
                 $('#shopping_cart_products_count').html(data > 0 ? data : '');
             }
         });
-    })
+    });
+
+    $('.remove_produt_from_cart_btn').click(function () {
+        let url = $(this).attr('data-url');
+        let card = '#' + $(this).attr('data-card-id');
+        let info = '#' + $(this).attr('data-info-id');
+        let input = '#' + $(this).attr('data-input-id');
+        let price = $(input).attr('data-price');
+        let discount = $(input).attr('data-discount');
+        let value = $(input).val();
+        total_price -= (price - (price / 100 * discount)) * value;
+        $(card).remove();
+        $(info).remove();
+        let new_cart_games_count = $('#cart_games_cont').val() - 1;
+        $('#cart_games_cont').val(new_cart_games_count);
+        $('#cart_games_cont').html(new_cart_games_count);
+        UpdateTotalPrice();
+        $('.message').html("Корзина обновлена");
+        $.ajax({
+            url: url,
+            type: "post",
+            success: function (data) {
+                $('#shopping_cart_products_count').html(data > 0 ? data : '');
+            }
+        });
+    });
 
     //Увеличение количества ключей и подсчет итоговой цены
     $('.shop_cart_input').change(function () {
-        let total_price = 0;
-        this.value == 1 ? $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title')) : $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title') + ' X' + this.value)
-        var shop_cart_inputs = $('.shop_cart_input');
-        for (let index = 0; index < shop_cart_inputs.length; index++) {
-            total_price += (shop_cart_inputs[index].getAttribute('data-price') - (shop_cart_inputs[index].getAttribute('data-price') / 100 * shop_cart_inputs[index].getAttribute('data-discount'))) * shop_cart_inputs[index].value;
-        }
-        $('.finish_price').html("Итоговая цена: " + total_price + "р");
+        this.value == 1 ? $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title')) : $('.shop_cart_title' + $(this).attr('data-id')).html($(this).attr('data-game-title') + ' X' + this.value);
+        UpdateTotalPrice();
     });
-
-
 
     //Массовое удаление записей товаров
     $('.checkbox_product_select').click(function (e) {

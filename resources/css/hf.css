@@ -20,7 +20,7 @@ a{
 
 
 
-.hbg {
+.blue-background {
 
     background: radial-gradient(circle at bottom, #2f71d3, #104891);
     -webkit-box-shadow: 0px 0px 7px 5px rgba(34, 60, 80, 0.3);
@@ -106,7 +106,6 @@ a{
 
 .formin-h{
 
-
     position: absolute !important;
     z-index: 1 !important;
     opacity: 1;
@@ -135,23 +134,12 @@ a{
 
 }
 
-.fws {
+.search {
 
-    max-width: 53rem!important;
-    min-width: 53rem!important;
-
-    max-height: 3rem!important;
-    min-height: 3rem!important;
-
-    margin-top: -2.6rem !important;
-
-    margin-left: -52.7rem !important;
-
+    min-width: 14rem;
+    min-height: 2rem!important;
     outline: none !important;
     box-shadow: none !important;
-
-    border-radius: 10px;
-    border: solid black 2px !important;
 
     z-index: 10 !important;
 

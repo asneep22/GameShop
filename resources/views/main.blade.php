@@ -291,13 +291,13 @@
                 <div class="d-flex flex-column">
                     <div class="mt-3 d-flex text-black tcs">
                         <h2 class="text-sm-center text-lg-start" data-aos="fade-right">Все предложения</h2>
-                        <div class="d-lg-flex text-center my-auto me-0 mx-auto text-black tcs" data-aos="fade-left">
+                        <div class="d-lg-flex text-center my-auto me-0 mx-auto text-black tcs p-1" data-aos="fade-left">
                             <a href="{{ route('page_all_products') }}?new=on"
-                                class="text-decoration-none text-black tcs">Новинки</a>
+                                class="text-decoration-none text-black tcs p-1 hvr-bounce-in">Новинки</a>
                             <a href="{{ route('page_all_products') }}?popular=on"
-                                class="px-4 text-decoration-none text-black tcs ">Популярное</a>
+                                class="px-4 text-decoration-none text-black tcs p-1 hvr-bounce-in">Популярное</a>
                             <a href="{{ route('page_all_products') }}?discount=on"
-                                class="text-decoration-none text-black tcs">Скидки</a>
+                                class="text-decoration-none text-black tcs p-1 hvr-bounce-in">Скидки</a>
                         </div>
                         <div class="d-lg-flex text-center">
                         </div>
@@ -332,7 +332,8 @@
                                     <div class="btn-group mb-0 d-flex">
 
                                         {{-- В корзину --}}
-                                        <a class="btn-blue text-light text-decoration-none hvr-float product_add_to_shop_cart_button position-relative"
+                                        <a class="btn-blue text-light text-decoration-none hvr-float product_add_to_shop_cart_button  position-relative"
+                                            data-toggle="message" data-target="#1" data-expire="2000"
                                             data-path="to-cart-btn-{{ $item->id }}"
                                             data-out-card-path="to-cart-out-btn-{{ $item->id }}"
                                             data-url={{ route('product_to_cart', $item->id) }}

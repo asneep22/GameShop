@@ -26,7 +26,7 @@ class ShoppingCartController extends Controller
         $personal_disounts = personal_discount::all();
         $products = collect([]);
         $product_users = collect();
-        if(Auth::check()){
+        if (Auth::check()) {
             $product_users = product_user::where('user_id', Auth::id())->get();
         }
         //Добавление id продуктов, которые были добавлены в корзину к массиву
@@ -61,10 +61,10 @@ class ShoppingCartController extends Controller
     {
         if (Auth::check()) {
             $this->update_cart_auth_user($product_id);
-            return response(product_user::where('user_id', Auth::id())->count(),200);
+            return response(product_user::where('user_id', Auth::id())->count(), 200);
         } else {
             $this->update_cart_session($product_id);
-            return response(count(session('shopping_cart_products',[])),200);
+            return response(count(session('shopping_cart_products', [])), 200);
         }
     }
 
@@ -75,13 +75,13 @@ class ShoppingCartController extends Controller
             $this->remove_product_from_cart_auth_user($product_id);
         } else {
             $this->add_product_to_cart_auth_user($product_id);
-
         }
     }
 
     private function remove_product_from_cart_auth_user($product_id)
     {
         product_user::where('product_id', $product_id)->where('user_id', Auth::id())->delete();
+        return response('ok', 200);
     }
 
     private function add_product_to_cart_auth_user($product_id)
@@ -107,6 +107,7 @@ class ShoppingCartController extends Controller
         $shopping_cart_products = session('shopping_cart_products') ? session('shopping_cart_products') : [];
         array_splice($shopping_cart_products, array_search($product_id, $shopping_cart_products), 1);
         session(['shopping_cart_products' =>  $shopping_cart_products]);
+        return response('ok', 200);
     }
 
     private function add_product_to_cart_session($product_id, $shopping_cart_products)
@@ -115,21 +116,6 @@ class ShoppingCartController extends Controller
         session(['shopping_cart_products' =>  $shopping_cart_products]);
     }
     #endregion
-
-    public function delete_product_from_card($id)
-    {
-        if (Auth::check()) {
-            if (product_user::where('user_id', Auth::id())->where('product_id', $id)->first()->user_id == Auth::id()) {
-                product_user::where('user_id', Auth::id())->where('product_id', $id)->delete();
-            }
-        } else {
-            $shopping_cart_products = session('shopping_cart_products');
-            $shopping_cart_products = array_diff($shopping_cart_products, [$id]);
-            session(['shopping_cart_products' =>  $shopping_cart_products]);
-        }
-
-        return back();
-    }
 
     public function buy(Request $req)
     {
@@ -149,13 +135,15 @@ class ShoppingCartController extends Controller
         foreach ($req->games as $game) {
             $product = Product::where('id', $game)->first();
             $count = $req['count' . $game];
-            Order_products::create([
-                'order_id' => $order->id,
-                'product_id' => $game,
-                'count' => $count,
-            ]);
-            $price += ($product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount)) * $count;
-            $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
+            if ($count) {
+                Order_products::create([
+                    'order_id' => $order->id,
+                    'product_id' => $game,
+                    'count' => $count,
+                ]);
+                $price += ($product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount)) * $count;
+                $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
+            }
         }
         $order->total_price = $price;
         $order->save();
@@ -163,35 +151,56 @@ class ShoppingCartController extends Controller
 
         foreach ($order_products as $order_product) {
             for ($i = 0; $i < $order_product->count; $i++) {
-                if ($order_product->Product->keys()->first() == null) {
-
-                    $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order->id);
-                    foreach ($keysOfUserAwaitingPayment as $key) {
-                        key::create([
-                            "product_id" => $keysOfUserAwaitingPayment->product_id,
-                            "key" => $keysOfUserAwaitingPayment->key,
-                            "key_price" => $keysOfUserAwaitingPayment->key_price,
-                        ]);
-                    }
-                    return redirect()->back(); //На данный момент ключа к игре в магазине нет
+                if (!$this->CheckKeyAviability($order_product)) {
+                    $this->RemoveAllKeysFromOrder($order->id);
                 }
-
                 $key = $order_product->Product->keys()->first();
-                KeysAwaitingPayment::create([
-                    "order_id" => $order->id,
-                    "product_id" => $key->product_id,
-                    "key" => $key->key,
-                    "key_price" => $key->key_price,
-                ]);
-                key::where("key", $key->key)->first()->delete();
+                $this->MoveKeyToOrder($key, $order->id);
             }
         }
 
-        $payment
-            ->setInvoiceId($order->id)
-            ->setSum($price)
-            ->setDescription($description);
+        if ($price > 0) {
+            $payment
+                ->setInvoiceId($order->id)
+                ->setSum($price)
+                ->setDescription($description);
 
-        return redirect($payment->getPaymentUrl());
+            return redirect($payment->getPaymentUrl());
+        }
+
+        return redirect()->back(); // Нет товаров в корзине
     }
+
+    #region MethodsOfBuyFunction
+    private function CheckKeyAviability($order_product)
+    {
+        return $order_product->Product->keys()->first() == null;
+    }
+
+    private function RemoveAllKeysFromOrder($order_id)
+    {
+
+        $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order_id);
+        foreach ($keysOfUserAwaitingPayment as $key) {
+            key::create([
+                "product_id" => $keysOfUserAwaitingPayment->product_id,
+                "key" => $keysOfUserAwaitingPayment->key,
+                "key_price" => $keysOfUserAwaitingPayment->key_price,
+            ]);
+        }
+        return redirect()->back(); //На данный момент ключа к игре в магазине нет
+    }
+
+    public function MoveKeyToOrder($key, $order_id)
+    {
+
+        KeysAwaitingPayment::create([
+            "order_id" => $order_id,
+            "product_id" => $key->product_id,
+            "key" => $key->key,
+            "key_price" => $key->key_price,
+        ]);
+        key::where("key", $key->key)->first()->delete();
+    }
+    #endregion
 }
