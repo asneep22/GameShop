@@ -4,7 +4,7 @@
         <nav class="navbar text-center navbar-expand-lg navbar-light flex-column flex-lg-row">
 
             <a href="{{ route('page_welcome') }}" class="fs-1 text-decoration-none ts pt-3">
-                <h1 class="text-light">Teeter-Totter</h1>
+                <h1 class="text-light fontRussoOne">Teeter-Totter</h1>
             </a>
 
             <div class="collapse navbar-collapse justify-content-md-end justify-content-center" id="navbarColor01">
@@ -40,8 +40,15 @@
                             </svg>
                         </a>
 
-                        <form action="search" class="mt-3 mt-xl-0 ms-xl-3" aria-labelledby="dropdownMenuButton1">
-                            <input type="search" class="form-input search fs-6" placeholder="Поик игр">
+                        <form action="search" class="mt-3 mt-xl-0 ms-xl-3 position-relative"
+                            aria-labelledby="dropdownMenuButton1">
+                            <input type="search" class="form-input search fs-6" name="title" id="title"
+                                data-storage-url="{{ URL::asset('/storage/') }}" data-url="{{ route('search') }}"
+                                placeholder="Поик игр">
+                            <div class="position-absolute start-50 translate-middle bg-white search-box"
+                                style="display: none">
+
+                            </div>
                         </form>
                     </div>
                 </ul>

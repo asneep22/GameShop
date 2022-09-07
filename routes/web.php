@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminAdminsController;
-use App\Http\Controllers\AdminDirectoryController;
+use App\Http\Controllers\AdminDirectory\AdminDirectoryController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminAdmins\AdminAdminsController;
 use App\Http\Controllers\AdminMainController;
-use App\Http\Controllers\AdminProductsController;
+use App\Http\Controllers\AdminProducts\AdminProductsController;
 use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\DocumensController;
@@ -98,7 +99,7 @@ Route::middleware(['authAdmin'])->group(function () {
             Route::get('/directories/delete_cpu/{id}', 'deleteCpu')->name('deleteCpu');
             Route::get('/directories/delete_videocards/{id}', 'deleteVideocard')->name('deleteVideocard');
             Route::get('/directories/delete_discount/{id}', 'deleteDiscount')->name('deleteDiscount')->middleware('chiefAdmin');;
-            Route::post('/directories/delete_irectories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
+            Route::post('/directories/delete_directories_many', 'deleteDirectoriesMany')->name('deleteDirectoriesMany');
         });
     });
 
@@ -127,6 +128,10 @@ Route::prefix('robokassa')->controller(SuccessPageController::class)->group(func
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{id}', 'index')->name('page_product');
+});
+
+Route::controller(SearchController::class)->group(function () {
+    Route::get('/search/{search_field?}', 'search')->name('search');
 });
 
 Route::controller(ShoppingCartController::class)->group(function () {

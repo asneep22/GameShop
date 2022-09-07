@@ -35,7 +35,7 @@
                                                             </small>
                                                         @endif
                                                         <span
-                                                            class="text-center">{{ $product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount) }}р</span>
+                                                            class="text-center">{{ $product->discount_price == 0 ? $product->price : $product->discount_price}}р</span>
                                                     </div>
                                                 </div>
                                             </td>

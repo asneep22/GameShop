@@ -13,7 +13,7 @@ class product_discounts extends Model
 
     protected $fillable = [
         'product_id',
-        'discount_id'
+        'discount_id',
     ];
 
     protected $dates = ['deleted_at'];

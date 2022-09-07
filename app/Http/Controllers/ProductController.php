@@ -13,11 +13,15 @@ class ProductController extends Controller
 {
     public function index($id)
     {
+        $product_is_on_shopping_cart = false;
         $materials = product_material::where('product_id', $id)->get();
         $product = Product::with(['genres', 'oses', 'videocard', 'cpu'])->find($id);
+        $product_users = collect();
+        if(Auth::check()){
+            $product_users = product_user::where('user_id', Auth::id())->get();
+        }
         $product_users = product_user::all();
-        $dlcs = Product::where('product_id', $id)->get(); //Находим все DLC
-        //Находим похожие игры по жанрам
+        $dlcs = Product::where('product_id', $id)->get();
         $similar_games = Product::with(['genres', 'oses', 'videocard', 'cpu'])->join('genre_products', 'genre_products.product_id', '=', 'products.id')->select('products.*')
             ->where(function ($query) use ($product) {
                 foreach ($product->genres as $key => $genre) {
@@ -25,8 +29,6 @@ class ProductController extends Controller
                 }
             })->whereNot('products.id', '=', $id)->distinct()->inRandomOrder()->limit(5)->get();
 
-        //Проверяем, в корзине ли эта игра
-        $product_is_on_shopping_cart = false;
         $product_user_in_the_shop_cart = product_user::where('user_id', Auth::id())->get();
         if (Auth::check()) {
             foreach ($product_user_in_the_shop_cart as $shopping_cart_product) {
@@ -45,6 +47,6 @@ class ProductController extends Controller
         }
 
 
-        return view('product', compact('materials', 'product', 'similar_games', 'product_is_on_shopping_cart', 'dlcs'));
+        return view('product', compact('materials', 'product', 'product_users', 'similar_games', 'product_is_on_shopping_cart', 'dlcs'));
     }
 }

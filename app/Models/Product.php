@@ -14,6 +14,7 @@ class Product extends Model
         'file_path',
         'description',
         'price',
+        'discount_price',
         'videocard_id',
         'cpu_id',
         'desc_ram',

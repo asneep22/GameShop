@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('desc_ram');
             $table->string('desc_memory');
             $table->double('price',8,2);
+            $table->double('discount_price',8,2)->nullable()->default(0);
             $table->foreignId('discount_id')->nullable()->constrained('discounts')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('redChoose');
             $table->timestamps();

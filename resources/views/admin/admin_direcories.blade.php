@@ -283,7 +283,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <!--Форма обновления-->
-                                                        <form action="{{ route('updateOs', $os->id) }}">
+                                                        <form action="{{ route('updateOs', $os->id) }}" method="post">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
@@ -388,7 +388,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <!--Форма обновления-->
-                                                        <form action="{{ route('updateGenre', $cpu->id) }}">
+                                                        <form action="{{ route('updateGenre', $cpu->id) }}" method="post">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
@@ -495,7 +495,7 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <!--Форма обновления-->
-                                                        <form action="{{ route('updateVideocard', $videocard->id) }}">
+                                                        <form action="{{ route('updateVideocard', $videocard->id) }}" method="post">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"

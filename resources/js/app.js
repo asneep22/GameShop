@@ -303,6 +303,62 @@ $(function () {
         var src = $('.srcf');
         src.toggleClass('formin').toggleClass('formin-h');
     })
+
+    $('.search').on('input', function () {
+
+        var url = $(this).attr('data-url');
+        var storage_url = $(this).attr('data-storage-url');
+        if ($('.search').val().length > 0) {
+            $('.search-box').show("fast");
+        } else {
+            $('.search-box').hide("fast");
+        }
+
+        $.ajax({
+            url: url,
+            type: "get",
+            data: {
+                title: $(this).val(),
+            },
+            success: function (data) {
+                $('.search-box').html('');
+                data.forEach(game => {
+                    $('.search-box').append(
+                        "<div class='d-flex flex-column hvr-underline-from-left underline-blue' style='cursor: pointer;' id=game" + game['id'] + ">" +
+                            "<div class='d-flex w-100 p-1' style='min-height:5rem'>" +
+                                "<div class='search-box-image' style='background: url(" + storage_url + '/' + game['file_path'] + ")'>" +
+                                "</div>" +
+                                "<p class='my-auto text-start ps-2 w-100'>" + game['title'] + "</p>" +
+                                    "<div class='me-2 m-auto d-flex justify-content-end w-50' id='gamePrice" + game['id'] + "'>" +
+                                    "</div>" +
+                            "</div>" +
+                            "<hr class='gradient p-0 m-0'>");
+                        "</div>"
+
+                    if (game['discount_price'] != 0) {
+                        $('#gamePrice' + game['id']).append(
+                            "<div class='discount-small py-1' style='width:3rem'>" +
+                            "-" + (100 - (100 / (game['price'] / game['discount_price']))) +
+                            "%</div >").addClass('w-100')
+                    }
+
+                    $('#gamePrice' + game['id']).append(
+                        "<div style='width:4rem' class='my-auto'>" +
+                        (game['discount_price'] == 0 ? game['price'] : game['discount_price']) + "р" +
+                        "</div>" +
+                        "</div>");
+                    $('#game' + game['id']).click(function () {
+                        RedirectToProduct(game['id']);
+                    });
+                    console.log(game['title']);
+                });
+            }
+        })
+    });
+
+    function RedirectToProduct(product_id) {
+        return window.location.href = 'product/' + product_id;
+    }
 });
 
 

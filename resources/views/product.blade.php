@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <div class="container py-4 bg-white d-flex flex-column">
+    <div class="container py-5 mt-5 bg-white d-flex flex-column">
         <div class="row">
             <div class="col-lg-6 position-relative">
                 @if ($product->discount != null)
@@ -76,14 +76,14 @@
             <div class="col-lg-6 d-flex flex-column ps-lg-5">
                 <h2 class="text-center mb-3 mt-0 m-auto">{{ $product->title }}</h2>
                 <p class="text-break">{{ $product->description }}</p>
-                
+
                 <div class="mb-0 my-auto">
                     <hr class="dotted">
                     <div class="d-flex">
-                        <p class="fs-4 my-auto">Цена: {{ $product->price - ($product->price / 100) *  ($product->discount == null ? 0 : $product->discount->discount) }}р</p>
+                        <p class="fs-4 my-auto">Цена: {{ $product->discount_price == 0 ? $product->price : $product->discount_price }}р</p>
                         <div class="btn-group me-0 m-auto">
                             @if (!$product_is_on_shopping_cart)
-                                <a href="{{ route('add_product_to_cart', $product->id) }}"
+                                <a href="{{ route('product_to_cart', $product->id) }}"
                                     class="btn-green-buy text-decoration-none text-light">Купить</a>
                             @else
                                 <a href="{{ route('page_shopping_cart') }}"
