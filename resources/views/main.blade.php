@@ -8,14 +8,13 @@
     <!-- Главное видео -->
 
     @if ($games_for_video->count() > 0)
-        <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade  m-0" data-bs-ride="carousel"
+        <div id="carouselExampleFade" class="container-fluid p-0 carousel slide carousel-fade" data-bs-ride="carousel"
             data-bs-interval="20000">
 
             <div class="carousel-inner text-center">
 
                 @foreach ($games_for_video as $product)
-                    <div class="carousel-item video-backround @if ($loop->first) active @endif" id="videos"
-                        style="background-image: linear-gradient(to top, rgba(22, 22, 22, 1), rgba(26, 26, 26, 0.98))">
+                    <div class="carousel-item video-backround dark-backround @if ($loop->first) active @endif" id="videos">
                         <div class="d-flex container position-relative p-0">
                             <video preload="auto" muted="muted" class="main_video m-auto position-relative"
                                 autoplay="autoplay"
@@ -25,7 +24,7 @@
                                 {{ $product->title }}р</p>
                             <div class="w-100 d-flex position-absolute" style="z-index:3; top:2.3rem">
                                 <p class="fs-5 price m-auto">
-                                    {{ $product->discount_price == 0 ? $product->price : $product->discount_price  }}р</p>
+                                    {{ $product->discount_price == 0 ? $product->price : $product->discount_price }}р</p>
                             </div>
                             <a href="{{ route('page_product', $product->id) }}"
                                 class="position-absolute d-flex text-center btn-blue-outline text-decoration-none text-light">
@@ -362,7 +361,7 @@
                                                     d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                             </svg></a>
                                         <h5 class="me-3 m-auto">
-                                            {{ $item->discount_price == 0 ? $item->price : $item->discount_price}}р
+                                            {{ $item->discount_price == 0 ? $item->price : $item->discount_price }}р
                                         </h5>
                                     </div>
                                 </div>

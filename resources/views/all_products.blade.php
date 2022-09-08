@@ -1,12 +1,91 @@
 @extends('app')
 
 @section('content')
-    <div class="container pt-5 mt-2 bg-white h-100 min-vh-100 d-flex flex-column px-2">
-        <div class="d-lg-flex">
+    {{-- Выгодное предложение --}}
+    <div class="container-fluid bg-light-inner-gradient" style="min-height: 25rem">
+        <div style="" class="container mt-5 pt-5">
+            <p class="">Выгодное предложение</p>
+            @if ($discount_products->count() > 0)
+                <div id="RedChoose" class="carousel slide mb-3 profitable-card" data-bs-ride="carousel">
+                    <div class="carousel-inner hvr-underline-from-right underline-red">
+                        <div class="carousel-item active">
+                            <a href="{{ route('page_product', $discount_products->first()->id) }}"
+                                class="text-decoration-none rounded row"
+                                style="background-color: #FFF">
+                                <div class="profitable-card-image rounded"
+                                    style="background: url({{ URL::asset('/storage/' . $discount_products->first()->file_path) }})">
+                                </div>
+                                <div class=" text-dark ps-3 d-flex flex-column col">
+                                    <h4 class="mt-3 pe-3">{{ $discount_products->first()->title }}</h4>
+                                    <p class="m-0 text-break">
+                                        {{ Str::limit($discount_products->first()->description, 400, '...') }}</p>
+                                    <div class="d-flex flex-column mb-0 my-auto">
+                                        <hr class="dotted m-0 p-0">
+                                        <div class="d-flex flex-column flex-nowrap text-center position-relative">
+                                            <small><s>{{ $discount_products->first()->price }}р</s></small>
+                                            <h3 class="m-0">
+                                                {{ $discount_products->first()->discount_price }}р
+                                            </h3>
+                                            <span class="discount-medium my-auto text-center d-flex fw-bold" style="top:0rem">
+                                                <span class="m-auto">
+                                                    -{{ $discount_products->first()->discount->discount }}%<br />
+                                                    <small style="font-size:.8rem">до
+                                                        {{ $discount_products->first()->discount->date_end->format('d.m.Y') }}</small>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+                        @foreach ($discount_products as $product)
+                            @if (!$loop->first)
+                                <div class="carousel-item">
+                                    <a href="{{ route('page_product', $discount_products->first()->id) }}"
+                                        class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
+                                        style="background-color: #FFF">
+                                        <div class="profitable-card-image rounded"
+                                            style="background: url({{ URL::asset('/storage/' . $product->file_path) }})">
+                                        </div>
+                                        <div class=" text-dark ps-3 d-flex flex-column">
+                                            <h4 class="mt-3 pe-3">{{ $product->title }}</h4>
+                                            <p class="m-0">
+                                                {{ Str::limit($product->description, 200, '...') }}
+                                            </p>
+                                            <div class="d-flex flex-column mb-0 my-auto">
+                                                <hr class="dotted m-0 p-0">
+                                                <div
+                                                    class="d-flex flex-column mb-0 my-auto flex-nowrap text-center position-relative">
+                                                    <small><s>{{ $product->price }}р</s></small>
+                                                    <h3 class=" ">
+                                                        {{ $product->discount_price }}р
+                                                    </h3>
+                                                    <span class="discount-medium my-auto text-center d-flex fw-bold">
+                                                        <span class="m-auto">
+                                                            -{{ $product->discount->discount }}%
+                                                        </span>
+                                                    </span>
+                                                    <hr class="dotted m-0 p-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="container pt-5 mt-2 bg-white h-100 min-vh-100 px-2">
+        <div class="d-md-flex">
             {{-- Боковая панель --}}
-            <div class="col mx-auto me-xl-3 mt-5 px-2 d-flex flex-column bg-light-secondary inner-shadow"
-                style="min-width: 15rem; max-width:20rem">
-                <form action="" class="d-flex flex-column py-3 m-lg-0 m-auto">
+            <div class="mx-auto me-md-3 px-2 bg-light-secondary"
+                style="min-width: 10rem; max-width:20rem">
+                <form action="" class="mt-0 py-3 m-lg-0 m-auto">
                     <div class="form-group mx-auto d-flex flex-column">
                         <div class="d-flex justify-content-between mb-2">
                             <div class="d-flex flex-column">
@@ -63,22 +142,24 @@
                         <div class="d-flex flex-column mb-3">
 
                             <div class="d-flex mb-3">
-                                <input type="checkbox" name="new" id="new" class="form-check-input mt-0 mx-1 p-2"
-                                    {{ Request::query('new') ? 'checked' : '' }}>
+                                <input type="checkbox" name="new" id="new"
+                                    class="form-check-input mt-0 mx-1 p-2" {{ Request::query('new') ? 'checked' : '' }}>
                                 <label class="form-check-label my-auto" for="new">
                                     Новинки
                                 </label>
                             </div>
 
                             <div class="d-flex mb-3">
-                                <input type="checkbox" name="popular" id="popular" class="form-check-input mt-0 mx-1 p-2">
+                                <input type="checkbox" name="popular" id="popular"
+                                    class="form-check-input mt-0 mx-1 p-2">
                                 <label class="form-check-label my-auto" for="popular">
                                     Популярное
                                 </label>
                             </div>
 
                             <div class="d-flex mb-3">
-                                <input type="checkbox" name="discount" id="discount" class="form-check-input mt-0 mx-1 p-2"
+                                <input type="checkbox" name="discount" id="discount"
+                                    class="form-check-input mt-0 mx-1 p-2"
                                     {{ Request::query('discount') ? 'checked' : '' }}>
                                 <label class="form-check-label my-auto" for="discount">
                                     Скидки
@@ -129,89 +210,13 @@
             </div>
 
             <div class="d-flex flex-column col">
-                {{-- Выгодное предложение --}}
-                @if ($discount_products->count() > 0)
-                    <h5 class="text-center">Выгодное предложение</h5>
-                    <div id="RedChoose" class="carousel slide mb-3" data-bs-ride="carousel">
-                        <div class="carousel-inner hvr-underline-from-right underline-red">
-                            <div class="carousel-item active">
-                                <a href="{{ route('page_product', $discount_products->first()->id) }}"
-                                    class="text-decoration-none row rounded mt-3 profitable-card"
-                                    style="background-color: #FFF">
-                                    <div class="profitable-card-image rounded col"
-                                        style="background: url({{ URL::asset('/storage/' . $discount_products->first()->file_path) }})">
-                                    </div>
-                                    <div class=" text-dark ps-3 d-flex flex-column col">
-                                        <h4 class="mt-3 pe-3">{{ $discount_products->first()->title }}</h4>
-                                        <p class="m-0 text-break">
-                                            {{ Str::limit($discount_products->first()->description, 200, '...') }}</p>
-                                        <div class="d-flex flex-column mb-0 my-auto">
-                                            <hr class="dotted m-0 p-0">
-                                            <div class="d-flex flex-column flex-nowrap text-center position-relative">
-                                                <small><s>{{ $discount_products->first()->price }}р</s></small>
-                                                <h3 class=" ">
-                                                    {{ $discount_products->first()->price - ($discount_products->first()->price / 100) * $discount_products->first()->discount->discount }}р
-                                                </h3>
-                                                <span class="discount-medium my-auto text-center d-flex fw-bold">
-                                                    <span class="m-auto">
-                                                        -{{ $discount_products->first()->discount->discount }}%<br />
-                                                        <small style="font-size:.8rem">до
-                                                            {{ $discount_products->first()->discount->date_end->format('d.m.Y') }}</small>
-                                                    </span>
-                                                </span>
-                                                <hr class="dotted m-0 p-0">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-                            </div>
-
-                            @foreach ($discount_products as $product)
-                                @if (!$loop->first)
-                                    <div class="carousel-item">
-                                        <a href="{{ route('page_product', $discount_products->first()->id) }}"
-                                            class="text-decoration-none d-xxl-flex rounded mt-3 profitable-card"
-                                            style="background-color: #FFF">
-                                            <div class="profitable-card-image rounded"
-                                                style="background: url({{ URL::asset('/storage/' . $product->file_path) }})">
-                                            </div>
-                                            <div class=" text-dark ps-3 d-flex flex-column">
-                                                <h4 class="mt-3 pe-3">{{ $product->title }}</h4>
-                                                <p class="m-0">
-                                                    {{ Str::limit($product->description, 200, '...') }}
-                                                </p>
-                                                <div class="d-flex flex-column mb-0 my-auto">
-                                                    <hr class="dotted m-0 p-0">
-                                                    <div
-                                                        class="d-flex flex-column mb-0 my-auto flex-nowrap text-center position-relative">
-                                                        <small><s>{{ $product->price }}р</s></small>
-                                                        <h3 class=" ">
-                                                            {{ $product->price - ($product->price / 100) * $product->discount }}р
-                                                        </h3>
-                                                        <span class="discount-medium my-auto text-center d-flex fw-bold">
-                                                            <span class="m-auto">
-                                                                -{{ $product->discount->discount }}%
-                                                            </span>
-                                                        </span>
-                                                        <hr class="dotted m-0 p-0">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
                 {{-- Все продукты --}}
                 <div
                     class="d-flex flex-fill flex-wrap justify-content-between @if ($discount_products->count() == 0) mt-5 @endif all-page">
 
                     @foreach ($products as $item)
-                        <div
-                            class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue">
+                        <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
+                            style="min-width: 31.8%">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"
@@ -265,7 +270,7 @@
                                                 d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                         </svg></a>
                                     <h5 class="me-3 m-auto">
-                                        {{ $item->price}}р
+                                        {{ $item->discount_price == 0 ? $item->price : $item->discount_price }}р
                                     </h5>
                                 </div>
                             </div>

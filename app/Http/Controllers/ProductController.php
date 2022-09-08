@@ -32,7 +32,7 @@ class ProductController extends Controller
         $product_user_in_the_shop_cart = product_user::where('user_id', Auth::id())->get();
         if (Auth::check()) {
             foreach ($product_user_in_the_shop_cart as $shopping_cart_product) {
-                if ($shopping_cart_product->id == $product->id) {
+                if ($shopping_cart_product->product_id == $product->id) {
                     $product_is_on_shopping_cart = true;
                 }
             }

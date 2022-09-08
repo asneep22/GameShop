@@ -72,8 +72,7 @@ class AllProductsController extends Controller
         }
 
         $discount_products = Product::where('discount_id', '!=', null)->limit(3)->get();
-
-        $products = $products->distinct()->paginate(15, ['product.*']);
+        $products = $products->distinct(['products.id'])->paginate(15);
         return view('all_products', compact('genres', 'products', 'product_users', 'oses', 'discount_products', 'discounts'));
     }
 }

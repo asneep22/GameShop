@@ -19,6 +19,15 @@ AOS.init();
 
 const particlesJS = window.particlesJS;
 
+$.fn.toggleHTML = function(t1, t2){
+    if(this.html() == t1){
+      this.html(t2);
+    }else{
+      this.html(t1);
+    }
+    return this;
+    };
+
 //date
 $('.discount-period').daterangepicker({
     "showDropdowns": true,
@@ -110,8 +119,16 @@ $(function () {
         var url = $(this).attr('data-url');
         var svgPathId = '#' + $(this).attr('data-out-card-path');
         var svgOutCartPathId = '#' + $(this).attr('data-path');
-        $(svgPathId).animate({ opacity: 'toggle' }, 'fast');
-        $(svgOutCartPathId).animate({ opacity: 'toggle' }, 'fast');
+        var startText = "В корзину";
+        var changeText = $(this).attr('data-new-text');
+        if(changeText){
+            $(this).toggleHTML(startText, changeText)
+
+        }
+        if (svgPathId && svgOutCartPathId) {
+            $(svgPathId).animate({ opacity: 'toggle' }, 'fast');
+            $(svgOutCartPathId).animate({ opacity: 'toggle' }, 'fast');
+        }
         $('.message').html("Корзина обновлена");
         $.ajax({
             url: url,
@@ -325,15 +342,15 @@ $(function () {
                 data.forEach(game => {
                     $('.search-box').append(
                         "<div class='d-flex flex-column hvr-underline-from-left underline-blue' style='cursor: pointer;' id=game" + game['id'] + ">" +
-                            "<div class='d-flex w-100 p-1' style='min-height:5rem'>" +
-                                "<div class='search-box-image' style='background: url(" + storage_url + '/' + game['file_path'] + ")'>" +
-                                "</div>" +
-                                "<p class='my-auto text-start ps-2 w-100'>" + game['title'] + "</p>" +
-                                    "<div class='me-2 m-auto d-flex justify-content-end w-50' id='gamePrice" + game['id'] + "'>" +
-                                    "</div>" +
-                            "</div>" +
-                            "<hr class='gradient p-0 m-0'>");
-                        "</div>"
+                        "<div class='d-flex w-100 p-1' style='min-height:5rem'>" +
+                        "<div class='search-box-image' style='background: url(" + storage_url + '/' + game['file_path'] + ")'>" +
+                        "</div>" +
+                        "<p class='my-auto text-start ps-2 w-100'>" + game['title'] + "</p>" +
+                        "<div class='me-2 m-auto d-flex justify-content-end w-50' id='gamePrice" + game['id'] + "'>" +
+                        "</div>" +
+                        "</div>" +
+                        "<hr class='gradient p-0 m-0'>");
+                    "</div>"
 
                     if (game['discount_price'] != 0) {
                         $('#gamePrice' + game['id']).append(
@@ -354,6 +371,14 @@ $(function () {
                 });
             }
         })
+    });
+
+    $(document).mouseup(function (e) {
+        var container = $('.search-box');
+        if (container.has(e.target).length === 0) {
+            $('.search').val("");
+            container.hide('fast');
+        }
     });
 
     function RedirectToProduct(product_id) {
