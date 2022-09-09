@@ -29,7 +29,7 @@
         @include('header')
     @endif
 
-    @if (Route::getCurrentRoute()->getPrefix() == '/admin')
+    @if (Route::getCurrentRoute()->getPrefix() == 'admin')
         @include('admin.admin_panel')
     @endif
 

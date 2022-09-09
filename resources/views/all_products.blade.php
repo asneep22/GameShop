@@ -212,11 +212,11 @@
             <div class="d-flex flex-column col">
                 {{-- Все продукты --}}
                 <div
-                    class="d-flex flex-fill flex-wrap justify-content-between @if ($discount_products->count() == 0) mt-5 @endif all-page">
+                    class="d-flex flex-fill flex-wrap justify-content-between @if ($discount_products->count() == 0) @endif all-page">
 
                     @foreach ($products as $item)
                         <div class="mb-4 d-flex flex-column game-card-all-products rounded hvr-underline-from-right underline-blue"
-                            style="min-width: 31.8%">
+                            style="min-width: 31.8%; max-height:15rem">
                             <a href="{{ route('page_product', $item->id) }}"
                                 class="card-body-my text-decoration-none text-dark">
                                 <div class="img-all-products"

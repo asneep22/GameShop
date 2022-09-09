@@ -23,12 +23,12 @@ class AdminProductsController extends AdminProductsBaseController
             $products = Product::with(['videocard', 'cpu', 'oses', 'genres', 'keys'])->paginate(20);
         }
         $all_products = Product::all();
-        $all_products_not_dlc = Product::whereNull('product_id')->get();
+        $dls_products = Product::whereNotNull('product_id')->get();
         $genres = Genre::all();
         $oses = os::all();
         $cpus = cpu::all();
         $videocards = videocard::all();
-        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards', 'all_products', 'all_products_not_dlc'));
+        return view('admin.admin_products', compact('products', 'genres', 'oses', 'cpus', 'videocards', 'all_products', 'dls_products'));
     }
 
     public function create(Request $req)

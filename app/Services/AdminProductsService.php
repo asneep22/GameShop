@@ -40,8 +40,10 @@ class AdminProductsService extends Service
         if (!$req->redChoose) $req['redChoose'] = false;
         $req['cpu_id'] = (cpu::firstOrCreate(['pname' => $req->cpu]))->id;
         $req['videocard_id'] = (videocard::firstOrCreate(['pname' => $req->videocard]))->id;
-        $req['product_id'] = $id;
         $req['price'] = $req->price;
+        if(!$req->product_id){ //DLC
+            $req['product_id'] = null;
+        }
         if ($req->file) {
             Storage::disk('public')->delete('GamesImages', $req->file);
             $path = Storage::disk('public')->put('GamesImages', $req->file);
@@ -117,8 +119,8 @@ class AdminProductsService extends Service
 
     private function AddOsesToProduct(Request $req, $product_id)
     {
-        foreach ($req->genre as $genreName) {
-            $genre = os::firstOrCreate(['pname' => $genreName]);
+        foreach ($req->desc_os as $osName) {
+            $genre = os::firstOrCreate(['pname' => $osName]);
             $this->AddOsToProduct($genre->id, $product_id);
         }
     }
