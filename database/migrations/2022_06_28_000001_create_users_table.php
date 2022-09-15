@@ -20,10 +20,9 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->foreignID('role_id')->constrained('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignID('personal_discount_id')->nullable()->constrained('personal_discounts')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp("last_online_at")->useCurrent();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
+            $table->timestamp("last_online_at")->useCurrent();
             $table->timestamps();
         });
     }

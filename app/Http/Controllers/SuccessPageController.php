@@ -8,7 +8,10 @@ use App\Models\Order;
 use App\Mail\OrderShipped;
 use App\Models\Order_products;
 use App\Models\KeysAwaitingPayment;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Cast\String_;
 
 class SuccessPageController extends Controller
 {
@@ -30,11 +33,23 @@ class SuccessPageController extends Controller
                 $order->save();
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
                 $order_keys->delete();
+                $this->register_user($order->email);
                 echo $payment->getSuccessAnswer();
             }
         }
 
         return redirect()->route('paymentFail');
+    }
+
+    public function register_user(string $email)
+    {
+        if (!User::where('email', '=', $email)->first()) {
+            User::create([
+                'email' => $email,
+                'role_id' => 3,
+            ]);
+            return back();
+        }
     }
 
     public function indexFail()

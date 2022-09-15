@@ -34,12 +34,6 @@ class AdminSettingController extends Controller
             }
         }
 
-        //Обновление пароля
-        if ($req->old_password != null) {
-            if (Hash::check($req->old_password, $user->password)) {
-                $user->update(['password' => bcrypt($req->password_confirmation)]);
-            }
-        }
         return back(); //С сообщением, об усешном изменении данных
     }
 }

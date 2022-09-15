@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Mail\LoginLink;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -23,7 +26,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'role_id',
         'personal_discount',
         'last_online_at',
-        'password',
         'fio',
         'phone'
     ];
@@ -34,7 +36,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
@@ -65,6 +66,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(personal_discount::class, 'id');
     }
-    
 
+    public function loginTokens()
+    {
+        return $this->hasMany(LoginToken::class);
+    }
+
+    public function SendLoginLink()
+    {
+        $plaintext = Str::random(32);
+        $token = $this->loginTokens()->create([
+            'token' => hash('sha256', $plaintext),
+            'expires_at' => now()->addMinutes(15),
+        ]);
+        Mail::to($this->email)->queue(new LoginLink($plaintext, $token->expires_at));
+    }
 }

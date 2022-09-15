@@ -75,7 +75,7 @@
                 </div>
                 <div class="p-4 d-flex bg-light-secondary-2 outer-shadow-light-1 ms-lg-2 mt-lg-0 rounded"
                     style="min-width:25rem">
-                    <div class="mb-3 text-white">
+                    <div class="mb-3 text-white d-flex flex-column w-100">
                         <div class="d-flex justify-content-between">
                             <h5 class="me-3"> {{ $product->title }}</h5>
                             <span class="fs-5">
@@ -123,15 +123,13 @@
                                 </span>
                                 <hr class="my-2">
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="my-auto">Дата выхода: {{ $product->publishing_date->format('d.m.Y') }}</p>
-                                <a class="text-decoration-none text-light px-3 py-2 btn-orange hvr-grow product_add_to_shop_cart_button btn_product_buy"
-                                    style="cursor: pointer" data-new-text="Игра уже в корзине" data-toggle="message"
-                                    data-target="#1" data-expire="2000"
-                                    data-url={{ route('product_to_cart', $product->id) }}
-                                    data-auth={{ Auth::check() }}>{{ !$product_is_on_shopping_cart ? 'В корзину' : 'Игра уже в корзине' }}</a>
-
-                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-0 m-auto w-100">
+                            <p class="my-auto">Дата выхода: {{ $product->publishing_date->format('d.m.Y') }}</p>
+                            <a class="me-0 m-auto text-decoration-none text-light px-3 py-2 btn-orange hvr-grow product_add_to_shop_cart_button btn_product_buy"
+                                style="cursor: pointer" data-new-text="Игра уже в корзине" data-toggle="message"
+                                data-target="#1" data-expire="2000" data-url={{ route('product_to_cart', $product->id) }}
+                                data-auth={{ Auth::check() }}>{{ !$product_is_on_shopping_cart ? 'В корзину' : 'Игра уже в корзине' }}</a>
                         </div>
                     </div>
                 </div>

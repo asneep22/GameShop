@@ -28,8 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'email' => 'GameShop@gmail.com',
-            'password' => bcrypt(123),
+            'email' => 'buefyf222@mail.ru',
             'role_id' => '1'
         ]);
 

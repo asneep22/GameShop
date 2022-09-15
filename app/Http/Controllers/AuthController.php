@@ -25,15 +25,17 @@ class AuthController extends Controller
 
     public function login_user(Request $req)
     {
-        if (Auth::attempt($req->only(['email', 'password']))) {
-            $user = User::where('id', '=', Auth::id())->update(['last_online_at' => now()]);
-            if (Auth::user()->role->id > 2) {
-                return redirect()->route('page_welcome');
-            } else {
-                return redirect()->route('page_admin_main');
-            }
-        }
-        return back();
+        User::whereEmail($req->email)->first()->sendLoginLink();
+        return response('ok', 200);
+    }
+
+    public function verifyLogin(Request $request, $token)
+    {
+        $token = \App\Models\LoginToken::whereToken(hash('sha256', $token))->firstOrFail();
+        abort_unless($request->hasValidSignature() && $token->isValid(), 401);
+        $token->consume();
+        Auth::login($token->user);
+        return redirect('/');
     }
 
     //Выход из аккаунта
@@ -42,29 +44,6 @@ class AuthController extends Controller
         Auth::logout();
         session()->flush();
         return redirect()->route('page_welcome');
-    }
-
-    //Регистрация нового пользовтеля
-    public function register_user(Request $req)
-    {
-        //Проверка на наличие почты в базе данных
-        if (!User::where('email', '=', $req->email)->first()) {
-            $req['password'] = bcrypt($req['password']);
-            $req['role_id'] = '3';
-            $user = User::create($req->all());
-            //Авторизация
-            Auth::login($user);
-            event(new Registered($user));
-            //Возвращение на предыдущю страницу
-            return back();
-        }
-    }
-
-    //Подтверждение почты
-    public function verify_email(Request $req){
-        $req->user()->sendEmailVerificationNotification();
-        //Добавить сообщение, что письмо выслано
-        return back();
     }
 
     public function delete($id)

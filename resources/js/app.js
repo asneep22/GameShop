@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import './bootstrap';
-import 'bootstrap';
 import './message';
 import 'select2';
 import 'ajax';
+import 'bootstrap';
+import './bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
@@ -19,14 +19,14 @@ AOS.init();
 
 const particlesJS = window.particlesJS;
 
-$.fn.toggleHTML = function(t1, t2){
-    if(this.html() == t1){
-      this.html(t2);
-    }else{
-      this.html(t1);
+$.fn.toggleHTML = function (t1, t2) {
+    if (this.html() == t1) {
+        this.html(t2);
+    } else {
+        this.html(t1);
     }
     return this;
-    };
+};
 
 //date
 $('.discount-period').daterangepicker({
@@ -107,6 +107,26 @@ $(function () {
         $('.finish_price').html("Итоговая цена: " + total_price + "р");
     }
 
+    $('#auth-form').submit(function () {
+        let url = $(this).attr('action');
+        let formData = {
+            email: $(this).find("input[name=email]").val(),
+        }
+        $('#authInfo').hide('fast');
+        $.ajax({
+            url: url,
+            type: "post",
+            data: formData,
+            beforeSend: function (data) {
+                $('#authInfo').html("На указанную почту было выслано письмо с ссылкой входа в аккаунт. Для завершения процесса авторизации перейдтите по ссылке в письме.");
+            }
+        }).catch(function (e) {
+            $('#authInfo').html("Почта не найдена, для создания аккаунта вам необхожимо купить хотя бы одну игру. После покупки аккаунт автоматически буедт создан.");
+        })
+        $('#authInfo').show('fast');
+        return false;
+    });
+
     $('.js-select2').select2({
         tags: true,
         language: "ru",
@@ -121,7 +141,7 @@ $(function () {
         var svgOutCartPathId = '#' + $(this).attr('data-path');
         var startText = "В корзину";
         var changeText = $(this).attr('data-new-text');
-        if(changeText){
+        if (changeText) {
             $(this).toggleHTML(startText, changeText)
 
         }
@@ -133,6 +153,7 @@ $(function () {
         $.ajax({
             url: url,
             type: "post",
+
             success: function (data) {
                 $('#shopping_cart_products_count').html(data > 0 ? data : '');
             }
@@ -192,7 +213,6 @@ $(function () {
                 type: "post",
                 data: {
                     delete_products_id: $delete_products_id,
-
                 },
                 success: function (data) {
                     console.log('ok');

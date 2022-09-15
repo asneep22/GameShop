@@ -25,11 +25,11 @@
     </div>
 
     <!-- Хедер -->
-    @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
+    @if (!Route::is('page_admin_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
         @include('header')
     @endif
 
-    @if (Route::getCurrentRoute()->getPrefix() == 'admin')
+    @if (Route::getCurrentRoute()->getPrefix() == '/admin')
         @include('admin.admin_panel')
     @endif
 
@@ -38,7 +38,7 @@
     @yield('content')
 
     <!-- Футер -->
-    @if (!Route::is('page_admin_auth') && !Route::is('page_user_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
+    @if (!Route::is('page_admin_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
      @include('footer')
     @endif
 
