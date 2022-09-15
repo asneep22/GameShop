@@ -20,8 +20,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'xXVS6424kUzbvLb2adHA',
-            'I22YVYwA7T6Tj6zFZaSX',
+            'ygp6co9m1K0Mvzp8vCQN',
+            'UtRa261N0KRaITRYU7Br',
             true
         );
 
@@ -55,8 +55,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'xXVS6424kUzbvLb2adHA',
-            'I22YVYwA7T6Tj6zFZaSX',
+            'ygp6co9m1K0Mvzp8vCQN',
+            'UtRa261N0KRaITRYU7Br',
             true
         );
         $order = Order::find($_POST['InvId']);
@@ -79,8 +79,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'xXVS6424kUzbvLb2adHA',
-            'I22YVYwA7T6Tj6zFZaSX',
+            'ygp6co9m1K0Mvzp8vCQN',
+            'UtRa261N0KRaITRYU7Br',
             true
         );
 
