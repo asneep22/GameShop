@@ -8,7 +8,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
 import 'daterangepicker/daterangepicker'
-import Headroom from "headroom.js";
 AOS.init();
 
 window.$ = window.jQuery = $;
