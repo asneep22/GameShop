@@ -31,7 +31,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'buefyf222@mail.ru',
             'role_id' => '1'
         ]);
-
-        \App\Models\User::factory(100)->create();
     }
 }
