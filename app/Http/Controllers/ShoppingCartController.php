@@ -127,8 +127,8 @@ class ShoppingCartController extends Controller
         $description = "";
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'jBJHRU39ZDjq8USUx2Z1',
-            'sqq3c1iqTjDYz360VVQR',
+            'xXVS6424kUzbvLb2adHA',
+            'I22YVYwA7T6Tj6zFZaSX',
             true
         );
 

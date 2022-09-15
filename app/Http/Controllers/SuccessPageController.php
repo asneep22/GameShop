@@ -20,8 +20,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'jBJHRU39ZDjq8USUx2Z1',
-            'sqq3c1iqTjDYz360VVQR',
+            'xXVS6424kUzbvLb2adHA',
+            'I22YVYwA7T6Tj6zFZaSX',
             true
         );
 
@@ -34,11 +34,10 @@ class SuccessPageController extends Controller
                 Mail::to($order->email)->send(new OrderShipped($order_keys->get(), $order));
                 $order_keys->delete();
                 $this->register_user($order->email);
-                echo $payment->getSuccessAnswer();
             }
-        }
 
-        return redirect()->route('paymentFail');
+            echo $payment->getSuccessAnswer();
+        }
     }
 
     public function register_user(string $email)
@@ -56,8 +55,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'jBJHRU39ZDjq8USUx2Z1',
-            'sqq3c1iqTjDYz360VVQR',
+            'xXVS6424kUzbvLb2adHA',
+            'I22YVYwA7T6Tj6zFZaSX',
             true
         );
         $order = Order::find($_POST['InvId']);
@@ -80,8 +79,8 @@ class SuccessPageController extends Controller
     {
         $payment = new \Idma\Robokassa\Payment(
             'Teeter-totter',
-            'jBJHRU39ZDjq8USUx2Z1',
-            'sqq3c1iqTjDYz360VVQR',
+            'xXVS6424kUzbvLb2adHA',
+            'I22YVYwA7T6Tj6zFZaSX',
             true
         );
 
