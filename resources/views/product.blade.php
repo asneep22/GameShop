@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
     <div class="container-fluid mt-5 pt-1 px-0">
-        <div class="container py-5 bg-white d-lg-flex justify-content-between px-0">
+        <div class="container py-4 bg-white d-lg-flex justify-content-between px-0">
             <div class="position-relative m-lg-0" style="min-width: 70%; max-width:100%">
                 @if ($product->discount != null)
                     <span class="discount-medium text-center d-flex fw-bold" style="right: .7rem; top: 0rem; z-index:5">
@@ -31,7 +31,7 @@
                         {{-- После всех видео вставляем изображения --}}
                         @foreach ($materials as $key => $material)
                             @if (pathinfo($material->file_path, PATHINFO_EXTENSION) == 'jpg')
-                                <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+                                <div class="carousel-item {{ $i == 0 ? 'active' : '' }} w-100">
                                     <div class="visually-hidden">{{ $i++ }}</div>
                                     <img src="{{ URL::asset('/storage/' . $material->file_path) }}" class="d-block w-100"
                                         alt="...">
@@ -73,7 +73,7 @@
                 </div>
             </div>
             {{-- Информация о продукте --}}
-            <div class="p-4 ms-3 d-flex bg-blue outer-shadow-light-1 mt-5 mt-lg-0 mt-lg-0 rounded"
+            <div class="p-4 ms-3 d-flex bg-blue outer-shadow-light-1 mt-3 mt-lg-0 mt-lg-0 rounded"
                 style="min-width:28%">
                 <div class="mb-3 text-white d-flex flex-column w-100">
                     <div class="d-flex justify-content-between">

@@ -8,8 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
 import 'daterangepicker/daterangepicker'
-import { keys } from 'lodash';
-import { fromJSON } from 'postcss';
+import Headroom from "headroom.js";
 AOS.init();
 
 window.$ = window.jQuery = $;

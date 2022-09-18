@@ -29507,10 +29507,7 @@ body {
 
 .product-img-btn {
     border: 0;
-    max-width: 14% !important;
-    max-height: 5rem !important;
-    min-width: 14% !important;
-    min-height: 5rem !important;
+    min-width: 20% !important;
     outline: none;
 }
 

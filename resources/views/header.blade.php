@@ -1,4 +1,4 @@
-<header class="container-fluid blue-background p-0 m-0 z-index-5 position-fixed">
+<header class="container-fluid blue-background p-0 m-0 z-index-5 headroom position-fixed">
 
     <div class="container d-flex flex-column p-0">
         <nav class="navbar text-center navbar-expand-lg navbar-light flex-column flex-lg-row">
