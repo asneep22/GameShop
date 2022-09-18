@@ -70,7 +70,7 @@ class AdminProductsService extends Service
     {
         if ($materials) {
             foreach ($materials as $material) {
-                $path = Storage::disk('public')->putFileAs('materials', $material, $material->getClientOriginalName());
+                $path = Storage::disk('public')->put('materials', $material);
                 if (pathinfo($path, PATHINFO_EXTENSION) == 'webm') { //Images automaticly compress with spatie/laravel-image-optimizer
                     $this->CompressVideo($material, $path); //Very long success time
                 }
