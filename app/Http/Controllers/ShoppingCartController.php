@@ -70,11 +70,6 @@ class ShoppingCartController extends Controller
     }
 
     #region MethodsOfProductToCartFunction
-    private function CheckKeyAbense($product_id)
-    {
-        return Product::find($product_id)->keys->count() == 0;
-    }
-
     private function update_cart_auth_user($product_id)
     {
         if (product_user::where('product_id', $product_id)->where('user_id', Auth::id())->first()) {
@@ -138,17 +133,19 @@ class ShoppingCartController extends Controller
             true
         );
 
-        foreach ($req->games as $game) {
-            $product = Product::where('id', $game)->first();
-            $count = $req['count' . $game];
-            if ($count) {
-                Order_products::create([
-                    'order_id' => $order->id,
-                    'product_id' => $game,
-                    'count' => $count,
-                ]);
-                $price += ($product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount)) * $count;
-                $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
+        if ($req->games) {
+            foreach ($req->games as $game) {
+                $product = Product::where('id', $game)->first();
+                $count = $req['count' . $game];
+                if ($count) {
+                    Order_products::create([
+                        'order_id' => $order->id,
+                        'product_id' => $game,
+                        'count' => $count,
+                    ]);
+                    $price += ($product->price - ($product->price / 100) * ($product->discount == null ? 0 : $product->discount->discount)) * $count;
+                    $description .= 'После оплаты, товар будет выслан на указанную почту: ' . $order->email;
+                }
             }
         }
         $order->total_price = $price;
@@ -156,7 +153,7 @@ class ShoppingCartController extends Controller
         $order_products = Order_products::where('order_id', $order->id)->get();
         $games_id_where_keys_not_enough = [];
         foreach ($order_products as $order_product) {
-            if($product->keys->count() < $order_product->count){
+            if ($product->keys->count() < $order_product->count) {
                 array_push($games_id_where_keys_not_enough, $order_product->Product->first()->id);
             }
 
@@ -165,7 +162,7 @@ class ShoppingCartController extends Controller
                 $games_not_enought = '';
                 foreach ($games_id_where_keys_not_enough as $key => $not_enought_game_id) {
                     $product_where_not_enoght_keys = Product::where('id', $not_enought_game_id)->first();
-                    $games_not_enought .= $product_where_not_enoght_keys->title .': осталось '.$product_where_not_enoght_keys->keys->count().' ключей'.($key == count($games_id_where_keys_not_enough) - 1 ? '. ' : '; ').'<br>';
+                    $games_not_enought .= $product_where_not_enoght_keys->title . ': осталось ' . $product_where_not_enoght_keys->keys->count() . ' ключей' . ($key == count($games_id_where_keys_not_enough) - 1 ? '. ' : '; ') . '<br>';
                 }
                 flash('В данный момент в магазине отсутствует указанное количестов ключей для следующих игр:<br>' . $games_not_enought . '<br>С уважением' . env('APP_NAME'))->dark();
                 Order::find($order->id)->delete();
