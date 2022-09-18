@@ -5,10 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="container bg-white d-flex flex-column pt-5 mt-5">
+    <div class="container bg-white d-flex flex-column pt-5 mt-5 px-0">
+        @include('flash::message')
         <form action="{{ route('buy') }}" method="POST">
             @csrf
-            <div class="row">
+            <div class="row w-100 m-0">
                 <div class="col-lg-3 p-2 bg-light-secondary inner-shadow">
                     <div class="d-flex flex-column p-2 " style="min-height: 15rem; max-height: 15rem">
                         <small class="mx-auto d-flex m-lg-0 text-secondary">Всего игр в корзине:<option id="cart_games_cont" value="{{count($products)}}">
@@ -108,7 +109,7 @@
                         @foreach ($products as $product)
                             <input type="hidden" name="games[]" value="{{ $product->id }}">
                             <a id="card{{ $product->id }}" href="{{ route('page_product', $product->id) }}"
-                                class="mb-4 ms-lg-3 game-card-block d-flex rounded"
+                                class="mb-4 ms-lg-2 game-card-block d-flex rounded"
                                 style="background: url('{{ URL::asset('/storage/' . $product->file_path) }}')">
                                 <div class="px-3 text-center bottom-0 w-100  text-light m-auto position-absolute"
                                     style="z-index: 2">

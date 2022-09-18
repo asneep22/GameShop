@@ -12,9 +12,11 @@ use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\mainController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuccessPageController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Artisan;
@@ -51,6 +53,10 @@ Route::middleware(['authAdmin'])->group(function () {
         Route::get('/delete/{id}', 'delete')->name('delete_user')->middleware('chiefAdmin');
     });
 
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/deleteReview/{id}', 'DeleteFromAdmin')->name('DeleteReviewFromAdmin');
+    });
+
     Route::prefix('admin')->group(function () {
         Route::controller(AdminMainController::class)->group(function () {
             Route::get('/main', 'index')->name('page_admin_main');
@@ -82,6 +88,10 @@ Route::middleware(['authAdmin'])->group(function () {
                 Route::get('/settings_admin/{id}', 'index')->name('page_admin_settings');
                 Route::post('/settings_admin/{id}/update', 'update')->name('AdminSettingUpd');
             });
+
+            Route::controller(ReviewController::class)->group(function () {
+                Route::get('/deleteReview/{id}', 'DeleteFromUser')->name('DeleteReviewFromUser');
+            });
         });
 
         Route::controller(AdminDirectoryController::class)->group(function () {
@@ -108,6 +118,12 @@ Route::middleware(['authAdmin'])->group(function () {
     //Для создания ссылки на файловое хранилище
     Route::get('/linkstorage', function () {
         Artisan::call('storage:link');
+    });
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::controller(ReviewController::class)->group(function () {
+        Route::post('/ReviewCreate/{product_id?}/{review_id?}', 'Create')->name('ReviewCreate');
     });
 });
 

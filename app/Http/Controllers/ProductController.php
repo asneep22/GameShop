@@ -6,6 +6,7 @@ use App\Models\genre_product;
 use App\Models\Product;
 use App\Models\product_material;
 use App\Models\product_user;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,8 @@ class ProductController extends Controller
         $product_is_on_shopping_cart = false;
         $materials = product_material::where('product_id', $id)->get();
         $product = Product::with(['genres', 'oses', 'videocard', 'cpu'])->find($id);
+        $reviews = Review::where('product_id', $id)->where('review_id', null)->latest()->paginate(5);
+        $reviewsOnRevew = Review::where('product_id', $id)->whereNotNull('review_id')->get();
         $product_users = collect();
         if(Auth::check()){
             $product_users = product_user::where('user_id', Auth::id())->get();
@@ -47,6 +50,6 @@ class ProductController extends Controller
         }
 
 
-        return view('product', compact('materials', 'product', 'product_users', 'similar_games', 'product_is_on_shopping_cart', 'dlcs'));
+        return view('product', compact('materials', 'product', 'product_users', 'similar_games', 'product_is_on_shopping_cart', 'dlcs', 'reviews', 'reviewsOnRevew'));
     }
 }

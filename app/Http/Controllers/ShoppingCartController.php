@@ -14,6 +14,7 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\Cast\Array_;
 use Symfony\Component\ErrorHandler\Debug;
 
 class ShoppingCartController extends Controller
@@ -69,6 +70,11 @@ class ShoppingCartController extends Controller
     }
 
     #region MethodsOfProductToCartFunction
+    private function CheckKeyAbense($product_id)
+    {
+        return Product::find($product_id)->keys->count() == 0;
+    }
+
     private function update_cart_auth_user($product_id)
     {
         if (product_user::where('product_id', $product_id)->where('user_id', Auth::id())->first()) {
@@ -148,12 +154,25 @@ class ShoppingCartController extends Controller
         $order->total_price = $price;
         $order->save();
         $order_products = Order_products::where('order_id', $order->id)->get();
-
+        $games_id_where_keys_not_enough = [];
         foreach ($order_products as $order_product) {
-            for ($i = 0; $i < $order_product->count; $i++) {
-                if (!$this->CheckKeyAviability($order_product)) {
-                    $this->RemoveAllKeysFromOrder($order->id);
+            if($product->keys->count() < $order_product->count){
+                array_push($games_id_where_keys_not_enough, $order_product->Product->first()->id);
+            }
+
+            $games_id_where_keys_not_enough = array_unique($games_id_where_keys_not_enough);
+            if (count($games_id_where_keys_not_enough) != 0) {
+                $games_not_enought = '';
+                foreach ($games_id_where_keys_not_enough as $key => $not_enought_game_id) {
+                    $product_where_not_enoght_keys = Product::where('id', $not_enought_game_id)->first();
+                    $games_not_enought .= $product_where_not_enoght_keys->title .': осталось '.$product_where_not_enoght_keys->keys->count().' ключей'.($key == count($games_id_where_keys_not_enough) - 1 ? '. ' : '; ').'<br>';
                 }
+                flash('В данный момент в магазине отсутствует указанное количестов ключей для следующих игр:<br>' . $games_not_enought . '<br>С уважением' . env('APP_NAME'))->dark();
+                Order::find($order->id)->delete();
+                return back();
+            }
+
+            for ($i = 0; $i < $order_product->count; $i++) {
                 $key = $order_product->Product->keys()->first();
                 $this->MoveKeyToOrder($key, $order->id);
             }
@@ -172,28 +191,8 @@ class ShoppingCartController extends Controller
     }
 
     #region MethodsOfBuyFunction
-    private function CheckKeyAviability($order_product)
-    {
-        return $order_product->Product->keys()->first() == null;
-    }
-
-    private function RemoveAllKeysFromOrder($order_id)
-    {
-
-        $keysOfUserAwaitingPayment = KeysAwaitingPayment::where("order_id", $order_id);
-        foreach ($keysOfUserAwaitingPayment as $key) {
-            key::create([
-                "product_id" => $keysOfUserAwaitingPayment->product_id,
-                "key" => $keysOfUserAwaitingPayment->key,
-                "key_price" => $keysOfUserAwaitingPayment->key_price,
-            ]);
-        }
-        return redirect()->back(); //На данный момент ключа к игре в магазине нет
-    }
-
     public function MoveKeyToOrder($key, $order_id)
     {
-
         KeysAwaitingPayment::create([
             "order_id" => $order_id,
             "product_id" => $key->product_id,

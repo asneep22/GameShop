@@ -16,30 +16,26 @@
                 <div>
                     <a href="{{ route('page_all_products') }}" class="mb-2 text-light hvr-grow">Ключи</a>
                 </div>
+            </div>
+
+
+            <div class="d-flex flex-column px-3 text-center text-sm-start mb-3">
+                <h5 class="ts">Информация</h5>
                 <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Возврат</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#organizationInfo" class="mb-2 text-light hvr-grow">О магазине</a>
+                </div>
+                <div>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#returnProducts" class="mb-2 text-light hvr-grow">Возврат</a>
+                </div>
+                <div>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#accumaltiveDiscount" class="mb-2 text-light hvr-grow">Накопительная скидка</a>
                 </div>
                 <div>
                     <a href="{{ route('open_offert') }}" class="mb-2 text-light hvr-grow">Оферта</a>
                 </div>
-                <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Обработка данных</a>
-                </div>
-                <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">О магазине</a>
-                </div>
             </div>
 
-            {{-- Выгода --}}
-            <div class="d-flex flex-column px-3 text-center text-sm-start mb-3">
-                <h5 class="ts">Выгода</h5>
-                <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Игры со скидками</a>
-                </div>
-                <div>
-                    <a href="{{ route('page_welcome') }}" class="mb-2 text-light hvr-grow">Накопительная скидка</a>
-                </div>
-            </div>
+
 
             {{-- Контакты --}}
             <div class="d-flex flex-column px-3 text-center text-sm-start mb-3">
@@ -54,7 +50,8 @@
             <div class="d-flex flex-column px-3 text-center text-sm-start mb-3">
                 <h5 class="ts">Рассылка</h5>
                 <form action="#">
-                    <input type="email" class="form-input mb-2" maxlength="50" name="email" id="email" placeholder="Email">
+                    <input type="email" class="form-input mb-2" maxlength="50" name="email" id="email"
+                        placeholder="Email">
                     <button type="submit" class="btn-green hvr-glow">Подключить</button>
                 </form>
             </div>
@@ -64,7 +61,60 @@
             <small>Все права защищены. Все названия продуктов, игр, компаний, марок, логотипов,
                 товарных знаков и другх материалов являются собственностью соответствующих владельцев.</small>
         </div>
-
     </div>
+
+        <!-- Модальное окно информации про возврат -->
+        <div class="modal fade text-dark" id="returnProducts" tabindex="-1" aria-labelledby="returnProductsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="returnProductsModalLabel">Возврат</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Информация про возврат
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Модальное окно информации про магазин -->
+    <div class="modal fade text-dark" id="organizationInfo" tabindex="-1" aria-labelledby="organizationInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="organizationInfoModalLabel">О магазине</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Информация про магазин
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Модальное окно информации про накопительную скидку -->
+        <div class="modal fade text-dark" id="accumaltiveDiscount" tabindex="-1" aria-labelledby="accumaltiveDiscountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="accumaltiveDiscountoModalLabel">Накопительная скидка</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Информация про накопительную скидку
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </footer>

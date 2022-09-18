@@ -21,7 +21,7 @@
 <body class="min-vh-100 w-100 d-flex flex-column mainbg position-relative {{ !Route::getCurrentRoute()->getPrefix() == '/admin' ? 'img-bgl' : '' }}" >
     <div id="particles-js"></div>
     <div id="1" class="message fade">
-        Message
+        ...
     </div>
 
     <!-- Хедер -->
@@ -29,14 +29,13 @@
         @include('header')
     @endif
 
-    @if (Route::getCurrentRoute()->getPrefix() == '/admin')
+    @if (Route::getCurrentRoute()->getPrefix() == 'admin')
         @include('admin.admin_panel')
     @endif
 
 
     <!-- Контент -->
     @yield('content')
-
     <!-- Футер -->
     @if (!Route::is('page_admin_auth') && !Route::getCurrentRoute()->getPrefix() == '/admin')
      @include('footer')

@@ -8,6 +8,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'particles.js/particles';
 import 'daterangepicker/daterangepicker'
+import { keys } from 'lodash';
+import { fromJSON } from 'postcss';
 AOS.init();
 
 window.$ = window.jQuery = $;
@@ -148,12 +150,20 @@ $(function () {
             $(svgPathId).animate({ opacity: 'toggle' }, 'fast');
             $(svgOutCartPathId).animate({ opacity: 'toggle' }, 'fast');
         }
-        $('.message').html("Корзина обновлена");
         $.ajax({
             url: url,
             type: "post",
+            beforeSend: function (data) {
+                $('.message').html("...");
+            },
+            complete: function (data) {
+                console.log(data.responseText);
+                if(data.responseText == "notEnoughKeys"){
+                    $('.message').html("У товара нет ключей");
+                } else{
+                    $('.message').html("Корзина обновлена");
+                }
 
-            success: function (data) {
                 $('#shopping_cart_products_count').html(data > 0 ? data : '');
             }
         });
@@ -401,7 +411,7 @@ $(function () {
     });
 
     function RedirectToProduct(product_id) {
-        return window.location.href = 'product/' + product_id;
+        return window.location ='/product/' + product_id;
     }
 });
 

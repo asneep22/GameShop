@@ -64,4 +64,8 @@ class Product extends Model
     public function discount(){
             return $this->belongsTo(discount::class);
     }
+
+    public function review(){
+        return $this->hasMany(Review::class);
+    }
 }

@@ -29709,9 +29709,18 @@ body {
     background: linear-gradient(to top, rgb(247, 247, 247), rgb(240, 240, 240));
 }
 
-.bg-light-secondary-2 {
+.bg-blue {
     border-radius: 3px;
     background: linear-gradient(180deg, rgb(70, 161, 232), rgb(74, 146, 225));
+}
+
+.bg-orange {
+    border-radius: 3px;
+    background: linear-gradient(45deg, #fe9634, #fe7b34);
+}
+
+.bg-secondary{
+    background: linear-gradient(45deg, #2a2a2a, #393939);
 }
 
 .text-gray-light {
@@ -29840,6 +29849,15 @@ body {
     box-shadow: 0px 0px 8px 2px rgba(34, 60, 80, 0.2);
 }
 
+.outer-shadow-light-2 {
+    box-shadow: 0px 0px 6px 2px rgba(34, 60, 80, 0.2);
+}
+
+.review-card{
+    border-radius: 5px;
+    min-height: 5rem;
+}
+
 .headroom {
     will-change: transform;
     transition: transform 200ms linear;
@@ -29851,5 +29869,9 @@ body {
 
 .headroom--unpinned {
     transform: translateY(-100%);
+}
+
+.alert-dark{
+    background: linear-gradient(-90deg, #242424 0%, #2f2f2f 100%);
 }
 
