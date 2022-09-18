@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
     <div class="container-fluid mt-5 pt-1 px-0">
-        <div class="container py-5 bg-white d-lg-flex px-0">
+        <div class="container py-5 bg-white d-lg-flex justify-content-between px-0">
             <div class="position-relative m-lg-0" style="min-width: 70%; max-width:100%">
                 @if ($product->discount != null)
                     <span class="discount-medium text-center d-flex fw-bold" style="right: .7rem; top: 0rem; z-index:5">
@@ -40,7 +40,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="mt-1 d-flex overflow-hidden">
+                <div class="mt-1 d-flex overflow-auto">
                     <div class="visually-hidden">{{ $i = 0 }}</div>
                     {{-- Делаем видео первыми в кнопках слайдера --}}
                     @foreach ($materials as $key => $material)
@@ -72,8 +72,9 @@
                     @endforeach
                 </div>
             </div>
-            <div class="p-4 d-flex bg-blue outer-shadow-light-1 ms-lg-2 mt-5 mt-lg-0 mt-lg-0 rounded"
-                style="min-width:18rem">
+            {{-- Информация о продукте --}}
+            <div class="p-4 ms-3 d-flex bg-blue outer-shadow-light-1 mt-5 mt-lg-0 mt-lg-0 rounded"
+                style="min-width:28%">
                 <div class="mb-3 text-white d-flex flex-column w-100">
                     <div class="d-flex justify-content-between">
                         <h5 class="me-3"> {{ $product->title }}</h5>
@@ -140,9 +141,9 @@
 
     {{-- Отзывы --}}
     <div class="container-fluid bg-light px-0">
-        <div class="container">
+        <div class="container px-0">
             <div class="d-lg-flex mt-4 px-0 my-4">
-                <div class="p-2 w-100">
+                <div class="" style="min-width: 70.8%">
                     {{-- Если авторизован --}}
                     @auth
                         <h5>Отзывы</h5>
@@ -275,10 +276,10 @@
                     </div>
                 </div>
                 {{-- Правила написания отзывов --}}
-                <div style="min-width:18rem; margin-top:2.4rem;"
-                    class="bg-secondary text-light outer-shadow-light-2 mb-3 ms-lg-2">
+                <div style="min-width:28%; margin-top:2.4rem;"
+                    class="bg-secondary text-light outer-shadow-light-2 mb-3 ms-lg-3 rounded">
                     <h5 class="text-center p-4">Внимательно прочитайте перед публикацией отзыва!</h5>
-                    <div class="px-4">
+                    <div class="px-4 pb-4">
                         <p class="fs-6">- Не используйте ненормативую лексику или оскорбления</p>
                         <p class="fs-6">- Не используйте отзывы с целью прорекламирвать какой-либо товар, услуги или
                             личность</p>
