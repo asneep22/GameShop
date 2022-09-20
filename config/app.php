@@ -181,7 +181,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class,
 
         /*
          * Package Service Providers...
