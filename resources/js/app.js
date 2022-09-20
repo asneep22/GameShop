@@ -156,14 +156,12 @@ $(function () {
                 $('.message').html("...");
             },
             complete: function (data) {
-                console.log(data.responseText);
                 if(data.responseText == "notEnoughKeys"){
                     $('.message').html("У товара нет ключей");
                 } else{
                     $('.message').html("Корзина обновлена");
                 }
-
-                $('#shopping_cart_products_count').html(data > 0 ? data : '');
+                $('#shopping_cart_products_count').html(data.responseText > 0 ? data.responseText : '');
             }
         });
     });

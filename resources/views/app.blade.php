@@ -42,7 +42,7 @@
      @include('footer')
     @endif
 
-    <script defer src="{{ URL::asset('js/app.js')}}"></script>
+    <script src="{{ URL::asset('js/app.js')}}"></script>
 </body>
 
 </html>
