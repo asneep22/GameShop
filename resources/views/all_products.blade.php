@@ -1,5 +1,13 @@
 @extends('app')
 
+@section('page_title')
+Все ключи
+@endsection
+
+@section('page_descr')
+На странице представлены все ключи автивации для игр, которые есть магазине
+@endsection
+
 @section('content')
     {{-- Выгодное предложение --}}
     <div class="container-fluid bg-light-inner-gradient" style="min-height: 25rem">

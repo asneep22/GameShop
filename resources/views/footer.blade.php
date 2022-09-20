@@ -33,6 +33,7 @@
                 <div>
                     <a href="{{ route('open_offert') }}" class="mb-2 text-light hvr-grow">Оферта</a>
                 </div>
+                <p class="mb-2">Регион: Россия</p>
             </div>
 
 

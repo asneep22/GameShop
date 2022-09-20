@@ -4,6 +4,10 @@
     Корзина
 @endsection
 
+@section('page_descr')
+Страница, на которой отобржаются товраы, добавленные в корзину
+@endsection
+
 @section('content')
     <div class="container bg-white d-flex flex-column pt-5 mt-5 px-0">
         @include('flash::message')

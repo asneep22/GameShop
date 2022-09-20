@@ -4,6 +4,10 @@
     Настройки
 @endsection
 
+@section('page_descr')
+Страница, на котороый вы сможете настроить свои данные
+@endsection
+
 @section('content')
     <div class="container d-flex flex-column my-4">
         <h4 class="text-center">Настройки</h4>

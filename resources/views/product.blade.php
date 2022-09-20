@@ -1,4 +1,13 @@
 @extends('app')
+
+@section('page-title')
+    {{$product->title}}
+@endsection
+
+@section('page_descr')
+Купить {{$product->title}}
+@endsection
+
 @section('content')
     <div class="container-fluid mt-5 pt-1 px-0">
         <div class="container py-4 bg-white d-lg-flex justify-content-between px-0">

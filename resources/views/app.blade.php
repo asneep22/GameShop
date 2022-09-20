@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 
     <title>@yield('page_title')</title>
+    <meta name="description" content="@yield('page_descr')">
 
 
 </head>

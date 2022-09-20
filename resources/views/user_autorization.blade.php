@@ -4,6 +4,10 @@
     Авторизация
 @endsection
 
+@section('page_descr')
+Страница авторизации
+@endsection
+
 @section('content')
     <div class="container mx-auto d-flex flex-column" style="margin-top:11rem">
         <div class="form-reg-auth d-flex m-auto shadow bg-white rounded pt-2 my-5">
