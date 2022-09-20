@@ -91,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Информация про магазин
+                    Сайт {{env("APP_NAME")}} является интернет-магазином предоставляющий возможность покупки цифровых товаров(кючи активации компьютерных игр) для пользователя. Сайт работает на территории СНГ.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
