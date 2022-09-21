@@ -156,9 +156,9 @@ $(function () {
                 $('.message').html("...");
             },
             complete: function (data) {
-                if(data.responseText == "notEnoughKeys"){
+                if (data.responseText == "notEnoughKeys") {
                     $('.message').html("У товара нет ключей");
-                } else{
+                } else {
                     $('.message').html("Корзина обновлена");
                 }
                 $('#shopping_cart_products_count').html(data.responseText > 0 ? data.responseText : '');
@@ -349,6 +349,12 @@ $(function () {
 
     $('.search').on('input', function () {
 
+        $(this).keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
         var url = $(this).attr('data-url');
         var storage_url = $(this).attr('data-storage-url');
         if ($('.search').val().length > 0) {
@@ -408,7 +414,7 @@ $(function () {
     });
 
     function RedirectToProduct(product_id) {
-        return window.location ='/product/' + product_id;
+        return window.location = '/product/' + product_id;
     }
 });
 

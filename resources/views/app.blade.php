@@ -42,7 +42,7 @@
      @include('footer')
     @endif
 
-    <script src="{{ URL::asset('js/app.js')}}" integrity='sha256-MpWMJBPhnPrxfxhhH9TFA9202C2Fr80qLQYyX/H6YCk= sha384-S8VBlveyk0KtEedKGzSmUxBoNsdfehPJujc2zJ0Z8CYCMrTOoi1TOcbtoUhC9guQ sha512-D4oCU4rKZzX7LR7Vt6vTOBhXCWdX7pgh1yh7O0nqFTs1sFeMSz2VCptpfwnpCPv5wjuezHhst2N31/D1VQ4VRQ=='  ></script>
+    <script src="{{ URL::asset('js/app.js')}}" integrity='sha256-VGOD4mIvi6bv4dUjJD3RAjro0TN5QbO8VxETp03Dolo= sha384-nnalksCo7nP4zU7gEyWgrPAbnRt/BMJwnNnkxh6r5RINTdP2DA4w+K6RYA3I5u+w sha512-5Omb6cLhhF60qZDBZ7K8uWmvw6o6waYU/LCFhSxooaK5pZBLutyZAoYsCJNCk+XIUx2hPBG3q6dkaj4troY6Aw=='  ></script>
 </body>
 
 </html>

@@ -40,7 +40,7 @@
                             </svg>
                         </a>
 
-                        <form action="search" class="mt-3 mt-xl-0 ms-xl-3 position-relative"
+                        <form action="search" id="search" class="mt-3 mt-xl-0 ms-xl-3 position-relative"
                             aria-labelledby="dropdownMenuButton1">
                             <input type="search" class="form-input search fs-6" name="title" id="title"
                                 data-storage-url="{{ URL::asset('/storage/') }}" data-url="{{ route('search') }}"
