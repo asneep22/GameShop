@@ -416,7 +416,7 @@
                 <div class="d-flex flex-wrap justify-content-center">
                     @foreach ($genres as $genre)
                         <a href="{{ route('page_all_products') }}?genres%5B%5D={{ $genre->id }}"
-                            class="mb-3 mx-2 d-lg-flex blue-block hvr-sweep-to-bottom text-decoration-none">
+                            class="mb-3 mx-2 d-flex blue-block hvr-sweep-to-bottom text-decoration-none">
                             <div class="text-break text-center d-flex m-auto" data-aos="fade-left"
                                 data-aos-anchor-placement="center-bottom">
                                 <div class="px-3 text-light  our-pluses-border-orange">
