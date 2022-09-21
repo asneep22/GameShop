@@ -602,7 +602,7 @@ return [
             // Enable `strict-dynamic` will *ignore* `self`, `unsafe-inline`,
             // `allow` and `schemes`. You can find more information from:
             // https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-            'strict-dynamic' => true,
+            'strict-dynamic' => false,
 
             'hashes' => [
                 'sha256' => [
