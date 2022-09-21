@@ -577,11 +577,13 @@ return [
         'script-src' => [
             'none' => false,
 
-            'self' => true,
+            'self' => false,
 
             'report-sample' => false,
 
-            'allow' => [],
+            'allow' => [
+                'http://localhost/GameShop/public/js/app.js'
+            ],
 
             'schemes' => [
                 // 'data:',
@@ -600,7 +602,7 @@ return [
             // Enable `strict-dynamic` will *ignore* `self`, `unsafe-inline`,
             // `allow` and `schemes`. You can find more information from:
             // https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-            'strict-dynamic' => false,
+            'strict-dynamic' => true,
 
             'hashes' => [
                 'sha256' => [
