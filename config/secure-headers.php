@@ -583,8 +583,6 @@ return [
             'report-sample' => false,
 
             'allow' => [
-                'https://code.jquery.com',
-                'http://teeter-totter.ru'
             ],
 
             'schemes' => [
@@ -596,7 +594,7 @@ return [
 
             'unsafe-inline' => false,
 
-            'unsafe-eval' => false,
+            'unsafe-eval' => true,
 
             // https://www.w3.org/TR/CSP3/#unsafe-hashes-usage
             'unsafe-hashes' => false,
@@ -604,11 +602,11 @@ return [
             // Enable `strict-dynamic` will *ignore* `self`, `unsafe-inline`,
             // `allow` and `schemes`. You can find more information from:
             // https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-            'strict-dynamic' => true,
+            'strict-dynamic' => false,
 
             'hashes' => [
                 'sha256' => [
-                    // 'sha256-hash-value-with-base64-encode',
+                    'sha256-d46cb3caac6f6e12c3ec3fc044d7ceab6fd2b91c077feede4d31fe263d819959',
                 ],
 
                 'sha384' => [
