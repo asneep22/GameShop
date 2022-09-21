@@ -505,8 +505,7 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src
-        'img-src' => [
-        ],
+        'img-src' => [],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/manifest-src
         'manifest-src' => [
@@ -582,8 +581,7 @@ return [
 
             'report-sample' => false,
 
-            'allow' => [
-            ],
+            'allow' => [],
 
             'schemes' => [
                 // 'data:',
@@ -606,15 +604,15 @@ return [
 
             'hashes' => [
                 'sha256' => [
-                    'sha256-d46cb3caac6f6e12c3ec3fc044d7ceab6fd2b91c077feede4d31fe263d819959',
+                    'sha256-MpWMJBPhnPrxfxhhH9TFA9202C2Fr80qLQYyX/H6YCk='
                 ],
 
                 'sha384' => [
-                    // 'sha384-hash-value-with-base64-encode',
+                    'sha384-S8VBlveyk0KtEedKGzSmUxBoNsdfehPJujc2zJ0Z8CYCMrTOoi1TOcbtoUhC9guQ',
                 ],
 
                 'sha512' => [
-                    // 'sha512-hash-value-with-base64-encode',
+                    'sha512-D4oCU4rKZzX7LR7Vt6vTOBhXCWdX7pgh1yh7O0nqFTs1sFeMSz2VCptpfwnpCPv5wjuezHhst2N31/D1VQ4VRQ==',
                 ],
             ],
         ],
@@ -630,8 +628,7 @@ return [
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
-        'style-src' => [
-        ],
+        'style-src' => [],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr
         'style-src-attr' => [
