@@ -577,7 +577,7 @@ return [
         'script-src' => [
             'none' => false,
 
-            'self' => false,
+            'self' => true,
 
             'report-sample' => false,
 
