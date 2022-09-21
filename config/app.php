@@ -188,6 +188,7 @@ return [
 
         \SocialiteProviders\Manager\ServiceProvider::class,
         \Laravel\Socialite\SocialiteServiceProvider::class,
+        Bepsvpt\SecureHeaders\SecureHeadersServiceProvider::class,
         /*
          * Application Service Providers...
          */

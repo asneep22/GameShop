@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "bepsvpt/secure-headers": "^7.2",
         "guzzlehttp/guzzle": "^7.5",
         "idma/robokassa": "dev-master",
         "laracasts/flash": "^3.2",

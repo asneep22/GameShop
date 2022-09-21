@@ -10,7 +10,7 @@ return [
      * Note: when server is empty string, it will not add to response header
      */
 
-    'server' => '',
+    'server' => 'Apache/2.4.52 (Ubuntu)',
 
     /*
      * X-Content-Type-Options
@@ -115,11 +115,11 @@ return [
      */
 
     'hsts' => [
-        'enable' => false,
+        'enable' => true,
 
         'max-age' => 31536000,
 
-        'include-sub-domains' => false,
+        'include-sub-domains' => true,
 
         'preload' => false,
     ],
@@ -152,22 +152,22 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/accelerometer
         'accelerometer' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/ambient-light-sensor
         'ambient-light-sensor' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
@@ -185,22 +185,22 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/battery
         'battery' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/camera
         'camera' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
@@ -218,20 +218,20 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/display-capture
         'display-capture' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/document-domain
         'document-domain' => [
-            'none' => false,
+            'none' => true,
 
-            '*' => true,
+            '*' => false,
 
             'self' => false,
 
@@ -295,33 +295,33 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/gyroscope
         'gyroscope' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/magnetometer
         'magnetometer' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/microphone
         'microphone' => [
-            'none' => false,
+            'none' => true,
 
             '*' => false,
 
-            'self' => true,
+            'self' => false,
 
             'origins' => [],
         ],
@@ -506,7 +506,6 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src
         'img-src' => [
-            //
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/manifest-src
@@ -584,7 +583,8 @@ return [
             'report-sample' => false,
 
             'allow' => [
-                'https://teeter-totter.ru'
+                'https://code.jquery.com',
+                'http://teeter-totter.ru'
             ],
 
             'schemes' => [
@@ -604,7 +604,7 @@ return [
             // Enable `strict-dynamic` will *ignore* `self`, `unsafe-inline`,
             // `allow` and `schemes`. You can find more information from:
             // https://www.w3.org/TR/CSP3/#strict-dynamic-usage
-            'strict-dynamic' => false,
+            'strict-dynamic' => true,
 
             'hashes' => [
                 'sha256' => [
@@ -633,7 +633,6 @@ return [
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
         'style-src' => [
-            'https://teeter-totter.com/'
         ],
 
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr
