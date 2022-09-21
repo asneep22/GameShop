@@ -239,7 +239,7 @@
                     <a href="#DataSecure" data-bs-toggle="modal" class="text-decoration-none d-flex text-center hvr-bounce-to-left ms-3 ms-lg-0 mb-3"
                         data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                         <div
-                            class="px-3 text-light d-flex flex-column our-pluses-block our-pluses-border-orange our-pluses-block-md our-pluses-block-long w-sm-100">
+                            class="px-2 text-light d-flex flex-column our-pluses-block our-pluses-border-orange our-pluses-block-md our-pluses-block-long w-sm-100">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="mt-3">Высокая степень защиты данных</h4>
                                 <p class="m-0">Все данные указанные на сайте надежно хранятся и никуда не передаются!
