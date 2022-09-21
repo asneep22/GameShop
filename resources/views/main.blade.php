@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_descr')
-Основная страница, содержащая информацию о магазине, а также несколько товаров
+    Основная страница, содержащая информацию о магазине, а также несколько товаров
 @endsection
 
 @section('content')
@@ -50,8 +50,10 @@
         <div class="container py-4 px-1">
             <div class="d-xl-flex justify-content-center">
 
+                {{-- Низкие цены --}}
                 <div class="d-lg-flex flex-column me-3 text-center" id="our_pluses">
-                    <a href="" class="d-flex our-pluses-block-md  mb-3 text-decoration-none hvr-bounce-to-top"
+                    <a href="#LowPrice" data-bs-toggle="modal"
+                        class="d-flex our-pluses-block-md  mb-3 text-decoration-none hvr-bounce-to-top"
                         data-aos="fade-right" data-aos-anchor-placement="center-bottom">
                         <div class="px-3 text-light d-flex our-pluses-block our-pluses-border-orange">
                             <div class="m-auto" style="z-index: 2">
@@ -61,19 +63,62 @@
                         </div>
                     </a>
 
-                    <a href class="our-pluses-block-md d-flex text-center text-decoration-none hvr-bounce-to-bottom mb-3"
+                    <div class="modal fade text-dark" id="LowPrice" tabindex="-1" aria-labelledby="LowPriceLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="LowPriceLabel">Низкие цены</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Из-за прямого сотрудничества с издателями цены на игры ниже, чем у конкурентов!
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Большой выбор --}}
+                    <a href="#AssortimentModal" data-bs-toggle="modal"
+                        class="our-pluses-block-md d-flex text-center text-decoration-none hvr-bounce-to-bottom mb-3"
                         data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                         <div class="px-3 text-light d-flex our-pluses-block our-pluses-border-orange">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="mt-3">Большой выбор</h4>
-                                <p class="m-0">Ассортимент постоянно пополняется новыми прелдожениями!</p>
+                                <p class="m-0">Ассортимент постоянно пополняется новыми предложениями!</p>
                             </div>
                         </div>
                     </a>
+
+                    <div class="modal fade text-dark" id="AssortimentModal" tabindex="-1"
+                        aria-labelledby="AssortimentModalModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="AssortimentModalModalLabel">Большой выбор</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Наша команда имеет надежных партнеров, благодаря которым наш ассортимент постоянно
+                                    обновляется и дополняется новыми предложениями
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+                {{-- Подарки --}}
                 <div class="me-3 d-xl-flex mb-3">
-                    <a href="" class="text-decoration-none flex-colum h-100 d-lg-flex " data-aos="fade-up">
+                    <a href="#Gifts" data-bs-toggle="modal" class="text-decoration-none flex-colum h-100 d-lg-flex "
+                        data-aos="fade-up">
                         <div class="px-3 d-flex text-light hvr-bounce-to-top text-center our-pluses-block h-100">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="">Подарки</h4>
@@ -83,9 +128,30 @@
                     </a>
                 </div>
 
+                <div class="modal fade text-dark" id="Gifts" tabindex="-1" aria-labelledby="GiftsLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="GiftsLabel">Подарки</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Покупая игры на нашем сайте, вы автоматически получаете шанс бесплатно получить игру в конце
+                                недели каждого месяца!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Постоянная скидка --}}
                 <div class="d-lg-flex flex-column me-3 text-center" id="our_pluses">
                     <div class="d-xl-flex">
-                        <a href=""
+                        <a href="#AlwaysDiscount" data-bs-toggle="modal"
                             class="text-decoration-none d-flex our-pluses-block-md mb-3 me-xl-3 hvr-bounce-to-left"
                             data-aos="zoom-out" data-aos-anchor-placement="center-bottom">
                             <div class="px-3 text-light our-pluses-block our-pluses-border-orange d-flex">
@@ -97,30 +163,111 @@
                             </div>
                         </a>
 
-                        <a href="" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-md mb-3"
+                        <div class="modal fade text-dark" id="AlwaysDiscount" tabindex="-1"
+                            aria-labelledby="AlwaysDiscountLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="AlwaysDiscountLabel">Постоянная скидка</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Покупая игры на нашем сайте, вы накапливаете скидку, которая сохраняется навсегда!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-green hvr-grow"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Благотворительность --}}
+                        <a href="#Support" data-bs-toggle="modal" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-md mb-3"
                             data-aos="fade-left" data-aos-anchor-placement="center-bottom">
                             <div
                                 class="px-3 text-light our-pluses-block our-pluses-border-orange our-pluses-block-long-md d-flex">
                                 <div class="m-auto" style="z-index: 2">
-                                    <h4 class="mt-3">Низкие цены</h4>
-                                    <p class="m-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Reprehenderit
-                                        architecto iure</p>
+                                    <h4 class="mt-3">Команда поддержки</h4>
+                                    <p class="m-0">Если у вас возникли какие-либо вопросы вы можете обратиться в команду поддержки</p>
                                 </div>
                             </div>
                         </a>
+
+                        <div class="modal fade text-dark" id="Support" tabindex="-1"
+                            aria-labelledby="SupportLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="SupportLabel">Команда поддержки</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Наша команда поддержки с радостью поможет решить или ответить на ваши вопросы. Адрес команды поддержки: <b>teetertottersx@gmail.com</b>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-green hvr-grow"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade text-dark" id="AlwaysDiscount" tabindex="-1"
+                            aria-labelledby="AlwaysDiscountLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="AlwaysDiscountLabel">Постоянная скидка</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Покупая игры на нашем сайте, вы накапливаете скидку, которая сохраняется навсегда!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-green hvr-grow"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <a href="#" class="text-decoration-none d-flex text-center hvr-bounce-to-left" data-aos="fade-up"
-                        data-aos-anchor-placement="center-bottom">
+                    {{-- Высокая степень защиты данных --}}
+                    <a href="#DataSecure" data-bs-toggle="modal" class="text-decoration-none d-flex text-center hvr-bounce-to-left"
+                        data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                         <div
                             class="px-3 text-light d-flex flex-column our-pluses-block our-pluses-border-orange our-pluses-block-long our-pluses-block-md">
                             <div class="m-auto" style="z-index: 2">
-                                <h4 class="mt-3">Купоны</h4>
-                                <p class="m-0">В дополнению к низким ценам Вы можете получить купон, дарующий скидку!</p>
+                                <h4 class="mt-3">Высокая степень защиты данных</h4>
+                                <p class="m-0">Все данные указанные на сайте надежно хранятся и никуда не передаются!
+                                </p>
                             </div>
                         </div>
                     </a>
+
+                    <div class="modal fade text-dark" id="DataSecure" tabindex="-1"
+                    aria-labelledby="DataSecureLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="DataSecureLabel">Высокая степень защиты данных</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Данные, которые хранятся на нашем сервере никогда не передаются третьим лицам.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-green hvr-grow"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
 
             </div>
@@ -369,9 +516,9 @@
                                                     <path fill-rule="evenodd"
                                                         d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
                                                 </svg></a>
-                                                @if ($item->keys->count() == 0)
+                                            @if ($item->keys->count() == 0)
                                                 <p class="m-auto ms-2 text-secondary">Нет в наличии</p>
-                                                @endif
+                                            @endif
                                         </div>
                                         <h5 class="me-3 m-auto">
                                             {{ $item->discount_price == 0 ? $item->price : $item->discount_price }}р
