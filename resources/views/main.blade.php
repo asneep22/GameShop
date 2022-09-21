@@ -46,14 +46,13 @@
 
     <!-- Почему мы -->
 
-    <div class="container-fluid bg-blue-gradient">
-        <div class="container py-4 px-1">
-            <div class="d-xl-flex justify-content-center">
-
+    <div class="container-fluid d-flex p-0 bg-blue-gradient">
+        <div class="container m-auto py-4 m-0">
+            <div class="d-xl-flex justify-content-center mx-auto">
                 {{-- Низкие цены --}}
-                <div class="d-lg-flex flex-column me-3 text-center" id="our_pluses">
+                <div class="d-flex flex-xl-column justify-content-between me-lg-3 text-center" id="our_pluses">
                     <a href="#LowPrice" data-bs-toggle="modal"
-                        class="d-flex our-pluses-block-md  mb-3 text-decoration-none hvr-bounce-to-top"
+                        class="d-flex our-pluses-block-md mb-3 text-decoration-none hvr-bounce-to-top"
                         data-aos="fade-right" data-aos-anchor-placement="center-bottom">
                         <div class="px-3 text-light d-flex our-pluses-block our-pluses-border-orange">
                             <div class="m-auto" style="z-index: 2">
@@ -116,7 +115,7 @@
                 </div>
 
                 {{-- Подарки --}}
-                <div class="me-3 d-xl-flex mb-3">
+                <div class="me-lg-3 d-xl-flex mb-3">
                     <a href="#Gifts" data-bs-toggle="modal" class="text-decoration-none flex-colum h-100 d-lg-flex "
                         data-aos="fade-up">
                         <div class="px-3 d-flex text-light hvr-bounce-to-top text-center our-pluses-block h-100">
@@ -149,12 +148,12 @@
                 </div>
 
                 {{-- Постоянная скидка --}}
-                <div class="d-lg-flex flex-column me-3 text-center" id="our_pluses">
-                    <div class="d-xl-flex">
+                <div class="d-flex flex-xl-column justify-content-between me-lg-3 text-center" id="our_pluses">
+                    <div class="d-xl-flex w-50">
                         <a href="#AlwaysDiscount" data-bs-toggle="modal"
-                            class="text-decoration-none d-flex our-pluses-block-md mb-3 me-xl-3 hvr-bounce-to-left"
+                            class="text-decoration-none d-flex our-pluses-block-md w-100 mb-3 me-xl-3 hvr-bounce-to-left w-sm-100"
                             data-aos="zoom-out" data-aos-anchor-placement="center-bottom">
-                            <div class="px-3 text-light our-pluses-block our-pluses-border-orange d-flex">
+                            <div class="px-lg-3 text-light our-pluses-block our-pluses-border-orange d-flex">
                                 <div class="m-auto" style="z-index: 2">
                                     <h4 class="mt-3">Постоянная скидка</h4>
                                     <p class="m-0">В нашем интернет-магазине каждый сможет накопить персональную скидку!
@@ -183,11 +182,11 @@
                             </div>
                         </div>
 
-                        {{-- Благотворительность --}}
-                        <a href="#Support" data-bs-toggle="modal" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-md mb-3"
+                        {{-- Команда поддержки --}}
+                        <a href="#Support" data-bs-toggle="modal" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-md w-sm-100 mb-3"
                             data-aos="fade-left" data-aos-anchor-placement="center-bottom">
                             <div
-                                class="px-3 text-light our-pluses-block our-pluses-border-orange our-pluses-block-long-md d-flex">
+                                class="px-lg-3 text-light our-pluses-block our-pluses-border-orange our-pluses-block-long-md d-flex">
                                 <div class="m-auto" style="z-index: 2">
                                     <h4 class="mt-3">Команда поддержки</h4>
                                     <p class="m-0">Если у вас возникли какие-либо вопросы вы можете обратиться в команду поддержки</p>
@@ -237,10 +236,10 @@
                     </div>
 
                     {{-- Высокая степень защиты данных --}}
-                    <a href="#DataSecure" data-bs-toggle="modal" class="text-decoration-none d-flex text-center hvr-bounce-to-left"
+                    <a href="#DataSecure" data-bs-toggle="modal" class="text-decoration-none d-flex text-center hvr-bounce-to-left ms-3 ms-lg-0 mb-3"
                         data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                         <div
-                            class="px-3 text-light d-flex flex-column our-pluses-block our-pluses-border-orange our-pluses-block-long our-pluses-block-md">
+                            class="px-3 text-light d-flex flex-column our-pluses-block our-pluses-border-orange our-pluses-block-md our-pluses-block-long w-sm-100">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="mt-3">Высокая степень защиты данных</h4>
                                 <p class="m-0">Все данные указанные на сайте надежно хранятся и никуда не передаются!

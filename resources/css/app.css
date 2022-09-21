@@ -309,7 +309,7 @@ body {
     z-index: 2;
 }
 
-@media(min-width: 1281px) and (max-width: 9999px) {
+@media(min-width: 1280px) and (max-width: 9999px) {
 
     .big-card {
         max-width: 53rem;
@@ -327,6 +327,16 @@ body {
 }
 
 @media(min-width: 0px) and (max-width: 993px) {
+
+    .our-pluses-block-md{
+        min-width: 48% !important;
+        max-width: 48% !important;
+    }
+
+    .w-sm-100{
+        min-width: 100% !important;
+    }
+
     .profitable-card-image {
         min-height: 9.37rem !important;
         max-height: 9.37rem !important;
@@ -394,6 +404,15 @@ body {
         max-width: 100% !important;
     }
 
+    .our-pluses-block-md{
+        min-width: 48% !important;
+        max-width: 48% !important;
+    }
+
+    .w-sm-100{
+        min-width: 100% !important;
+    }
+
     .big-card {
         min-height: 30rem;
         min-width: 60%;
@@ -418,12 +437,21 @@ body {
     }
 }
 
-@media(min-width: 1024px) and (max-width: 1280px) {
+@media(min-width: 1024px) and (max-width: 1279px) {
     .profitable-card-image {
         min-height: 9.37rem !important;
         max-height: 9.37rem !important;
         min-width: 100% !important;
         max-width: 100% !important;
+    }
+
+    .our-pluses-block-md{
+        min-width: 48% !important;
+        max-width: 48% !important;
+    }
+
+    .w-sm-100{
+        min-width: 100% !important;
     }
 
     .big-card {
