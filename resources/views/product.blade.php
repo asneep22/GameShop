@@ -49,7 +49,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="mt-1 d-flex overflow-auto" style="max-height:6rem">
+                <div class="mt-1 d-flex overflow-auto" style="max-height:8rem">
                     <div class="visually-hidden">{{ $i = 0 }}</div>
                     {{-- Делаем видео первыми в кнопках слайдера --}}
                     @foreach ($materials as $key => $material)
