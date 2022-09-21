@@ -49,14 +49,14 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="mt-1 d-flex overflow-auto" style="max-height:8rem">
+                <div class="mt-1 d-flex overflow-auto" style="max-height:6rem">
                     <div class="visually-hidden">{{ $i = 0 }}</div>
                     {{-- Делаем видео первыми в кнопках слайдера --}}
                     @foreach ($materials as $key => $material)
                         @if (pathinfo($material->file_path, PATHINFO_EXTENSION) != 'jpg')
                             <button type="button" data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="{{ $i }}"
-                                class="active overflow-hidden product-img-btn p-0 me-2" aria-current="true"
+                                class="active overflow-hidden product-img-btn p-0 me-1" aria-current="true"
                                 aria-label="Slide {{ $i }}" id="yourDiv">
 
                                 <video class="h-100" preload="auto" class="">
@@ -72,7 +72,7 @@
                     @foreach ($materials as $key => $material)
                         @if (pathinfo($material->file_path, PATHINFO_EXTENSION) == 'jpg')
                             <button type="button" data-bs-target="#carouselExampleCaptions"
-                                data-bs-slide-to="{{ $i }}" class="active product-img-btn p-0 me-2 "
+                                data-bs-slide-to="{{ $i }}" class="active product-img-btn p-0 me-1 "
                                 aria-current="true" aria-label="Slide {{ $i }}">
                                 <img src='{{ URL::asset('/storage/' . $material->file_path) }}' class="w-100 h-100 ">
                             </button>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             {{-- Информация о продукте --}}
-            <div class="p-4 ms-3 d-flex bg-blue outer-shadow-light-1 mt-3 mt-lg-0 mt-lg-0 rounded"
+            <div class="p-4 ms-lg-3 d-flex bg-blue outer-shadow-light-1 mt-3 mt-lg-0 mt-lg-0 rounded"
                 style="min-width:28%">
                 <div class="mb-3 text-white d-flex flex-column w-100">
                     <div class="d-flex justify-content-between">
@@ -152,7 +152,7 @@
     <div class="container-fluid bg-light px-0">
         <div class="container px-0">
             <div class="d-lg-flex mt-4 px-0 my-4">
-                <div class="" style="min-width: 70.8%">
+                <div class="pe-2" style="min-width: 70.8%">
                     {{-- Если авторизован --}}
                     @auth
                         <h5>Отзывы</h5>
@@ -286,7 +286,7 @@
                 </div>
                 {{-- Правила написания отзывов --}}
                 <div style="min-width:28%; margin-top:2.4rem;"
-                    class="bg-secondary text-light outer-shadow-light-2 mb-3 ms-lg-3 rounded">
+                    class="bg-secondary text-light outer-shadow-light-2 mb-3 ms-lg-2 rounded">
                     <h5 class="text-center p-4">Внимательно прочитайте перед публикацией отзыва!</h5>
                     <div class="px-4 pb-4">
                         <p class="fs-6">- Не используйте ненормативую лексику или оскорбления</p>
