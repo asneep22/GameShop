@@ -582,7 +582,7 @@ return [
             'report-sample' => false,
 
             'allow' => [
-                'http://localhost/GameShop/public/js/app.js'
+
             ],
 
             'schemes' => [
