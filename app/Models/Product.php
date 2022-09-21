@@ -22,7 +22,8 @@ class Product extends Model
         'discount_id',
         'redChoose',
         'publishing_date',
-        'product_id'
+        'product_id',
+        'not_region_free'
     ];
 
     protected $casts =[

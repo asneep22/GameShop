@@ -57,7 +57,7 @@
                         <div class="px-3 text-light d-flex our-pluses-block our-pluses-border-orange">
                             <div class="m-auto" style="z-index: 2">
                                 <h4 class="mt-3">Низкие цены</h4>
-                                <p class="m-0">У нас всегда цены ниже, чем у конкурентов!</p>
+                                <p class="m-0">У нас всегда низкие цены!</p>
                             </div>
                         </div>
                     </a>
@@ -72,10 +72,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Из-за прямого сотрудничества с издателями цены на игры ниже, чем у конкурентов!
+                                    Мы не завышаем цены и продаем игры только по справедливым ценам!
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Закрыть</button>
                                 </div>
                             </div>
                         </div>
@@ -103,11 +103,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Наша команда имеет надежных партнеров, благодаря которым наш ассортимент постоянно
-                                    обновляется и дополняется новыми предложениями
+                                    Наша команда приобретает ключи активации у официальных представителей игровых дистрибьюторов и постоянно увеличивает свой ассортимент.
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Закрыть</button>
                                 </div>
                             </div>
                         </div>
@@ -137,11 +136,10 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Покупая игры на нашем сайте, вы автоматически получаете шанс бесплатно получить игру в конце
-                                недели каждого месяца!
+                                Покупая товар и оставляя отзыв на странице купленного товара вы получаете возможность получить случайную игру в конце месяца!
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn-green hvr-grow" data-bs-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>
@@ -176,14 +174,14 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn-green hvr-grow"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">Закрыть</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {{-- Команда поддержки --}}
-                        <a href="#Support" data-bs-toggle="modal" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-md w-sm-100 mb-3"
+                        <a href="#Support" data-bs-toggle="modal" class="text-decoration-none hvr-bounce-to-right d-flex our-pluses-block-long-md w-sm-100 mb-3"
                             data-aos="fade-left" data-aos-anchor-placement="center-bottom">
                             <div
                                 class="px-lg-3 text-light our-pluses-block our-pluses-border-orange our-pluses-block-long-md d-flex">
@@ -208,7 +206,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn-green hvr-grow"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">Закрыть</button>
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +226,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn-green hvr-grow"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">Закрыть</button>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +260,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn-green hvr-grow"
-                                    data-bs-dismiss="modal">Close</button>
+                                    data-bs-dismiss="modal">Закрыть</button>
                             </div>
                         </div>
                     </div>

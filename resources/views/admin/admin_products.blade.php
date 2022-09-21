@@ -120,6 +120,14 @@
                                                         Выбор редакции
                                                     </label>
                                                 </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="1"
+                                                        id="not_region_free" name="not_region_free">
+                                                    <label class="form-check-label" for="not_region_free">
+                                                        Активация только в России и странах СНГ
+                                                    </label>
+                                                </div>
                                                 <hr>
                                                 <h5 class="my-4 text-center">Системные требования</h5>
                                                 <hr>
@@ -392,8 +400,6 @@
                                                             @endforeach
                                                         </div>
 
-
-
                                                         {{-- Изображения в конец --}}
 
                                                         <div class="w-100 m-auto mt-3 d-flex flex-column" style="">
@@ -472,6 +478,14 @@
                                                             <label class="form-check-label"
                                                                 for="redChoose{{ $product->id }}">
                                                                 Выбор редакции
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="1"
+                                                                id="not_region_free_edit{{$product->id}}" name="not_region_free_edit{{$product->id}}" {{$product->not_region_free == 1 ? 'checked':''}}>
+                                                            <label class="form-check-label" for="not_region_free_edit{{$product->id}}">
+                                                                Активация только в России и странах СНГ
                                                             </label>
                                                         </div>
 

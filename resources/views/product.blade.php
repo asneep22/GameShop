@@ -1,11 +1,11 @@
 @extends('app')
 
 @section('page-title')
-    {{$product->title}}
+    {{ $product->title }}
 @endsection
 
 @section('page_descr')
-Купить {{$product->title}}
+    Купить {{ $product->title }}
 @endsection
 
 @section('content')
@@ -82,8 +82,7 @@
                 </div>
             </div>
             {{-- Информация о продукте --}}
-            <div class="p-4 ms-lg-3 d-flex bg-blue outer-shadow-light-1 mt-3 mt-lg-0 mt-lg-0 rounded"
-                style="min-width:28%">
+            <div class="p-4 ms-lg-3 d-flex bg-blue outer-shadow-light-1 mt-3 mt-lg-0 mt-lg-0 rounded" style="min-width:28%">
                 <div class="mb-3 text-white d-flex flex-column w-100">
                     <div class="d-flex justify-content-between">
                         <h5 class="me-3"> {{ $product->title }}</h5>
@@ -132,16 +131,26 @@
                             <hr class="my-2">
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-0 m-auto w-100">
-                        <p class="my-auto">Дата выхода: {{ $product->publishing_date->format('d.m.Y') }}</p>
-                        @if ($product->keys->count() > 0)
-                            <a class="me-0 m-auto text-decoration-none text-light px-3 py-2 btn-orange hvr-grow product_add_to_shop_cart_button btn_product_buy"
-                                style="cursor: pointer" data-new-text="Игра уже в корзине" data-toggle="message"
-                                data-target="#1" data-expire="2000" data-url={{ route('product_to_cart', $product->id) }}
-                                data-auth={{ Auth::check() }}>{{ !$product_is_on_shopping_cart ? 'В корзину' : 'Игра уже в корзине' }}</a>
-                        @else
-                            <p class="fs-6 my-auto">Нет в наличии</p>
+                    <div class="d-flex flex-column mb-0 m-auto w-100">
+                        @if ($product->not_region_free == 1)
+                            <div>
+                                Данный товар имеет РЕГИОНАЛЬНЫЕ ОГРАНИЧЕНИЯ:
+                                Активация только в России и странах СНГ.
+                                <hr class="my-2">
+                            </div>
                         @endif
+                        <div class="d-flex justify-content-between">
+                            <p class="my-auto">Дата выхода: {{ $product->publishing_date->format('d.m.Y') }}</p>
+                            @if ($product->keys->count() > 0)
+                                <a class="me-0 m-auto text-decoration-none text-light px-3 py-2 btn-orange hvr-grow product_add_to_shop_cart_button btn_product_buy"
+                                    style="cursor: pointer" data-new-text="Игра уже в корзине" data-toggle="message"
+                                    data-target="#1" data-expire="2000"
+                                    data-url={{ route('product_to_cart', $product->id) }}
+                                    data-auth={{ Auth::check() }}>{{ !$product_is_on_shopping_cart ? 'В корзину' : 'Игра уже в корзине' }}</a>
+                            @else
+                                <p class="fs-6 my-auto">Нет в наличии</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
